@@ -1,0 +1,23 @@
+{
+	"name": "frontcore",
+	"version": "0.0.0",
+	"homepage": "https://github.com/hegdeashwin/frontcore",
+	"authors": [
+		"hegdeashwin <ashwin.hegde3@gmail.com>"
+	],
+	"dependencies": {
+		"bootstrap": "3.1.0"
+	},
+	"ignore": [
+		"**/.*",
+		"node_modules",
+		"client/bower_components",
+		"test",
+		"tests",
+		"client-dist"
+	],
+	"keywords": [
+		
+	],
+	"license": "MIT"
+}
