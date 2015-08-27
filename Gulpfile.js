@@ -41,6 +41,15 @@ gulp.task('jsonlint', function() {
 });
 
 /**
+ * Setup jshint task.
+ */
+gulp.task('jshint', function() {
+	return gulp.src('./client/*.js')
+		.pipe(jshint(SERVE_RULES.lint.rules.js))
+		.pipe(jshint.reporter());
+});
+
+/**
  * Define sub-tasks : Tasks for Less compilation for development.
  */
-gulp.task('default', ['jsonlint', 'htmlhint']);
+gulp.task('default', ['jsonlint', 'htmlhint', 'jshint']);

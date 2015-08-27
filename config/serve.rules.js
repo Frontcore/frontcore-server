@@ -13,7 +13,10 @@ module.exports = {
         "head-script-disabled": true
       },
       "css": {},
-      "js": {},
+      "js": {
+        "undef": true,
+        "unused": true
+      },
       "jscs": {},
       "sass": {}
     }
