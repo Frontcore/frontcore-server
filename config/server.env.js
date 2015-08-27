@@ -11,7 +11,7 @@ module.exports = {
     "prod": {
       "port": "8000",
       "ip": "127.0.0.1",
-      "codebase": "../client-dist",
+      "codebase": "../client-prod",
       "NODE_ENV": "production"
     }
   },
