@@ -50,6 +50,15 @@ gulp.task('jshint', function() {
 });
 
 /**
+ * Setup jscs task.
+ */
+gulp.task('jscs', function() {
+	return gulp.src('./client/*.js')
+		.pipe(jscs(SERVE_RULES.lint.rules.jscs))
+		.pipe(jscs.reporter());
+});
+
+/**
  * Define sub-tasks : Tasks for Less compilation for development.
  */
-gulp.task('default', ['jsonlint', 'htmlhint', 'jshint']);
+gulp.task('default', ['jsonlint', 'htmlhint', 'jshint', 'jscs']);
