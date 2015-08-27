@@ -13,6 +13,7 @@
     "joi": "^6.6.1",
     "jquery": "^2.1.4",
     "morgan": "~1.6.1",
+    "nodemailer": "^1.4.0",
     "react": "^0.13.3",
     "underscore": "^1.8.3"
   },
