@@ -55,7 +55,6 @@ gulp.task('jshint', function() {
 gulp.task('jscs', function() {
 	return gulp.src('./client/*.js')
 		.pipe(jscs(SERVE_RULES.lint.rules.jscs))
-		.pipe(jscs.reporter());
 });
 
 /**
