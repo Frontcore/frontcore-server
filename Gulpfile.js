@@ -9,7 +9,7 @@ var gulp = require('gulp'),
 	jscs = require('gulp-jscs'),
 	jshint = require('gulp-jshint'),
 	jsonlint = require("gulp-jsonlint"),
-	sass = require('gulp-sass');
+	less = require('gulp-less');
 
 /**
  * Require built-in `npm`.
@@ -61,16 +61,16 @@ gulp.task('jscs', function() {
 });
 
 /**
- * Setup sass compilation task.
+ * Setup less compilation task.
  */
-gulp.task('sass', function() {
-	return gulp.src('./client/stylesheets/sass/_consolidate.sass')
-		.pipe(sass())
+gulp.task('less', function() {
+	return gulp.src('./client/stylesheets/less/_consolidate.less')
+		.pipe(less())
 		.on('error', gutil.log)
-		.pipe(gulp.dest('./client/stylesheets/css/consolidate.css'));
+		.pipe(gulp.dest('./client/stylesheets/css/'));
 });
 
 /**
  * Define sub-tasks : Tasks for Less compilation for development.
  */
-gulp.task('default', ['htmlhint', 'jsonlint', 'jshint', 'jscs', 'sass']);
+gulp.task('default', ['htmlhint', 'jsonlint', 'jshint', 'jscs', 'less']);
