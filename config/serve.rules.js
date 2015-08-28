@@ -20,8 +20,7 @@ module.exports = {
 			"jscs": {
 				"disallowMultipleVarDecl": true,
 				"disallowSpacesInsideObjectBrackets": true
-			},
-			"sass": {}
+			}
 		}
 	}
 };
