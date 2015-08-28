@@ -8,7 +8,9 @@ var gulp = require('gulp'),
 	htmlhint = require('gulp-htmlhint'),
 	jscs = require('gulp-jscs'),
 	jshint = require('gulp-jshint'),
-	jsonlint = require("gulp-jsonlint");
+	jsonlint = require("gulp-jsonlint"),
+	sass = require('gulp-sass'),
+	sasslint = require('gulp-sass-lint');
 
 /**
  * Require built-in `npm`.
@@ -37,7 +39,8 @@ gulp.task('htmlhint', function() {
 gulp.task('jsonlint', function() {
 	return gulp.src('./*.json')
 		.pipe(jsonlint())
-		.pipe(jsonlint.reporter());
+		.pipe(jsonlint.reporter())
+		.on('error', gutil.log);
 });
 
 /**
@@ -46,7 +49,8 @@ gulp.task('jsonlint', function() {
 gulp.task('jshint', function() {
 	return gulp.src('./client/*.js')
 		.pipe(jshint(SERVE_RULES.lint.rules.js))
-		.pipe(jshint.reporter());
+		.pipe(jshint.reporter())
+		.on('error', gutil.log);
 });
 
 /**
@@ -58,6 +62,26 @@ gulp.task('jscs', function() {
 });
 
 /**
+ * Setup sass compilation task.
+ */
+gulp.task('sass', function() {
+	return gulp.src('./client/stylesheets/sass/**/*.sass')
+		.pipe(sass())
+		.on('error', gutil.log)
+		.pipe(gulp.dest('./client/stylesheets/css/*.css'));
+});
+
+/**
+ * Setup sass lint task.
+ */
+gulp.task('sasslint', function() {
+	return gulp.src('./client/stylesheets/sass/**/*.sass')
+		.pipe(sasslint())
+		.pipe(sasslint.format())
+		.on('error', gutil.log);
+});
+
+/**
  * Define sub-tasks : Tasks for Less compilation for development.
  */
-gulp.task('default', ['jsonlint', 'htmlhint', 'jshint', 'jscs']);
+gulp.task('default', ['htmlhint', 'jsonlint', 'jshint', 'jscs', 'sasslint', 'sass']);
