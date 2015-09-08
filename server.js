@@ -2,7 +2,7 @@
 
 var http = require('http'),
 	app = require('./app'),
-	PRODUCT = require('../package.json');
+	PRODUCT = require('./package.json');
 
 /**
  * Create HTTP server.
