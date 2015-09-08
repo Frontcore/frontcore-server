@@ -2,10 +2,10 @@
 
 var express = require('express'),
   morgan = require('morgan'),
-  // cookieParser = require('cookie-parser'),
   bodyParser = require('body-parser'),
   path = require('path'),
-  fs = require('fs');
+  fs = require('fs'),
+  compression = require('compression');
 
 var CONFIG = require("./config/server.env");
 
@@ -30,7 +30,7 @@ app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({
   extended: false
 }));
-// app.use(cookieParser());
+app.use(compression());
 app.set('trust proxy', function(ip) {
   return (ip === '127.0.0.1') ? true : false;
 });
@@ -58,6 +58,14 @@ switch (NODE_ENV.toLowerCase()) {
     break;
 }
 
-app.use('/api/' + CONFIG.api.defaults.version + '/index', require('./routes/' + CONFIG.api.defaults.version + '/indexs'));
+/**
+ * Syntax:
+ * app.use('/api/<version>/', require('./routes/<version>/<api-file>'));
+ */
+
+/**
+ * JSHint API REST Service
+ */
+app.use('/api/' + CONFIG.api.defaults.version + '/lint', require('./routes/' + CONFIG.api.defaults.version + '/jshint.api'));
 
 module.exports = app;

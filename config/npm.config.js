@@ -15,3 +15,6 @@
  */
 var joi = require('joi');
 exports.joi = joi;
+
+var jshint = require('jshint').JSHINT;
+exports.jshint = jshint;
