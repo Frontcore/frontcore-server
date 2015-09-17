@@ -22,8 +22,8 @@
 	 * Setup htmlhint task.
 	 */
 	gulp.task('htmlhint', function() {
-		return gulp.src('./client/*.html')
-			.pipe(htmlhint(SERVE_RULES.lint.rules.html))
+		return gulp.src(SERVE_FILES.path.html.gateway.src)
+			.pipe(htmlhint(SERVE_RULES.lint.rules.html.gateway))
 			.pipe(htmlhint.reporter())
 			.on('error', gutil.log);
 	});
@@ -32,7 +32,7 @@
 	 * Setup jsonlint task.
 	 */
 	gulp.task('jsonlint', function() {
-		return gulp.src('./*.json')
+		return gulp.src(SERVE_FILES.path.json.src)
 			.pipe(jsonlint())
 			.pipe(jsonlint.reporter())
 			.on('error', gutil.log);
@@ -42,7 +42,7 @@
 	 * Setup jshint task.
 	 */
 	gulp.task('jshint', function() {
-		return gulp.src(['Gulpfile.js', './client/**/*.js', './server/**/*.js'])
+		return gulp.src(SERVE_FILES.path.js.src)
 			.pipe(jshint(SERVE_RULES.lint.rules.js))
 			.pipe(jshint.reporter())
 			.on('error', gutil.log);
@@ -52,7 +52,7 @@
 	 * Setup jscs task.
 	 */
 	gulp.task('jscs', function() {
-		return gulp.src(['Gulpfile.js', './client/**/*.js', './server/**/*.js'])
+		return gulp.src(SERVE_FILES.path.js.src)
 			.pipe(jscs(SERVE_RULES.lint.rules.jscs));
 	});
 
@@ -60,14 +60,20 @@
 	 * Setup less compilation task.
 	 */
 	gulp.task('less', function() {
-		return gulp.src('./client/stylesheets/less/_consolidate.less')
+		return gulp.src(SERVE_FILES.path.less.src)
 			.pipe(less())
 			.on('error', gutil.log)
-			.pipe(gulp.dest('./client/stylesheets/css/'));
+			.pipe(gulp.dest(SERVE_FILES.path.less.dest));
 	});
 
 	/**
-	 * Define sub-tasks : Tasks for Less compilation for development.
+	 * Define `default` tasks
 	 */
 	gulp.task('default', ['htmlhint', 'jsonlint', 'jshint', 'jscs', 'less']);
+
+	/**
+	 * Define `lintjs` tasks
+	 */
+	gulp.task('lintjs', ['jsonlint', 'jshint', 'jscs']);
+
 })();
