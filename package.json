@@ -5,11 +5,12 @@
   "author": "Ashwin Hegde",
   "main": "server.js",
   "scripts": {
-    "start": "node ./server.js"
+    "start": "node ./server/server.js"
   },
   "dependencies": {
     "backbone": "^1.2.2",
     "body-parser": "~1.13.2",
+    "chalk": "^1.1.1",
     "compression": "^1.5.2",
     "csslint": "^0.10.0",
     "debug": "~2.2.0",
@@ -43,7 +44,8 @@
     "gulp-watch": "^4.3.5"
   },
   "engines": {
-    "node": ">=0.10"
+    "node": ">=0.10",
+    "iojs": ">=2.3.4"
   },
   "keywords": [],
   "repository": {
@@ -62,10 +64,8 @@
   "wiki": {
     "url": "http://github.com/hegdeashwin/frontcore/wiki"
   },
-  "licenses": [
-    {
-      "type": "MIT",
-      "url": "http://raw.github.com/hegdeashwin/frontcore/master/LICENSE"
-    }
-  ]
+  "licenses": [{
+    "type": "MIT",
+    "url": "http://raw.github.com/hegdeashwin/frontcore/master/LICENSE"
+  }]
 }
