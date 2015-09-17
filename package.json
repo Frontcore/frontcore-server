@@ -10,6 +10,7 @@
   "dependencies": {
     "backbone": "^1.2.2",
     "body-parser": "~1.13.2",
+    "chalk": "^1.1.1",
     "compression": "^1.5.2",
     "csslint": "^0.10.0",
     "debug": "~2.2.0",
