@@ -46,17 +46,17 @@
 		switch (error.code) {
 			case 'EACCES':
 				msg.error('Requires elevated privileges');
-				process.exit(1);
 				break;
 
 			case 'EADDRINUSE':
 				msg.error('Port is already in use');
-				process.exit(1);
 				break;
 
 			default:
 				throw error;
 		}
+
+		process.exit(1);
 	};
 
 	/**
