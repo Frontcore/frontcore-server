@@ -3,7 +3,7 @@
 var express = require('express');
 var router = express.Router();
 
-var jshint = require('../../config/npm.config').jshint;
+var jshint = require('../../../config/npm.config').jshint;
 
 /**
  * Access URL: localhost:9000/api/v1/lint/js/errors

@@ -18,7 +18,7 @@
     /**
      * Requires a constants utility functions;
      */
-    var CONFIG = require("./config/server.env");
+    var CONFIG = require("../config/server.env");
 
     /**
      * Create an express app;

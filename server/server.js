@@ -9,24 +9,38 @@
 	/**
 	 * Requires a constants utility functions;
 	 */
-	var PRODUCT = require('./package.json');
+	var PRODUCT = require('../package.json');
 
 	/**
 	 * Requires a frontcore utility functions;
 	 * @requires app:./app.js
+	 * @requires msg:./utils/message.js
 	 */
-	var app = require('./app');
+	var app = require('./app'),
+		msg = require('./utils/message');
+
+	/**
+	 * Define utility objects;
+	 */
+	var appProp = {};
+	appProp.port = app.get('port');
+	appProp.address = app.get('uri');
 
 	/**
 	 * Create HTTP server.
+	 * @param {object} app - express app
 	 */
 	var server = http.createServer(app);
 
 	/**
 	 * Listen on provided port, on all network interfaces.
+	 * @param {object} _port - port on which express server is listening
 	 */
-	server.listen(app.get('port'));
+	server.listen(appProp.port);
 
+	/**
+	 * Subscribe events
+	 */
 	server.on('error', onError);
 	server.on('listening', onListening);
 
@@ -43,13 +57,15 @@
 		 */
 		switch (error.code) {
 			case 'EACCES':
-				console.error('Requires elevated privileges');
+				msg.error('Requires elevated privileges');
 				process.exit(1);
 				break;
+
 			case 'EADDRINUSE':
-				console.error('Port is already in use');
+				msg.error('Port is already in use');
 				process.exit(1);
 				break;
+
 			default:
 				throw error;
 		}
@@ -59,7 +75,10 @@
 	 * Event listener for HTTP server 'listening' event.
 	 */
 	function onListening() {
-		console.log('\n\n\t %s v%s is listening on server %s:%s', PRODUCT.name, PRODUCT.version, app.get('uri'), app.get('port'));
+		msg.log('\n ' + PRODUCT.name + ' v' + PRODUCT.version);
+		msg.line();
+
+		msg.log(' Web server is started on ' + appProp.address + ':' + appProp.port + '\n');
 	}
 
 })();
