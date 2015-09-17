@@ -1,7 +1,13 @@
 before_script:
-  - npm install -g bower
-  - bower install -f
+    - npm install -g gulp-cli
+    - npm install
+    - bower install
 
 language: node_js
 node_js:
-  - "0.10"
+    - "0.10"
+    - "0.12"
+    - "4.0.0"
+    - "iojs-v2.3.4"
+    - "iojs-v3.0.0"
+    - "iojs-v3.3.1"

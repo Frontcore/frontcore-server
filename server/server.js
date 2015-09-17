@@ -33,21 +33,9 @@
 	var server = http.createServer(app);
 
 	/**
-	 * Listen on provided port, on all network interfaces.
-	 * @param {object} _port - port on which express server is listening
-	 */
-	server.listen(appProp.port);
-
-	/**
-	 * Subscribe events
-	 */
-	server.on('error', onError);
-	server.on('listening', onListening);
-
-	/**
 	 * Event listener for HTTP server 'error' event.
 	 */
-	function onError(error) {
+	var onError = function(error) {
 		if (error.syscall !== 'listen') {
 			throw error;
 		}
@@ -69,16 +57,28 @@
 			default:
 				throw error;
 		}
-	}
+	};
 
 	/**
 	 * Event listener for HTTP server 'listening' event.
 	 */
-	function onListening() {
+	var onListening = function() {
 		msg.log('\n ' + PRODUCT.name + ' v' + PRODUCT.version);
 		msg.line();
 
 		msg.log(' Web server is started on ' + appProp.address + ':' + appProp.port + '\n');
-	}
+	};
+
+	/**
+	 * Subscribe events
+	 */
+	server.on('error', onError);
+	server.on('listening', onListening);
+
+	/**
+	 * Listen on provided port, on all network interfaces.
+	 * @param {object} _port - port on which express server is listening
+	 */
+	server.listen(appProp.port);
 
 })();
