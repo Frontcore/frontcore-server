@@ -18,3 +18,9 @@ exports.joi = joi;
 
 var jshint = require('jshint').JSHINT;
 exports.jshint = jshint;
+
+var extend = require('object.assign');
+exports.extent = extent;
+
+var scandir = require('node-dir');
+exports.scandir = scandir;
