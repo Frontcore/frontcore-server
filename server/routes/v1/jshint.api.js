@@ -3,12 +3,20 @@
 var express = require('express');
 var router = express.Router();
 
-var jshint = require('../../../config/npm.config').jshint;
+var CONFIG = require('../../../config/npm.config');
+var JSHINT_RULES = require('../../models/jshint.model');
+
+var scanWith = CONFIG.jshint;
+var extend = CONFIG.extend;
+var scandir = CONFIG.scandir;
 
 /**
  * Access URL: localhost:9000/api/v1/lint/js/errors
  */
-router.get('/js/errors', function(req, res, next) {
+router.post('/js/errors', function(req, res, next) {
+	console.log("Payload: ", req.body);
+	console.log("JSHINT_RULES: ", JSHINT_RULES);
+
 	res.json({
 		"jshint": "errors",
 		"status": "done"
