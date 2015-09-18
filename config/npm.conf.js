@@ -20,7 +20,7 @@ var jshint = require('jshint').JSHINT;
 exports.jshint = jshint;
 
 var extend = require('object.assign');
-exports.extent = extent;
+exports.extend = extend;
 
 var scandir = require('node-dir');
 exports.scandir = scandir;
