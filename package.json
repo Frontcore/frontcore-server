@@ -20,7 +20,9 @@
     "jquery": "^2.1.4",
     "jshint": "^2.8.0",
     "morgan": "~1.6.1",
+    "node-dir": "^0.1.10",
     "nodemailer": "^1.4.0",
+    "object.assign": "^4.0.1",
     "react": "^0.13.3",
     "underscore": "^1.8.3"
   },
@@ -64,8 +66,10 @@
   "wiki": {
     "url": "http://github.com/hegdeashwin/frontcore/wiki"
   },
-  "licenses": [{
-    "type": "MIT",
-    "url": "http://raw.github.com/hegdeashwin/frontcore/master/LICENSE"
-  }]
+  "licenses": [
+    {
+      "type": "MIT",
+      "url": "http://raw.github.com/hegdeashwin/frontcore/master/LICENSE"
+    }
+  ]
 }
