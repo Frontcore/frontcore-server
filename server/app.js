@@ -18,7 +18,7 @@
     /**
      * Requires a constants utility functions;
      */
-    var CONFIG = require("../config/server.env");
+    var STACK_CONFIG = require("../config/stack.conf");
 
     /**
      * Create an express app;
@@ -26,14 +26,9 @@
     var app = express();
 
     /**
-     * Define middlewares;
-     */
-    var router = express.Router();
-
-    /**
      * Create a write stream (in append mode)
      */
-    var accessLogStream = fs.createWriteStream(__dirname + '/' + CONFIG.logger.dirname + '/' + CONFIG.logger.filename, {
+    var accessLogStream = fs.createWriteStream(__dirname + '/' + STACK_CONFIG.logger.dirname + '/' + STACK_CONFIG.logger.filename, {
         flags: 'a'
     });
 
@@ -53,26 +48,26 @@
         return (ip === '127.0.0.1') ? true : false;
     });
 
-    var NODE_ENV = process.env.NODE_ENV || CONFIG.server.dev.NODE_ENV;
+    var NODE_ENV = process.env.NODE_ENV || STACK_CONFIG.server.dev.NODE_ENV;
     switch (NODE_ENV.toLowerCase()) {
-        case CONFIG.server.dev.NODE_ENV.toLowerCase():
+        case STACK_CONFIG.server.dev.NODE_ENV.toLowerCase():
             /**
              * Application configurations for development environment.
              * NODE_ENV=development node server.js
              */
-            app.set('port', process.env.PORT || CONFIG.server.dev.port);
-            app.set('uri', CONFIG.server.dev.ip);
-            app.use(express.static(path.join(__dirname, CONFIG.server.dev.codebase)));
+            app.set('port', process.env.PORT || STACK_CONFIG.server.dev.port);
+            app.set('uri', STACK_CONFIG.server.dev.ip);
+            app.use(express.static(path.join(__dirname, STACK_CONFIG.server.dev.codebase)));
             break;
 
-        case CONFIG.server.prod.NODE_ENV.toLowerCase():
+        case STACK_CONFIG.server.prod.NODE_ENV.toLowerCase():
             /**
              * Application configurations for production environment.
              * NODE_ENV=production node server.js
              */
-            app.set('port', process.env.PORT || CONFIG.server.prod.port);
-            app.set('uri', CONFIG.server.prod.ip);
-            app.use(express.static(path.join(__dirname, CONFIG.server.prod.codebase)));
+            app.set('port', process.env.PORT || STACK_CONFIG.server.prod.port);
+            app.set('uri', STACK_CONFIG.server.prod.ip);
+            app.use(express.static(path.join(__dirname, STACK_CONFIG.server.prod.codebase)));
             break;
     }
 
@@ -80,11 +75,7 @@
      * Syntax:
      * app.use('/api/<version>/', require('./routes/<version>/<api-file>'));
      */
-
-    /**
-     * JSHint API REST Service
-     */
-    app.use('/api/' + CONFIG.api.defaults.version + '/lint', require('./routes/' + CONFIG.api.defaults.version + '/jshint.api'));
+    app.use('/api/' + STACK_CONFIG.api.defaults.version + '/lint', require('./routes/' + STACK_CONFIG.api.defaults.version + '/jshint.api'));
 
     module.exports = app;
 
