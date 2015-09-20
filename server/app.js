@@ -26,11 +26,6 @@
     var app = express();
 
     /**
-     * Define middlewares;
-     */
-    var router = express.Router();
-
-    /**
      * Create a write stream (in append mode)
      */
     var accessLogStream = fs.createWriteStream(__dirname + '/' + STACK_CONFIG.logger.dirname + '/' + STACK_CONFIG.logger.filename, {
