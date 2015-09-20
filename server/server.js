@@ -5,6 +5,7 @@
 	 * Requires a in-built utility functions;
 	 */
 	var http = require('http');
+	var io = require('socket.io');
 
 	/**
 	 * Requires a constants utility functions;
@@ -31,6 +32,7 @@
 	 * @param {object} app - express app
 	 */
 	var server = http.createServer(app);
+	var socket = io(server);
 
 	/**
 	 * Event listener for HTTP server 'error' event.
@@ -70,15 +72,27 @@
 	};
 
 	/**
+	 * Listen on provided port, on all network interfaces.
+	 * @param {string} appProp.port - port on which express server is listening
+	 */
+	server.listen(appProp.port);
+
+	/**
 	 * Subscribe events
 	 */
 	server.on('error', onError);
 	server.on('listening', onListening);
 
-	/**
-	 * Listen on provided port, on all network interfaces.
-	 * @param {object} _port - port on which express server is listening
-	 */
-	server.listen(appProp.port);
+	socket.on('connection', function(client) {
+		console.log("Client is connected");
+
+		client.emit('isConfReady', {
+			isReady: true
+		});
+
+		client.on("pushConf", function(data) {
+			console.log('Data on Server: ', data);
+		});
+	});
 
 })();
