@@ -10,7 +10,13 @@
 		jscs = require('gulp-jscs'),
 		jshint = require('gulp-jshint'),
 		jsonlint = require("gulp-jsonlint"),
-		less = require('gulp-less');
+		csslint = require('gulp-csslint'),
+		less = require('gulp-less'),
+		htmlmin = require('gulp-htmlmin'),
+		minifyCss = require('gulp-minify-css'),
+		browserify = require('browserify'),
+		source = require('vinyl-source-stream'),
+		buffer = require('vinyl-buffer');
 
 	/**
 	 * Require built-in `configure files`.
@@ -22,8 +28,18 @@
 	 * Setup htmlhint task.
 	 */
 	gulp.task('htmlhint', function() {
-		return gulp.src(SERVE_FILES.path.html.gateway.src)
+		return gulp.src(SERVE_FILES.lint.html.gateway.src)
 			.pipe(htmlhint(SERVE_RULES.lint.rules.html.gateway))
+			.pipe(htmlhint.reporter())
+			.on('error', gutil.log);
+	});
+
+	/**
+	 * Setup htmlhint for partial templates task.
+	 */
+	gulp.task('templateshint', function() {
+		return gulp.src(SERVE_FILES.lint.html.templates.src)
+			.pipe(htmlhint(SERVE_RULES.lint.rules.html.templates))
 			.pipe(htmlhint.reporter())
 			.on('error', gutil.log);
 	});
@@ -32,7 +48,7 @@
 	 * Setup jsonlint task.
 	 */
 	gulp.task('jsonlint', function() {
-		return gulp.src(SERVE_FILES.path.json.src)
+		return gulp.src(SERVE_FILES.lint.json.src)
 			.pipe(jsonlint())
 			.pipe(jsonlint.reporter())
 			.on('error', gutil.log);
@@ -42,7 +58,7 @@
 	 * Setup jshint task.
 	 */
 	gulp.task('jshint', function() {
-		return gulp.src(SERVE_FILES.path.js.src)
+		return gulp.src(SERVE_FILES.lint.js.src)
 			.pipe(jshint(SERVE_RULES.lint.rules.js))
 			.pipe(jshint.reporter())
 			.on('error', gutil.log);
@@ -52,7 +68,7 @@
 	 * Setup jscs task.
 	 */
 	gulp.task('jscs', function() {
-		return gulp.src(SERVE_FILES.path.js.src)
+		return gulp.src(SERVE_FILES.lint.js.src)
 			.pipe(jscs(SERVE_RULES.lint.rules.jscs));
 	});
 
@@ -60,16 +76,80 @@
 	 * Setup less compilation task.
 	 */
 	gulp.task('less', function() {
-		return gulp.src(SERVE_FILES.path.less.src)
+		console.log("LESS");
+
+		return gulp.src(SERVE_FILES.compile.less.src)
 			.pipe(less())
 			.on('error', gutil.log)
-			.pipe(gulp.dest(SERVE_FILES.path.less.dest));
+			.pipe(gulp.dest(SERVE_FILES.compile.less.dest));
 	});
 
 	/**
-	 * Define `default` tasks
+	 * Setup browserify task.
 	 */
-	gulp.task('default', ['htmlhint', 'jsonlint', 'jshint', 'jscs', 'less']);
+	gulp.task('browserify', function() {
+		return browserify(SERVE_FILES.build.browserify.src)
+			.bundle()
+			.pipe(source('main.js'))
+			.pipe(buffer())
+			.on('error', gutil.log)
+			.pipe(gulp.dest(SERVE_FILES.build.browserify.dest));
+	});
+
+	/**
+	 * Setup HTML minification task.
+	 */
+	gulp.task('htmlmin', function() {
+		return gulp.src(SERVE_FILES.build.minify.html.src)
+			.pipe(htmlmin(SERVE_RULES.build.rules.html))
+			.pipe(gulp.dest(SERVE_FILES.build.minify.html.dest));
+	});
+
+	/**
+	 * Setup HTML Templates minification task.
+	 */
+	gulp.task('templatesmin', function() {
+		return gulp.src(SERVE_FILES.build.minify.templates.src)
+			.pipe(htmlmin(SERVE_RULES.build.rules.html))
+			.pipe(gulp.dest(SERVE_FILES.build.minify.templates.dest));
+	});
+
+	/**
+	 * Setup CSSLint task.
+	 */
+	gulp.task('csslint', function() {
+		return gulp.src(SERVE_FILES.lint.css.src)
+			.pipe(csslint(SERVE_RULES.build.rules.css))
+			.pipe(csslint.reporter());
+	});
+
+	/**
+	 * Setup CSS minification task.
+	 */
+	gulp.task('minifycss', function() {
+		return gulp.src(SERVE_FILES.build.minify.css.src)
+			.pipe(minifyCss())
+			.pipe(gulp.dest(SERVE_FILES.build.minify.css.dest));
+	});
+
+	/**
+	 * Define `default` task
+	 * 1. Linting of html, templates, json, js, css.
+	 * 2. Compilation of less files.
+	 */
+	gulp.task('default', ['htmlhint', 'templateshint', 'jsonlint', 'jshint', 'jscs', 'less', 'csslint']);
+
+	/**
+	 * Define `build` task
+	 * 1. Default.
+	 * 2. Minification, optimization & build creation.
+	 */
+	gulp.task('build', ['htmlmin', 'templatesmin', 'minifycss', 'browserify']);
+
+	/**
+	 * Define `linthtml` task
+	 */
+	gulp.task('linthtml', ['htmlhint', 'templateshint']);
 
 	/**
 	 * Define `lintjs` tasks
