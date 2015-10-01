@@ -1,8 +1,8 @@
 (function() {
-	'use strict';
+	"use strict";
 
 	module.exports = {
-		"path": {
+		"lint": {
 			"html": {
 				"gateway": {
 					"src": ["./client/*.html"]
@@ -20,7 +20,7 @@
 			"js": {
 				"src": [
 					"Gulpfile.js",
-					"./configs/*.js",
+					"./config/*.js",
 					"./client/views/**/*.js",
 					"./client/components/**/*.js",
 					"./client/router/**/*.js",
@@ -29,10 +29,37 @@
 					"./server/**/*.js"
 				]
 			},
+			"css": {
+				"src": [
+					"./client/stylesheets/css/*.css"
+				]
+			}
+		},
+		"compile": {
 			"less": {
-				"src": ["./client/stylesheets/less/_consolidate.less"],
+				"src": "./client/stylesheets/less/_consolidate.less",
 				"dest": "./client/stylesheets/css/"
+			}
+		},
+		"build": {
+			"browserify": {
+				"src": "./client/main.js",
+				"dest": "./client-prod/"
+			},
+			"minify": {
+				"html": {
+					"src": "./client/index.html",
+					"dest": "./client-prod/"
+				},
+				"css": {
+					"src": "./client/stylesheets/css/_consolidate.css",
+					"dest": "./client-prod/stylesheets/css/"
+				},
+				"templates": {
+					"src": "./client/templates/**/*.html",
+					"dest": "./client-prod/templates/"
+				}
 			}
 		}
 	};
-})()
+})();
