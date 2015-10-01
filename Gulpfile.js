@@ -133,6 +133,22 @@
 	});
 
 	/**
+	 * Setup Copy assets task.
+	 */
+	gulp.task('copyassets', function() {
+		return gulp.src(SERVE_FILES.build.copy.assets.src)
+			.pipe(gulp.dest(SERVE_FILES.build.copy.assets.dest));
+	});
+
+	/**
+	 * Setup Copy bower_components task.
+	 */
+	gulp.task('copybower', function() {
+		return gulp.src(SERVE_FILES.build.copy.bower.src)
+			.pipe(gulp.dest(SERVE_FILES.build.copy.bower.dest));
+	});
+
+	/**
 	 * Define `default` task
 	 * 1. Linting of html, templates, json, js, css.
 	 * 2. Compilation of less files.
@@ -144,7 +160,7 @@
 	 * 1. Default.
 	 * 2. Minification, optimization & build creation.
 	 */
-	gulp.task('build', ['htmlmin', 'templatesmin', 'minifycss', 'browserify']);
+	gulp.task('build', ['htmlmin', 'templatesmin', 'minifycss', 'copyassets', 'copybower', 'browserify']);
 
 	/**
 	 * Define `linthtml` task

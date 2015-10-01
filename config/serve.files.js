@@ -54,6 +54,16 @@
 					"src": "./client/templates/**/*.html",
 					"dest": "./client-prod/templates/"
 				}
+			},
+			"copy": {
+				"assets": {
+					"src": "./client/assets/**/*",
+					"dest": "./client-prod/"
+				},
+				"bower": {
+					"src": "./client/bower_components/**/*",
+					"dest": "./client-prod/bower_components/"
+				}
 			}
 		}
 	};
