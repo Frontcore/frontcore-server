@@ -9,8 +9,7 @@
 				},
 				"templates": {
 					"src": [
-						"./client/app/**/*.html",
-						"./client/components/**/*.html"
+						"./client/templates/**/*.html"
 					]
 				}
 			},
@@ -21,11 +20,7 @@
 				"src": [
 					"Gulpfile.js",
 					"./config/*.js",
-					"./client/views/**/*.js",
-					"./client/components/**/*.js",
-					"./client/router/**/*.js",
-					"./client/models/**/*.js",
-					"./client/collections/**/*.js",
+					"./client/app/**/*.js",
 					"./server/**/*.js"
 				]
 			},
