@@ -14,6 +14,8 @@
 		less = require('gulp-less'),
 		htmlmin = require('gulp-htmlmin'),
 		minifyCss = require('gulp-minify-css'),
+		uglifyjs = require('gulp-uglify'),
+		clean = require('gulp-clean'),
 		browserify = require('browserify'),
 		source = require('vinyl-source-stream'),
 		buffer = require('vinyl-buffer');
@@ -133,6 +135,15 @@
 	});
 
 	/**
+	 * Setup JS minification task.
+	 */
+	gulp.task('uglifyjs', ['browserify'], function() {
+		return gulp.src(SERVE_FILES.build.minify.js.src)
+			.pipe(uglifyjs())
+			.pipe(gulp.dest(SERVE_FILES.build.minify.js.dest));
+	});
+
+	/**
 	 * Setup Copy assets task.
 	 */
 	gulp.task('copyassets', function() {
@@ -149,6 +160,14 @@
 	});
 
 	/**
+	 * Setup clean tmp dir task.
+	 */
+	gulp.task('cleantmp', ['uglifyjs'], function() {
+		return gulp.src(SERVE_FILES.build.clean.tmp)
+			.pipe(clean());
+	});
+
+	/**
 	 * Define `default` task
 	 * 1. Linting of html, templates, json, js, css.
 	 * 2. Compilation of less files.
@@ -160,7 +179,7 @@
 	 * 1. Default.
 	 * 2. Minification, optimization & build creation.
 	 */
-	gulp.task('build', ['htmlmin', 'templatesmin', 'minifycss', 'copyassets', 'copybower', 'browserify']);
+	gulp.task('build', ['htmlmin', 'templatesmin', 'minifycss', 'copyassets', 'copybower', 'browserify', 'uglifyjs', 'cleantmp']);
 
 	/**
 	 * Define `linthtml` task

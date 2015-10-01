@@ -39,11 +39,15 @@
 		"build": {
 			"browserify": {
 				"src": "./client/main.js",
-				"dest": "./client-prod/"
+				"dest": "./client/tmp/"
 			},
 			"minify": {
 				"html": {
 					"src": "./client/index.html",
+					"dest": "./client-prod/"
+				},
+				"js": {
+					"src": "./client/tmp/main.js",
 					"dest": "./client-prod/"
 				},
 				"css": {
@@ -64,6 +68,9 @@
 					"src": "./client/bower_components/**/*",
 					"dest": "./client-prod/bower_components/"
 				}
+			},
+			"clean": {
+				"tmp": "./client/tmp/"
 			}
 		}
 	};
