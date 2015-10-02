@@ -1,39 +1,40 @@
 (function() {
 	'use strict';
 
-	var Backbone = require('backbone'),
-		Core = require('../utils/core');
+	var Backbone = require('backbone');
 
 	var AppRouter = Backbone.Router.extend({
-
-		initialize: function() {
-			this.listenTo(Events, 'page:navigate', this.navigatePage);
-		},
-
-		navigatePage: function(navigationData) {
-			this.navigate(navigationData.path, navigationData.options);
-		},
 
 		routes: {
 			'': 'home',
 			'home': 'home',
-			'about': 'about'
+			'about': 'about',
+			'login': 'login',
+			'dashboard': 'dashboard'
 		}
 	});
 
-	exports.initialize = function(options) {
-		var appView = options.appView;
+	exports.init = function(options) {
 		var router = new AppRouter(options);
 
 		router.on('route:home', function() {
-			var Page = require('../views/layoutView');
-			Core.create(appView, 'Page', Page);
+			var LayoutView = require('../views/layout/layoutView');
+			LayoutView.init();
 		});
 
 		router.on('route:about', function() {
-			require(['views/aboutView'], function(AboutPage) {
-				Core.create(appView, 'AboutPage', AboutPage);
-			});
+			var AboutView = require('../views/product/aboutView');
+			AboutView.init();
+		});
+
+		router.on('route:login', function() {
+			var LoginView = require('../views/auths/loginView');
+			LoginView.init();
+		});
+
+		router.on('route:dashboard', function() {
+			var DashboardView = require('../views/dashboard/dashboardView');
+			DashboardView.init();
 		});
 
 		Backbone.history.start();
