@@ -2,17 +2,8 @@
 	'use strict';
 
 	var Backbone = require('backbone');
-	// var Events = require('../utils/events');
 
 	var AppRouter = Backbone.Router.extend({
-
-		initialize: function() {
-			this.listenTo(this, 'page:navigate', this.navigatePage);
-		},
-
-		navigatePage: function(navigationData) {
-			this.navigate(navigationData.path, navigationData.options);
-		},
 
 		routes: {
 			'': 'home',
