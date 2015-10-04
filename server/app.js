@@ -77,6 +77,8 @@
      */
     app.use('/api/' + STACK_CONFIG.api.defaults.version + '/lint', require('./routes/' + STACK_CONFIG.api.defaults.version + '/jshint.api'));
 
+    require('./models/jshint.model');
+
     module.exports = app;
 
 })();
