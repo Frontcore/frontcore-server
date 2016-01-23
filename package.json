@@ -3,7 +3,7 @@
   "version": "0.0.0",
   "description": "",
   "author": "Ashwin Hegde",
-  "main": "server.js",
+  "main": "server/server.js",
   "scripts": {
     "start": "node ./server/server.js"
   },
