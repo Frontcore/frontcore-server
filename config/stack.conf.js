@@ -6,13 +6,13 @@
             "dev": {
                 "port": "9000",
                 "ip": "127.0.0.1",
-                "codebase": "../client",
+                "codebase": "../dist",
                 "NODE_ENV": "development"
             },
             "prod": {
                 "port": "8000",
                 "ip": "127.0.0.1",
-                "codebase": "../client-prod",
+                "codebase": "../dist",
                 "NODE_ENV": "production"
             }
         },
