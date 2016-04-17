@@ -1,0 +1,22 @@
+/**
+ * Define LESS varibles local to Tabs
+ */
+@footerNavbarLink: #FFF;
+
+footer {
+  .navbar {
+    border: 0px;
+    box-shadow: none;
+    background-image: none;
+  }
+  .navbar-text.navbar-right:last-child {
+    margin-right: 45px;
+  }
+  .navbar-inverse {
+    .navbar-text,
+    .navbar-text a,
+    .navbar-text a:hover {
+      color: @footerNavbarLink;
+    }
+  }
+}
