@@ -1,0 +1,36 @@
+/**
+ * Define LESS varibles local to Tabs
+ */
+@activeTabList: #2CC0B3;
+
+/**
+ * Styles applies to Tab list component
+ */
+.nav-tabs>li.active {
+ border-top: 2px solid @activeTabList;
+}
+
+.nav-tabs>li.active>a, .nav-tabs>li.active>a:focus, .nav-tabs>li.active>a:hover {
+ cursor: pointer;
+ color: @activeTabList !important;
+}
+
+.nav>li>a {
+ margin-right: 0px !important;
+ cursor: pointer;
+}
+
+/**
+ * Styles applies to Tab content component
+ */
+
+.tab-pane {
+  padding: 20px 0 0 0;
+}
+
+.super-tab-component {
+  .dropdown-menu {
+    border-top: 0;
+    margin-top: 0;
+  }
+}
