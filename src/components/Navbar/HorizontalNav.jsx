@@ -69,7 +69,7 @@ class HorizontalMenu extends React.Component {
               <button type="button" className="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar">
                 <i className="fa fa-bars fa-lg"></i>
               </button>
-              <IndexLink to="/" className="navbar-brand" title="Forkgen v0.0.0 Alpha">Forkgen <sup><small>v0.0.0 Alpha</small></sup></IndexLink>
+              <IndexLink to="/" className="navbar-brand" title="Frontcore v0.0.0 Alpha">Frontcore <sup><small>v0.0.0 Alpha</small></sup></IndexLink>
             </div>
             <div id="navbar" className="navbar-collapse collapse">
               <ul className="nav navbar-nav">
@@ -82,7 +82,7 @@ class HorizontalMenu extends React.Component {
                   </a>
                   <ul className="dropdown-menu">
                     <li title="Documentation">
-                      <a href="//github.com/hegdeashwin/forkgen/wiki" target="_blank">Documentation</a>
+                      <a href="//github.com/hegdeashwin/frontcore/wiki" target="_blank">Documentation</a>
                     </li>
                   </ul>
                 </li>
@@ -90,25 +90,25 @@ class HorizontalMenu extends React.Component {
                   <a className="dropdown-toggle navbar-dropdown" data-toggle="dropdown" title="Developers Connection"><i className="fa fa-connectdevelop fa-lg"></i> Developers<span className="caret"></span></a>
                   <ul className="dropdown-menu">
                     <li title="Github Home Page">
-                      <a href="//github.com/hegdeashwin/forkgen" target="_blank">Github Home Page</a>
+                      <a href="//github.com/hegdeashwin/frontcore" target="_blank">Github Home Page</a>
                     </li>
                     <li className="divider"></li>
                     <li title="Release Page">
-                      <a href="//github.com/hegdeashwin/forkgen/releases" target="_blank">Release Page</a>
+                      <a href="//github.com/hegdeashwin/frontcore/releases" target="_blank">Release Page</a>
                     </li>
                     <li title="Milestones">
-                      <a href="//github.com/hegdeashwin/forkgen/milestones" target="_blank">Milestones</a>
+                      <a href="//github.com/hegdeashwin/frontcore/milestones" target="_blank">Milestones</a>
                     </li>
                     <li className="divider"></li>
                     <li title="Report Issues">
-                      <a href="//github.com/hegdeashwin/forkgen/issues" target="_blank">Report Issues</a>
+                      <a href="//github.com/hegdeashwin/frontcore/issues" target="_blank">Report Issues</a>
                     </li>
                     <li title="Pull Requests">
-                      <a href="//github.com/hegdeashwin/forkgen/pulls" target="_blank">Open Pull Requests</a>
+                      <a href="//github.com/hegdeashwin/frontcore/pulls" target="_blank">Open Pull Requests</a>
                     </li>
                     <li className="divider"></li>
                     <li title="About Forkgen">
-                      <a href="//github.com/hegdeashwin/forkgen" target="_blank">About Forkgen</a>
+                      <a href="//github.com/hegdeashwin/frontcore" target="_blank">About Frontcore</a>
                     </li>
                   </ul>
                 </li>
