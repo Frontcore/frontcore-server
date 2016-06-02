@@ -6,12 +6,14 @@
   "scripts": {
     "start": "node ./server/server.js",
     "dev": "webpack -d --watch",
-    "build": "webpack -p"
+    "build": "webpack -p",
+    "test": "jest --no-cache --coverage",
   },
   "dependencies": {
+    "bootstrap": "^3.3.6",
+    "react-bootstrap": "^0.29.4",
     "axios": "^0.9.1",
     "body-parser": "^1.15.0",
-    "bootstrap": "^3.3.6",
     "chalk": "^1.1.3",
     "classnames": "^2.2.3",
     "compression": "^1.5.2",
@@ -36,12 +38,19 @@
     "passport": "^0.3.0",
     "passport-local": "^1.0.0",
     "passport-oauth": "^1.0.0",
-    "react": "^15.0.1",
-    "react-dom": "^15.0.1",
+    "react": "^15.1.0",
+    "react-dom": "^15.1.0",
     "react-redux": "^4.4.5",
     "react-router": "^2.2.4",
     "redux": "^3.4.0",
-    "socket.io": "^1.4.5"
+    "socket.io": "^1.4.5",
+    "object-assign": "^4.1.0",
+    "underscore": "^1.8.3",
+    "keymirror": "^0.1.1",
+    "superagent": "^1.8.3",
+    "es6-promise": "^3.2.1",
+    "events": "^1.1.0",
+    "react-widgets": "^3.3.1"
   },
   "devDependencies": {
     "babel-core": "^6.7.4",
@@ -61,32 +70,26 @@
     "redux-devtools": "^3.2.0",
     "style-loader": "^0.13.1",
     "url-loader": "^0.5.7",
-    "webpack": "^1.12.14"
+    "file-loader": "^0.8.5",
+    "webpack": "^1.12.14",
+    "jest": "^12.1.1",
+    "enzyme": "^2.3.0"
+  },
+  "jest": {
+    "moduleFileExtensions": ["js", "jsx"],
+    "unmockedModulePathPatterns": [
+      "./node_modules/react/",
+      "./node_modules/react-dom/",
+      "./node_modules/react-addons-test-utils/",
+      "./node_modules/enzyme/"
+    ]
   },
   "engines": {
     "node": ">=4.2.3"
   },
-  "keywords": [],
-  "repository": {
-    "type": "git",
-    "url": "http://github.com/Frontcore/frontcore"
+  "repository": "https://github.com/Frontcore/frontcore",
+  "bugs": {
+    "url": "https://github.com/Frontcore/frontcore/issues"
   },
-  "issues": {
-    "url": "http://github.com/Frontcore/frontcore/issues?state=open"
-  },
-  "milestones": {
-    "url": "http://github.com/Frontcore/frontcore/issues/milestones"
-  },
-  "releases": {
-    "url": "http://github.com/Frontcore/frontcore/releases"
-  },
-  "wiki": {
-    "url": "http://github.com/Frontcore/frontcore/wiki"
-  },
-  "licenses": [
-    {
-      "type": "MIT",
-      "url": "http://raw.github.com/Frontcore/frontcore/master/LICENSE"
-    }
-  ]
+  "license": "MIT"
 }
