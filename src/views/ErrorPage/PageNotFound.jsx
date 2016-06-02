@@ -3,9 +3,9 @@
 import React from 'react';
 import { Link } from 'react-router';
 
-const pageNotFoundImg  = require('../../assets/imgs/page-not-found.png');
+const pageNotFoundImg = require('../../assets/imgs/page-not-found.png');
 
-require('./PageNotFound.less');
+import './PageNotFound.less';
 
 class PageNotFound extends React.Component {
   render() {
