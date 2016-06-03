@@ -10,7 +10,10 @@ class MasterLayout extends React.Component {
   render() {
     return (
       <div className="container">
-        <AlertBox type="danger" msgTitle="Oh snap! You got an error!" msg="The connection was unable to initiate or complete a request with the Elasticsearch server." canClose="true" />
+        <AlertBox type="danger">
+          <h4>Oh snap! You got an error!</h4>
+          <p>Change this and that and try again. Duis mollis, est non commodo luctus</p>
+        </AlertBox>
         <Dashboard />
         <Footer/>
       </div>
