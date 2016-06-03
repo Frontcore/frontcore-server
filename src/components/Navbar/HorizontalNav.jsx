@@ -3,119 +3,40 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 import { IndexLink, Link } from 'react-router';
-
-import StyleClassUtils from '../../utils/styleclass.js';
+import { Navbar, Nav, NavItem, NavDropdown, MenuItem } from 'react-bootstrap';
 
 class HorizontalMenu extends React.Component {
-  constructor(props) {
-    super(props);
-
-    this.styleClass = new StyleClassUtils();
-
-    this.openNavbarDropdown = this.openNavbarDropdown.bind(this);
-    this.closeNavbarDropdown = this.closeNavbarDropdown.bind(this);
-  };
-
-  openNavbarDropdown(e) {
-    e.stopPropagation();
-    let navbarDropdown = document.querySelectorAll('.dropdown');
-    let i = 0;
-    var self = this;
-
-    for(; i < navbarDropdown.length ; i++ ){
-      self.styleClass.removeClass(navbarDropdown[i], 'open');
-    }
-
-    this.styleClass.addClass(ReactDOM.findDOMNode(e.target).parentNode.parentNode, 'open');
-  };
-
-  closeNavbarDropdown() {
-    let navbarDropdown = document.querySelectorAll('.navbar-dropdown');
-    let i = 0;
-    var self = this;
-
-    for(; i < navbarDropdown.length ; i++ ){
-      self.styleClass.removeClass(navbarDropdown[i].parentElement, 'open');
-    }
-  };
-
-  componentDidMount() {
-    let navbarDropdown = document.querySelectorAll('.navbar-dropdown');
-    let i = 0;
-    var self = this;
-
-    for(; i < navbarDropdown.length ; i++ ){
-      navbarDropdown[i].addEventListener('click', self.openNavbarDropdown);
-    }
-
-    document.addEventListener('click', self.closeNavbarDropdown);
-  };
-
-  componentWillUnmount() {
-    let navbarDropdown = document.querySelectorAll('.navbar-dropdown');
-    let i = 0;
-    var self = this;
-
-    for(; i < navbarDropdown.length ; i++ ){
-      navbarDropdown[i].removeEventListener('click', self.openNavbarDropdown);
-    }
-  };
-
   render() {
     return (
-        <nav className="navbar navbar-default navbar-static-top">
-          <div className="container">
-            <div className="navbar-header">
-              <button type="button" className="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar">
-                <i className="fa fa-bars fa-lg"></i>
-              </button>
-              <IndexLink to="/" className="navbar-brand" title="Frontcore v0.0.0 Alpha">Frontcore <sup><small>v0.0.0 Alpha</small></sup></IndexLink>
-            </div>
-            <div id="navbar" className="navbar-collapse collapse">
-              <ul className="nav navbar-nav">
-                <li title="Home"><IndexLink to="/"><i className="fa fa-lg fa-home"></i></IndexLink></li>
-              </ul>
-              <ul className="nav navbar-nav navbar-right">
-                <li className="dropdown">
-                  <a className="dropdown-toggle navbar-dropdown" data-toggle="dropdown" title="More Information, Help etc.">
-                    <i className="fa fa-lg fa-life-saver"></i> Help<span className="caret"></span>
-                  </a>
-                  <ul className="dropdown-menu">
-                    <li title="Documentation">
-                      <a href="//github.com/hegdeashwin/frontcore/wiki" target="_blank">Documentation</a>
-                    </li>
-                  </ul>
-                </li>
-                <li className="dropdown">
-                  <a className="dropdown-toggle navbar-dropdown" data-toggle="dropdown" title="Developers Connection"><i className="fa fa-connectdevelop fa-lg"></i> Developers<span className="caret"></span></a>
-                  <ul className="dropdown-menu">
-                    <li title="Github Home Page">
-                      <a href="//github.com/hegdeashwin/frontcore" target="_blank">Github Home Page</a>
-                    </li>
-                    <li className="divider"></li>
-                    <li title="Release Page">
-                      <a href="//github.com/hegdeashwin/frontcore/releases" target="_blank">Release Page</a>
-                    </li>
-                    <li title="Milestones">
-                      <a href="//github.com/hegdeashwin/frontcore/milestones" target="_blank">Milestones</a>
-                    </li>
-                    <li className="divider"></li>
-                    <li title="Report Issues">
-                      <a href="//github.com/hegdeashwin/frontcore/issues" target="_blank">Report Issues</a>
-                    </li>
-                    <li title="Pull Requests">
-                      <a href="//github.com/hegdeashwin/frontcore/pulls" target="_blank">Open Pull Requests</a>
-                    </li>
-                    <li className="divider"></li>
-                    <li title="About Forkgen">
-                      <a href="//github.com/hegdeashwin/frontcore" target="_blank">About Frontcore</a>
-                    </li>
-                  </ul>
-                </li>
-              </ul>
-            </div>
-          </div>
-        </nav>
+      <Navbar>
+        <Navbar.Header>
+          <Navbar.Brand>
+            <IndexLink to="/" title="Frontcore v0.0.0 Alpha">Frontcore <sup><small>v0.0.0 Alpha</small></sup></IndexLink>
+          </Navbar.Brand>
+          <Navbar.Toggle />
+        </Navbar.Header>
+        <Navbar.Collapse>
+          <Nav>
+            <NavItem eventKey={1} href="#"><i className="fa fa-lg fa-home"></i></NavItem>
+          </Nav>
+          <Nav pullRight>
+            <NavDropdown className="navbar-right" eventKey={4} title="Developers" id="menu-developers">
+              <MenuItem eventKey={4.1} href="//github.com/Frontcore/frontcore" target="_blank">Github Home Page</MenuItem>
+              <MenuItem divider />
+              <MenuItem eventKey={4.2} href="//github.com/Frontcore/frontcore/releases" target="_blank">Release Page</MenuItem>
+              <MenuItem eventKey={4.3} href="//github.com/Frontcore/frontcore/milestones" target="_blank">Milestones</MenuItem>
+              <MenuItem divider />
+              <MenuItem eventKey={4.4} href="//github.com/Frontcore/frontcore/issues" target="_blank">Report Issues</MenuItem>
+              <MenuItem eventKey={4.5} href="//github.com/Frontcore/frontcore/pulls" target="_blank">Open Pull Requests</MenuItem>
+              <MenuItem divider />
+              <MenuItem eventKey={4.6} href="//github.com/Frontcore/frontcore" target="_blank">About Frontcore</MenuItem>
+            </NavDropdown>
+            <NavDropdown className="navbar-right" eventKey={5} title="Help" id="menu-help">
+              <MenuItem eventKey={5.1} href="//github.com/Frontcore/frontcore/wiki" target="_blank">Documentation</MenuItem>
+            </NavDropdown>
+          </Nav>
+        </Navbar.Collapse>
+      </Navbar>
     );
   }
 };
