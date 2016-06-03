@@ -7,14 +7,14 @@ const appHistory = useRouterHistory(createHashHistory)({ queryKey: false });
 
 import App from '../App.js';
 
-import ClusterTabPane from '../views/Cluster/ClusterTabPane.jsx';
+import Dashboard from '../views/Dashboard/Dashboard.jsx';
 import ErrorPage from '../views/ErrorPage/PageNotFound.jsx';
 
 const Routes = (
   <Router history={appHistory}>
     <Route path = "/" component = {App}>
-      <IndexRoute component = {ClusterTabPane} />
-      <Route path = "cluster" component = {ClusterTabPane} />
+      <IndexRoute component = {Dashboard} />
+      <Route path = "dashboard" component = {Dashboard} />
     </Route>
     <Route path="*" component={ErrorPage}/>
   </Router>
