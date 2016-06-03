@@ -7,24 +7,21 @@ import { Alert } from 'react-bootstrap';
 /**
  * AlertBox class will return React-Bootstrap alert DOM structure.
  */
-let AlertBox = React.createClass({
-  getInitialState() {
-    return {
-      alertVisible: true
+class AlertBox extends React.Component {
+  constructor(props) {
+    super(props);
+
+    this.state = {
+      alertVisible: false
     };
-  },
+    this.handleAlertDismiss = this.handleAlertDismiss.bind(this);
+  }
 
   handleAlertDismiss() {
     this.setState({
       alertVisible: false
     });
-  },
-
-  handleAlertShow() {
-    this.setState({
-      alertVisible: true
-    });
-  },
+  }
 
   render() {
     if (this.state.alertVisible) {
@@ -33,8 +30,10 @@ let AlertBox = React.createClass({
           {this.props.children}
         </Alert>
       );
+    } else {
+      return (<span></span>);
     }
   }
-});
+};
 
 export default AlertBox;
