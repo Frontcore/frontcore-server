@@ -23,12 +23,12 @@ class PageNotFound extends React.Component {
               <Link to="/" className="btn btn-primary"><i className="fa fa-lg fa-home"></i> Go back to Home Page</Link>
             </p>
             <hr/>
-            <a href="//github.com/hegdeashwin/elastic-hub" target="_blank" className="btn btn-link btn-sm">Github Home Page</a>
-            <a href="//github.com/hegdeashwin/elastic-hub/releases" target="_blank" className="btn btn-link btn-sm">Release Page</a>
-            <a href="//github.com/hegdeashwin/elastic-hub/milestones" target="_blank" className="btn btn-link btn-sm">Milestones</a>
-            <a href="//github.com/hegdeashwin/elastic-hub/issues" target="_blank" className="btn btn-link btn-sm">Report Issues</a>
-            <a href="//github.com/hegdeashwin/elastic-hub/pulls" target="_blank" className="btn btn-link btn-sm">Open Pull Requests</a>
-            <a href="//github.com/hegdeashwin/elastic-hub" target="_blank" className="btn btn-link btn-sm">About Elastic Hub</a>
+            <a href="//github.com/Frontcore/frontcore" target="_blank" className="btn btn-link btn-sm">Github Home Page</a>
+            <a href="//github.com/Frontcore/frontcore/releases" target="_blank" className="btn btn-link btn-sm">Release Page</a>
+            <a href="//github.com/Frontcore/frontcore/milestones" target="_blank" className="btn btn-link btn-sm">Milestones</a>
+            <a href="//github.com/Frontcore/frontcore/issues" target="_blank" className="btn btn-link btn-sm">Report Issues</a>
+            <a href="//github.com/Frontcore/frontcore/pulls" target="_blank" className="btn btn-link btn-sm">Open Pull Requests</a>
+            <a href="//github.com/Frontcore/frontcore" target="_blank" className="btn btn-link btn-sm">About Frontcore</a>
           </div>
         </div>
       </div>
