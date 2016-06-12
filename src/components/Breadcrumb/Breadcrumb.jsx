@@ -20,7 +20,6 @@ class Breadcrumb extends React.Component {
 
   componentWillMount() {
     EventEmitter.on('update-breadcrumb-path', (path = this.state.path) => {
-      console.log(path);
       this.setState({
         path: path
       });
