@@ -10,6 +10,7 @@
 .container-fluid .jumbotron,
 .alert,
 .progress,
+.list-group,
 .list-group-item,
 .panel,
 .modal-content,
@@ -22,7 +23,9 @@
 .panel-heading,
 .pagination>li:first-child>a, .pagination>li:first-child>span,
 .pagination>li:last-child>a, .pagination>li:last-child>span,
-.thumbnail {
+.thumbnail,
+.list-group-item:first-child,
+.list-group-item:last-child {
   border-radius: 0;
 }
 
@@ -32,4 +35,15 @@
 
 .pull-right-padding {
   padding-right: 0px;
+}
+
+/**
+ * Override `React Widgets` default styles
+ */
+.rw-widget, .rw-filter-input {
+  border-radius: 0px;
+
+  ul.rw-list > li.rw-list-option, .rw-selectlist > li.rw-list-option {
+    border-radius: 0px;
+  }
 }
