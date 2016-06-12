@@ -1,17 +1,23 @@
 'use strict';
 
 import React from 'react';
+import MyProjects from '../../components/MyProjects/MyProjects.jsx';
 
-class ProjectSetup extends React.Component {
+class Dashboard extends React.Component {
   render() {
     return (
       <div className="dashboard-container">
         <div className="row">
-          <h1>Dashboard</h1>
+          <div className="col-md-6">
+
+          </div>
+          <div className="col-md-6">
+            <MyProjects />
+          </div>
         </div>
       </div>
     );
   }
 };
 
-export default ProjectSetup;
+export default Dashboard;
