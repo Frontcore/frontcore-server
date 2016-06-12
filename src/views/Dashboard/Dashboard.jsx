@@ -1,9 +1,19 @@
 'use strict';
 
 import React from 'react';
+
+import EventEmitter from '../../utils/eventEmitter';
 import MyProjects from '../../components/MyProjects/MyProjects.jsx';
 
+
 class Dashboard extends React.Component {
+  componentDidMount() {
+    EventEmitter.emit('update-breadcrumb-path', [{
+      isActive: true,
+      text: 'Dashboard'
+    }]);
+  }
+
   render() {
     return (
       <div className="dashboard-container">
