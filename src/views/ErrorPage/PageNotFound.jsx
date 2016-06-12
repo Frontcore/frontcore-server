@@ -3,7 +3,7 @@
 import React from 'react';
 import { Link } from 'react-router';
 
-const pageNotFoundImg = require('../../assets/imgs/page-not-found.png');
+import pageNotFoundImg  from '../../assets/imgs/page-not-found.png';
 
 import './PageNotFound.less';
 

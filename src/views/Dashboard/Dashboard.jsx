@@ -2,12 +2,16 @@
 
 import React from 'react';
 
-class Dashboard extends React.Component {
+class ProjectSetup extends React.Component {
   render() {
     return (
-      <h1>Dashboard</h1>
+      <div className="dashboard-container">
+        <div className="row">
+          <h1>Dashboard</h1>
+        </div>
+      </div>
     );
   }
-}
+};
 
-export default Dashboard;
+export default ProjectSetup;
