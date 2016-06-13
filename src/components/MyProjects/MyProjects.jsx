@@ -7,10 +7,10 @@ class MyProjects extends React.Component {
   render() {
     let Projects = [{
       name: "Elastic-hub",
-      discribe: "An elasticsearch plugin"
+      describe: "An elasticsearch plugin"
     }, {
       name: "Protocore",
-      discribe: "Front-end stack for jQuery projects"
+      describe: "Front-end stack for jQuery projects"
     }];
 
     return (
@@ -26,7 +26,7 @@ class MyProjects extends React.Component {
               return (
                 <a key={i} href="#" className="list-group-item">
                   <h4 className="list-group-item-heading">{data.name}</h4>
-                  <p className="list-group-item-text">{data.discribe}</p>
+                  <p className="list-group-item-text">{data.describe}</p>
                 </a>
               );
             })
