@@ -4,10 +4,11 @@
   "description": "",
   "author": "Ashwin Hegde",
   "scripts": {
-    "start": "node ./server/server.js",
+    "start": "babel-node ./server/server.js",
     "dev": "webpack -d --watch",
     "build": "webpack -p",
-    "test": "jest --no-cache --coverage"
+    "test": "jest --no-cache",
+    "coverage": "jest --coverage"
   },
   "dependencies": {
     "bootstrap": "^3.3.6",
