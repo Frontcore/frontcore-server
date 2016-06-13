@@ -3,16 +3,12 @@
 /**
  * Requires a 3rd party utility functions;
  */
-var express = require('express');
-var router = express.Router();
+import express from 'express';
+import JSHINT_RULES from '../../services/jshint.service';
 
-/**
- * Require static services data
- */
-var JSHINT_RULES = require('../../services/jshint.service');
+let router = express.Router();
 
 router.get('/js/rules', function(req, res, next) {
-	console.log('1');
 	res.status(200).json({
 		"status": true,
 		"rules": JSHINT_RULES
