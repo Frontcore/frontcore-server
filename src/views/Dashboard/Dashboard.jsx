@@ -4,6 +4,7 @@ import React from 'react';
 
 import EventEmitter from '../../utils/eventEmitter';
 import MyProjects from '../../components/MyProjects/MyProjects.jsx';
+import CreateProject from '../../components/CreateProject/CreateProject.jsx';
 
 
 class Dashboard extends React.Component {
@@ -19,7 +20,7 @@ class Dashboard extends React.Component {
       <div className="dashboard-container">
         <div className="row">
           <div className="col-md-6">
-
+            <CreateProject />
           </div>
           <div className="col-md-6">
             <MyProjects />
