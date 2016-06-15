@@ -3,6 +3,7 @@
 import React from 'react';
 
 import EventEmitter from '../../utils/eventEmitter';
+import TotalIssues from '../../components/TotalIssues/TotalIssues.jsx';
 
 class Dashboard extends React.Component {
   componentDidMount() {
@@ -20,8 +21,11 @@ class Dashboard extends React.Component {
     return (
       <div className="dashboard-container">
         <div className="row">
-          <div className="col-md-12">
-            <h1>Dashboard</h1>
+          <div className="col-md-6">
+            
+          </div>
+          <div className="col-md-6">
+            <TotalIssues />
           </div>
         </div>
       </div>
