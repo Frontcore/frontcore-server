@@ -7,6 +7,10 @@ import EventEmitter from '../../utils/eventEmitter';
 class Dashboard extends React.Component {
   componentDidMount() {
     EventEmitter.emit('update-breadcrumb-path', [{
+      isActive: false,
+      text: 'Setup',
+      linkTo: '#'
+    }, {
       isActive: true,
       text: 'Dashboard'
     }]);
