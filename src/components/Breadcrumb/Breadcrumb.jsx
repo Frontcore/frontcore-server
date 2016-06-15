@@ -1,7 +1,7 @@
 'use strict';
 
 import React from 'react';
-import ReactDOM from 'react-dom';
+import { Link } from 'react-router';
 import './Breadcrumb.less';
 
 import EventEmitter from '../../utils/eventEmitter';
@@ -36,7 +36,11 @@ class Breadcrumb extends React.Component {
         <li><a href="#"><i className="fa fa-lg fa-home"></i></a></li>
         {
           this.state.path.map((list, i) => {
-             return (<li key={i}>{list.text}</li>);
+            if(list.linkTo) {
+              return (<li key={i}><Link to={list.linkTo}>{list.text}</Link></li>);
+            } else {
+              return (<li key={i}>{list.text}</li>);
+            }
           })
         }
       </ol>
