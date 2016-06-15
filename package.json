@@ -24,7 +24,6 @@
     "express": "^4.13.4",
     "flux": "^2.1.1",
     "font-awesome": "^4.5.0",
-    "highcharts": "^4.2.3",
     "history": "^2.0.1",
     "joi": "^6.6.1",
     "jshint": "^2.9.1",
@@ -51,7 +50,8 @@
     "redux": "^3.4.0",
     "socket.io": "^1.4.5",
     "superagent": "^1.8.3",
-    "underscore": "^1.8.3"
+    "underscore": "^1.8.3",
+    "highcharts": "^4.2.5"
   },
   "devDependencies": {
     "babel-cli": "^6.9.0",
