@@ -5,8 +5,12 @@ import { Button, Panel, Form, FormGroup, FormControl, ControlLabel } from 'react
 
 class MyProjects extends React.Component {
   render() {
+    let header = (
+      <h3>Create a new project</h3>
+    );
+
     return (
-      <Panel header="Create a new project">
+      <Panel header={header}>
         <Form>
           <FormGroup controlId="projectName">
             <ControlLabel>Specify the project name:</ControlLabel>

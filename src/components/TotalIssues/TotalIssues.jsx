@@ -55,8 +55,12 @@ class TotalIssues extends React.Component {
   }
 
   render() {
+    let header = (
+      <h3>Issues separation</h3>
+    );
+
     return (
-      <Panel header="Issues separation">
+      <Panel header={header}>
         <div className="pie-chart-container text-center" id="pieChart"></div>
       </Panel>
     );

@@ -16,8 +16,12 @@ class MyProjects extends React.Component {
       link: "/protocore"
     }];
 
+    let header = (
+      <h3>My projects</h3>
+    );
+
     return (
-      <Panel header="My Projects">
+      <Panel header={header}>
         <Form>
         <FormGroup controlId="filterProject">
           <FormControl type="text" placeholder="Filter your project"/>
