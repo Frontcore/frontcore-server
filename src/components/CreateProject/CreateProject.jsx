@@ -3,7 +3,7 @@
 import React from 'react';
 import Dropzone from 'react-dropzone';
 import './CreateProject.less';
-import { Button, Panel, Form, FormGroup, FormControl, ControlLabel } from 'react-bootstrap';
+import { Button, Panel, Form, FormGroup, FormControl, ControlLabel, ProgressBar } from 'react-bootstrap';
 
 class MyProjects extends React.Component {
   constructor() {
@@ -30,6 +30,7 @@ class MyProjects extends React.Component {
               <div className="lead dropzone-label">Try dropping file here, or click to select file to upload.</div>
             </Dropzone>
           </FormGroup>
+          <ProgressBar now={60} />
           <Button type="submit" bsStyle="success">
             Create Project
           </Button>
