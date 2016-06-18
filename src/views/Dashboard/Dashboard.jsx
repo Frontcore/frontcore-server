@@ -23,12 +23,12 @@ class Dashboard extends React.Component {
       <div className="dashboard-container">
         <div className="row">
           <div className="col-md-12">
-            <Browse />
+            <TotalIssues />
           </div>
         </div>
         <div className="row">
-          <div className="col-md-8">
-
+          <div className="col-md-12">
+            <Browse />
           </div>
         </div>
       </div>

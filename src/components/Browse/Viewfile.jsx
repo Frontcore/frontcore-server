@@ -19,7 +19,7 @@ class Viewfile extends React.Component {
   render() {
     return (
       <Panel header="\project\src\file.js">
-        <AceEditor mode="json" theme="github" name="paramsEditor" height="285px" fontSize={16} width="100%" value={json} editorProps={{$blockScrolling: true}} />
+        <AceEditor mode="json" theme="github" name="paramsEditor" height="350px" fontSize={16} width="100%" value={json} editorProps={{$blockScrolling: true}} />
       </Panel>
     );
   }
