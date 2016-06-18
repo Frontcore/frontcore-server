@@ -22,11 +22,13 @@ class Dashboard extends React.Component {
     return (
       <div className="dashboard-container">
         <div className="row">
-          <div className="col-md-6">
+          <div className="col-md-12">
             <Browse />
           </div>
-          <div className="col-md-6">
-            <TotalIssues />
+        </div>
+        <div className="row">
+          <div className="col-md-8">
+
           </div>
         </div>
       </div>
