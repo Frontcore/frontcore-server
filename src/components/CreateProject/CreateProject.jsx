@@ -1,28 +1,34 @@
 'use strict';
 
 import React from 'react';
+import Dropzone from 'react-dropzone';
+import './CreateProject.less';
 import { Button, Panel, Form, FormGroup, FormControl, ControlLabel } from 'react-bootstrap';
 
 class MyProjects extends React.Component {
+  constructor() {
+    super();
+
+    this.onDrop = this.onDrop.bind(this);
+  }
+
+  onDrop(files) {
+    console.log('Received files: ', files);
+  }
+
   render() {
     let header = (
       <h3>Create a new project</h3>
     );
 
     return (
-      <Panel header={header}>
+      <Panel className="create-project-component" header={header}>
         <Form>
-          <FormGroup controlId="projectName">
-            <ControlLabel>Specify the project name:</ControlLabel>
-            <FormControl type="text" placeholder="E.g. frontcore"/>
-          </FormGroup>
-          <FormGroup controlId="projectName">
-            <ControlLabel>Describe the project:</ControlLabel>
-            <FormControl type="text" placeholder="E.g. A tool to understand technical debt in practice"/>
-          </FormGroup>
           <FormGroup controlId="formControlsFile">
-            <ControlLabel>Upload frontcore configuration file:</ControlLabel>
-            <FormControl type="file" />
+            <ControlLabel>Upload frontcore configuration JSON file:</ControlLabel>
+            <Dropzone accept="application/json" multiple={false} className="dropzone-box" onDrop={this.onDrop}>
+              <div className="lead dropzone-label">Try dropping file here, or click to select file to upload.</div>
+            </Dropzone>
           </FormGroup>
           <Button type="submit" bsStyle="success">
             Create Project
