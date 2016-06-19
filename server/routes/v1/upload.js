@@ -3,7 +3,7 @@
 import express from 'express';
 import fs from 'fs';
 import path from 'path';
-import STACK_CONFIG from '../config/stack.conf';
+import STACK_CONFIG from '../../../config/stack.conf';
 
 let router = express.Router();
 
@@ -17,3 +17,5 @@ router.post('/config/file', (req, res, next) => {
 		"config": {}
 	});
 });
+
+module.exports = router;
