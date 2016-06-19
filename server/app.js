@@ -3,31 +3,31 @@
 /**
  * Requires a in-built utility functions;
  */
-var path = require('path');
-var fs = require('fs');
+import path from 'path';
+import fs from 'fs';
 
 /**
  * Requires a 3rd party utility functions;
  */
-var express = require('express');
-var morgan = require('morgan');
-var bodyParser = require('body-parser');
-var compression = require('compression');
+import express from 'express';
+import morgan from 'morgan';
+import bodyParser from 'body-parser';
+import compression from 'compression';
 
 /**
  * Requires a constants utility functions;
  */
-var STACK_CONFIG = require("../config/stack.conf");
+import STACK_CONFIG from '../config/stack.conf';
 
 /**
  * Create an express app;
  */
-var app = express();
+let app = express();
 
 /**
  * Create a write stream (in append mode)
  */
-var accessLogStream = fs.createWriteStream(__dirname + '/' + STACK_CONFIG.logger.dirname + '/' + STACK_CONFIG.logger.filename, {
+let accessLogStream = fs.createWriteStream(__dirname + '/' + STACK_CONFIG.logger.dirname + '/' + STACK_CONFIG.logger.filename, {
     flags: 'a'
 });
 
@@ -47,7 +47,7 @@ app.set('trust proxy', function(ip) {
     return (ip === '127.0.0.1') ? true : false;
 });
 
-var NODE_ENV = process.env.NODE_ENV || STACK_CONFIG.server.dev.NODE_ENV;
+let NODE_ENV = process.env.NODE_ENV || STACK_CONFIG.server.dev.NODE_ENV;
 switch (NODE_ENV.toLowerCase()) {
     case STACK_CONFIG.server.dev.NODE_ENV.toLowerCase():
         /**
@@ -75,7 +75,7 @@ switch (NODE_ENV.toLowerCase()) {
  * app.use('/api/<version>/', require('./routes/<version>/<api-file>'));
  */
 app.use('/api/' + STACK_CONFIG.api.defaults.version + '/lint', require('./routes/' + STACK_CONFIG.api.defaults.version + '/jshint.api'));
-
+app.use('/api/' + STACK_CONFIG.api.defaults.version + '/upload', require('./routes/' + STACK_CONFIG.api.defaults.version + '/upload'));
 // require('./models/jshint.model');
 
 module.exports = app;

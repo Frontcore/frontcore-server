@@ -24,6 +24,9 @@
         "logger": {
             "dirname": "logs",
             "filename": "access.log"
+        },
+        "upload": {
+          "dirname": "upload"
         }
     };
 })();

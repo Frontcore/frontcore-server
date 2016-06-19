@@ -8,9 +8,8 @@ import JSHINT_RULES from '../../services/jshint.service';
 
 let router = express.Router();
 
-router.get('/js/rules', function(req, res, next) {
+router.get('/js/rules', (req, res, next) => {
 	res.status(200).json({
-		"status": true,
 		"rules": JSHINT_RULES
 	});
 });
