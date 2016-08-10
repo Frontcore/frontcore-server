@@ -3,7 +3,7 @@ import React from 'react';
 import HorizontalNav from './components/Navbar/HorizontalNav.jsx';
 import AlertBox from './components/Alert/AlertBox.jsx';
 import Breadcrumb from './components/Breadcrumb/Breadcrumb.jsx';
-import Footer from './views/Footer/Footer.jsx';
+import Footer from './components/Footer/Footer.jsx';
 
 import 'bootstrap/dist/css/bootstrap-theme.min.css';
 import 'bootstrap/dist/css/bootstrap.min.css';
