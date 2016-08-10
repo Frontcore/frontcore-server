@@ -14,6 +14,7 @@ import Profile from '../views/Settings/Profile.jsx';
 import Notifications from '../views/Settings/Notifications.jsx';
 import SSHkey from '../views/Settings/SSHkey.jsx';
 import Dashboard from '../views/Dashboard/Dashboard.jsx';
+import BrowseFs from '../views/BrowseFs/BrowseFs.jsx';
 
 const Routes = (
   <Router history={appHistory}>
@@ -29,6 +30,7 @@ const Routes = (
       <Route path = ":project">
         <IndexRedirect to = "/:project/dashboard" />
         <Route path = "dashboard" component = {Dashboard} />
+        <Route path = "browse(?loc=:loc)" component = {BrowseFs} />
       </Route>
     </Route>
     <Route path="*" component={ErrorPage}/>
