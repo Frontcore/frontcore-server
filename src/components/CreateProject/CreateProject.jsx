@@ -31,8 +31,11 @@ class MyProjects extends React.Component {
             </Dropzone>
           </FormGroup>
           <ProgressBar now={60} />
-          <Button type="submit" bsStyle="success">
+          <Button type="submit" bsStyle="primary">
             Create Project
+          </Button>
+          <Button className="pull-right" type="button" bsStyle="success">
+            Help
           </Button>
         </Form>
       </Panel>
