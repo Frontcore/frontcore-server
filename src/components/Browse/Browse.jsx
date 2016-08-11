@@ -2,6 +2,7 @@
 
 import React from 'react';
 import ReactDOM from 'react-dom';
+import { Link } from 'react-router';
 import { Panel, Form, FormGroup, FormControl, Badge } from 'react-bootstrap';
 import BrowseList from './BrowseList.jsx';
 import Viewfile from './Viewfile.jsx';
@@ -17,13 +18,13 @@ class Browse extends React.Component {
         <table className="table">
           <tbody>
             <tr>
-              <td><i className="fa fa-folder"></i> <strong>src</strong></td>
+              <td><i className="fa fa-folder"></i> <strong><Link to="elastic-hub/browse/source/src">src</Link></strong></td>
               <td><span className="label label-default">Directory</span></td>
               <td></td>
               <td>16 hours ago</td>
             </tr>
             <tr>
-              <td><i className="fa fa-folder"></i> <strong>config</strong></td>
+              <td><i className="fa fa-folder"></i> <strong><Link to="elastic-hub/browse/source/config">config</Link></strong></td>
               <td><span className="label label-default">Directory</span></td>
               <td></td>
               <td>16 hours ago</td>
