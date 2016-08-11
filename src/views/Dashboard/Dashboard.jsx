@@ -3,7 +3,6 @@
 import React from 'react';
 
 import EventEmitter from '../../utils/eventEmitter';
-import Browse from '../../components/Browse/Browse.jsx';
 import TotalIssues from '../../components/TotalIssues/TotalIssues.jsx';
 
 class Dashboard extends React.Component {
@@ -24,11 +23,6 @@ class Dashboard extends React.Component {
         <div className="row">
           <div className="col-md-12">
             <TotalIssues />
-          </div>
-        </div>
-        <div className="row">
-          <div className="col-md-12">
-            <Browse />
           </div>
         </div>
       </div>
