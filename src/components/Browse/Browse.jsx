@@ -9,7 +9,7 @@ import Viewfile from './Viewfile.jsx';
 class Browse extends React.Component {
   render() {
     let header = (
-      <h3>List of project files</h3>
+      <h3><i className="fa fa-folder-open"></i> Browse project files & directories</h3>
     );
 
     return (
@@ -43,7 +43,7 @@ class Browse extends React.Component {
               <td>16 hours ago</td>
             </tr>
             <tr>
-              <td><i className="fa fa-file-text"></i> <strong>index.html</strong></td>
+                <td><i className="fa fa-file-text"></i> <strong>index.html</strong></td>
               <td>
                 <span className="label label-default">File</span>
               </td>
@@ -84,19 +84,7 @@ class Browse extends React.Component {
             </tr>
           </tbody>
         </table>
-        <div className="col-md-4 pull-left-padding">
-          <Form>
-            <FormGroup>
-              <FormControl type="text" placeholder="Filter by files &amp; directories" />
-            </FormGroup>
-          </Form>
-          <BrowseList />
-        </div>
-        <div className="col-md-8 pull-right-padding">
-          <Viewfile />
-        </div>
       </Panel>
-
     );
   }
 };

@@ -4,6 +4,7 @@ import React from 'react';
 
 import EventEmitter from '../../utils/eventEmitter';
 import Browse from '../../components/Browse/Browse.jsx';
+import FileReader from '../../components/FileReader/FileReader.jsx';
 
 class BrowserFs extends React.Component {
   componentDidMount() {
@@ -27,6 +28,9 @@ class BrowserFs extends React.Component {
         <div className="row">
           <div className="col-md-12">
             <Browse />
+          </div>
+          <div className="col-md-12">
+            <FileReader />
           </div>
         </div>
       </div>
