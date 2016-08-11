@@ -30,7 +30,7 @@ const Routes = (
       <Route path = ":project">
         <IndexRedirect to = "/:project/dashboard" />
         <Route path = "dashboard" component = {Dashboard} />
-        <Route path = "browse(?loc=:loc)" component = {BrowseFs} />
+        <Route path = "browse/source(/**)(/*.*)" component = {BrowseFs} />
       </Route>
     </Route>
     <Route path="*" component={ErrorPage}/>
