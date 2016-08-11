@@ -7,16 +7,18 @@ import { ButtonGroup, Button } from 'react-bootstrap';
 class FileReaderToolbar extends React.Component {
   render() {
     let header = (
-      <h3><i className="fa fa-file-text"></i> README.md</h3>
+      <div>
+        <span><i className="fa fa-file-text"></i> README.md</span>
+        <ButtonGroup bsSize="small">
+          <Button bsStyle="success">Edit</Button>
+          <Button bsStyle="danger">Delete</Button>
+        </ButtonGroup>
+      </div>
     );
 
     return (
-      <div className="file-reader-toolbar">
-        <ButtonGroup>
-          <Button>Left</Button>
-          <Button>Middle</Button>
-          <Button>Right</Button>
-        </ButtonGroup>
+      <div className="file-reader-toolbar" header={header}>
+
       </div>
     );
   }
