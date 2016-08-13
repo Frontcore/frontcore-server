@@ -43,9 +43,9 @@ app.use(bodyParser.urlencoded({
     extended: false
 }));
 app.use(compression());
-app.set('trust proxy', function(ip) {
-    return (ip === '127.0.0.1') ? true : false;
-});
+// app.set('trust proxy', function(ip) {
+//     return (ip === '127.0.0.1') ? true : false;
+// });
 
 let NODE_ENV = process.env.NODE_ENV || STACK_CONFIG.server.dev.NODE_ENV;
 switch (NODE_ENV.toLowerCase()) {
@@ -74,8 +74,8 @@ switch (NODE_ENV.toLowerCase()) {
  * Syntax:
  * app.use('/api/<version>/', require('./routes/<version>/<api-file>'));
  */
+app.use('/api/' + STACK_CONFIG.api.defaults.version + '/upload', require('./routes/' + STACK_CONFIG.api.defaults.version + '/upload/upload.api'));
+app.use('/api/' + STACK_CONFIG.api.defaults.version + '/projects', require('./routes/' + STACK_CONFIG.api.defaults.version + '/projects/projects.api'));
 app.use('/api/' + STACK_CONFIG.api.defaults.version + '/lint', require('./routes/' + STACK_CONFIG.api.defaults.version + '/jshint.api'));
-app.use('/api/' + STACK_CONFIG.api.defaults.version + '/upload', require('./routes/' + STACK_CONFIG.api.defaults.version + '/upload'));
-// require('./models/jshint.model');
 
 module.exports = app;
