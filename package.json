@@ -5,6 +5,7 @@
   "author": "Ashwin Hegde",
   "scripts": {
     "start": "babel-node ./server/server.js",
+    "nodemon": "nodemon ./server/server.js --exec babel-node --presets es2015",
     "dev": "webpack -d --watch",
     "build": "webpack -p",
     "test": "jest --no-cache",
@@ -34,6 +35,7 @@
     "mongodb": "^2.0.43",
     "mongoose": "^4.1.9",
     "morgan": "^1.7.0",
+    "multer": "^1.2.0",
     "node-dir": "^0.1.11",
     "nodemailer": "^1.4.0",
     "object-assign": "^4.1.0",
