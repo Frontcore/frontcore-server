@@ -25,6 +25,7 @@ function directoryTree (projPath, onlyOneLevel, extensions) {
 		if (extensions && extensions.length && extensions.indexOf(ext) === -1) {
       return null;
     }
+		item.isFile = true;
 		item.size = stats.size;  // File size in bytes
 		item.extension = ext;
 	} else if (stats.isDirectory()) {
