@@ -30,9 +30,6 @@ class MyProjectsComponent extends React.Component {
   }
 
   render() {
-
-    console.log(this.props.myProjects);
-
     let header = (
       <h3>My projects</h3>
     );
@@ -52,10 +49,10 @@ class MyProjectsComponent extends React.Component {
   }
 };
 
-// MyProjectsComponent.propTypes = {
-//   myProjects: PropTypes.object.isRequired,
-//   actions: PropTypes.object.isRequired
-// };
+MyProjectsComponent.propTypes = {
+  myProjects: PropTypes.array.isRequired,
+  actions: PropTypes.object.isRequired
+};
 
 function mapStateToProps(state, ownProps) {
   return {
