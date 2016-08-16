@@ -16,25 +16,31 @@ import SSHkey from '../views/Settings/SSHkey.jsx';
 import Dashboard from '../views/Dashboard/Dashboard.jsx';
 import BrowseFs from '../views/BrowseFs/BrowseFs.jsx';
 
+import storeConfig from '../store/storeConfig';
+import { Provider } from 'react-redux';
+const store = storeConfig();
+
 const Routes = (
-  <Router history={appHistory}>
-    <Route path = "/" component = {App}>
-      <IndexRoute component = {Setup} />
-      <Route path = "setup" component = {Setup} />
-      <Route path = "settings" component = {Settings}>
-        <IndexRedirect to = "/settings/profile" />
-        <Route path = "profile" component = {Profile} />
-        <Route path = "notifications" component = {Notifications} />
-        <Route path = "sshkey" component = {SSHkey} />
+  <Provider store={store}>
+    <Router history={appHistory}>
+      <Route path = "/" component = {App}>
+        <IndexRoute component = {Setup} />
+        <Route path = "setup" component = {Setup} />
+        <Route path = "settings" component = {Settings}>
+          <IndexRedirect to = "/settings/profile" />
+          <Route path = "profile" component = {Profile} />
+          <Route path = "notifications" component = {Notifications} />
+          <Route path = "sshkey" component = {SSHkey} />
+        </Route>
+        <Route path = ":project">
+          <IndexRedirect to = "/:project/dashboard" />
+          <Route path = "dashboard" component = {Dashboard} />
+          <Route path = "browse/source(/**)(/*.*)" component = {BrowseFs} />
+        </Route>
       </Route>
-      <Route path = ":project">
-        <IndexRedirect to = "/:project/dashboard" />
-        <Route path = "dashboard" component = {Dashboard} />
-        <Route path = "browse/source(/**)(/*.*)" component = {BrowseFs} />
-      </Route>
-    </Route>
-    <Route path="*" component={ErrorPage}/>
-  </Router>
+      <Route path="*" component={ErrorPage}/>
+    </Router>
+  </Provider>
 );
 
 export default Routes;
