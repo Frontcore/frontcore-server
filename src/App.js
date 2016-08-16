@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { PropTypes } from 'react';
 
 import HorizontalNav from './components/Navbar/HorizontalNav.jsx';
 import AlertBox from './components/Alert/AlertBox.jsx';
@@ -36,5 +36,9 @@ class App extends React.Component {
     );
   }
 }
+
+App.propTypes = {
+  children: PropTypes.object.isRequired
+};
 
 export default App;
