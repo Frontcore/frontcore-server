@@ -9,19 +9,22 @@ import { bindActionCreators } from 'redux';
 import * as myProjectActions from '../../actions/myProjectsActions';
 
 class MyProjectsComponent extends React.Component {
-  componentDidMount() {
-    this.props.actions.loadMyProjects();
+  constructor(props) {
+    super(props);
 
     this.myProjectRow = this.myProjectRow.bind(this);
   }
+  componentDidMount() {
+    this.props.actions.loadMyProjects();
+  }
 
-  myProjectRow(myProject, index) {
-    let buildLink = myProject.link + "/dashboard";
+  myProjectRow(project, index) {
+    let buildLink = project.name + "/dashboard";
     return (
       <Link key={index} to={buildLink} className="list-group-item">
-        <h4 className="list-group-item-heading">{myProject.name} <Label>v{myProject.version}</Label></h4>
-        <p className="list-group-item-text">{myProject.describe}</p>
-        <p className="list-group-item-text project-location"><strong>Location: </strong>{myProject.path}</p>
+        <h4 className="list-group-item-heading">{project.name} <Label>v{project.version}</Label></h4>
+        <p className="list-group-item-text">{project.description}</p>
+        <p className="list-group-item-text project-location"><strong>Location: </strong>{project.location}</p>
       </Link>
     );
   }
@@ -35,7 +38,7 @@ class MyProjectsComponent extends React.Component {
       <Panel className="my-projects-component" header={header}>
         <Form>
           <FormGroup controlId="filterProject">
-            <FormControl type="text" placeholder="Filter your project"/>
+            <FormControl type="text" placeholder="Filter your project by name, version or location"/>
           </FormGroup>
         </Form>
         <div className="list-group">

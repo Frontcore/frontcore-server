@@ -5,8 +5,7 @@ import express from 'express';
 let router = express.Router();
 
 router.get('/list', (req, res, next) => {
-  res.status(200).json({
-		"projects": [{
+  res.status(200).json([{
       "name": "elastic-hub",
       "version": "1.3.2",
       "description": "As elasticsearch plugin",
@@ -21,8 +20,7 @@ router.get('/list', (req, res, next) => {
       "version": "4.5.3",
       "description": "Front-end stack for Backbone.js projects",
       "location": "/home/hegdeashwin/projects/nebula"
-    }]
-	});
+    }]);
 });
 
 module.exports = router;
