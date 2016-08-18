@@ -10,7 +10,7 @@ let router = express.Router();
 
 let PROJPATH = '/home/hegdeashwin/projects/elastic-hub'; //temp static
 
-router.post('/project/files', (req, res, next) => {
+router.get('/project/files', (req, res, next) => {
 
   dir.readFiles(PROJPATH, {
     exclude: ['node_modules', 'bower_components']
@@ -29,12 +29,7 @@ router.post('/project/files', (req, res, next) => {
     let projRootDir = PROJPATH.split('/');
     projRootDir = projRootDir[projRootDir.length - 1];
 
-    res.status(200).json({
-  		"project": {
-        "name": projRootDir,
-        "files": files
-      }
-  	});
+    res.status(200).json(files.children);
   });
 
 });
