@@ -15,21 +15,62 @@ class BrowseComponent extends React.Component {
     super(props);
 
     this.browseRow = this.browseRow.bind(this);
+    this.formatBytes = this.formatBytes.bind(this);
   }
 
   componentDidMount() {
-    this.props.actions.browseProjectDir();
+    let browseData = {
+      "browsePath": "/home/hegdeashwin/projects/elastic-hub"
+    };
+    this.props.actions.browseProjectDir(browseData);
+  }
+
+  formatBytes(bytes, decimals) {
+     if(bytes == 0) return '0 Byte';
+     var k = 1000; // or 1024 for binary
+     var dm = decimals + 1 || 3;
+     var sizes = ['Bytes', 'KB', 'MB', 'GB', 'TB', 'PB', 'EB', 'ZB', 'YB'];
+     var i = Math.floor(Math.log(bytes) / Math.log(k));
+     return parseFloat((bytes / Math.pow(k, i)).toFixed(dm)) + ' ' + sizes[i];
   }
 
   browseRow(browseEl, index) {
-    return (
-      <tr key={index}>
-        <td><i className="fa fa-file-text"></i> <strong>{browseEl.name}</strong></td>
+    let elIcon = (
+      <td>
+        <i className="fa fa-folder"></i> <Link to='elastic-hub/browse/source/src'><strong>{browseEl.name}</strong></Link>
+      </td>
+    );
+
+    let elType = (
+      <td>
+        <span className="label label-default">Directory</span>
+      </td>
+    );
+
+    let elSize = "";
+
+    if(browseEl.isFile) {
+      elIcon = (
+        <td>
+          <i className="fa fa-file-text"></i> <strong>{browseEl.name}</strong>
+        </td>
+      );
+
+      elType = (
         <td>
           <span className="label label-default">File</span>
         </td>
-        <td><span className="label label-primary">JavaScript</span></td>
-        <td>{browseEl.size}</td>
+      );
+
+      elSize = this.formatBytes(browseEl.size);
+    }
+
+    return (
+      <tr key={index}>
+        {elIcon}
+        {elType}
+        <td><span className="label label-primary">{browseEl.extension}</span></td>
+        <td>{elSize}</td>
       </tr>
     );
   }
