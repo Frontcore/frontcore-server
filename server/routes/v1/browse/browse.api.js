@@ -4,6 +4,7 @@ import express from 'express';
 import path from 'path';
 import fs from 'fs';
 import dir from 'node-dir';
+import _ from 'underscore';
 import dirUtils from '../utils/dirs.utils';
 
 let router = express.Router();
@@ -33,7 +34,9 @@ router.post('/project/files', (req, res, next) => {
     res.status(200).json({
       "project": {
         "name": projRootDir,
-        "files": files
+        "path": files.projPath,
+        "dirname": files.name,
+        "files": _.sortBy(files.children, 'isFile')
       }
     });
   });

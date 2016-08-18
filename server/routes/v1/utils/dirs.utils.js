@@ -9,6 +9,7 @@ import fs from 'fs';
 exports.getDirectoryTree = function directoryTree (projPath, onlyOneLevel, extensions) {
 	const name = path.basename(projPath);
 	const item = { projPath, name };
+	item.isFile = false;
 	let stats;
 
 	try {

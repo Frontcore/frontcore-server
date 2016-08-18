@@ -9,6 +9,7 @@ import Viewfile from './Viewfile.jsx';
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
 import * as browseActions from '../../actions/browseActions';
+import './Browse.less';
 
 class BrowseComponent extends React.Component {
   constructor(props) {
