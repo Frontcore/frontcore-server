@@ -6,7 +6,7 @@ import './MyProjects.less';
 import { Panel, Form, FormGroup, FormControl, Label } from 'react-bootstrap';
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
-import * as myProjectActions from '../../actions/myProjectsActions';
+import * as myProjectsActions from '../../actions/myProjectsActions';
 
 class MyProjectsComponent extends React.Component {
   constructor(props) {
@@ -14,6 +14,7 @@ class MyProjectsComponent extends React.Component {
 
     this.myProjectRow = this.myProjectRow.bind(this);
   }
+
   componentDidMount() {
     this.props.actions.loadMyProjects();
   }
@@ -62,7 +63,7 @@ function mapStateToProps(state, ownProps) {
 
 function mapDispatchToProps(dispatch) {
   return {
-    actions: bindActionCreators(myProjectActions, dispatch)
+    actions: bindActionCreators(myProjectsActions, dispatch)
   };
 }
 
