@@ -8,11 +8,12 @@ import dirUtils from '../utils/dirs.utils';
 
 let router = express.Router();
 
-let PROJPATH = '/home/hegdeashwin/projects/elastic-hub'; //temp static
+router.post('/project/files', (req, res, next) => {
 
-router.get('/project/files', (req, res, next) => {
+  let bodyPayload = req.body;
+  let browsePath = path.normalize(bodyPayload.browsePath);
 
-  dir.readFiles(PROJPATH, {
+  dir.readFiles(browsePath, {
     exclude: ['node_modules', 'bower_components']
   }, (error, content, next) => {
     if(error) {
@@ -24,12 +25,17 @@ router.get('/project/files', (req, res, next) => {
       throw error;
     }
 
-    files = dirUtils.getDirectoryTree(PROJPATH, true);
+    files = dirUtils.getDirectoryTree(browsePath, true);
 
-    let projRootDir = PROJPATH.split('/');
+    let projRootDir = browsePath.split('/');
     projRootDir = projRootDir[projRootDir.length - 1];
 
-    res.status(200).json(files.children);
+    res.status(200).json({
+      "project": {
+        "name": projRootDir,
+        "files": files
+      }
+    });
   });
 
 });

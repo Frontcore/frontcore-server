@@ -40,7 +40,7 @@ app.use(morgan('combined', {
 
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({
-    extended: false
+    extended: true
 }));
 app.use(compression());
 // app.set('trust proxy', function(ip) {
