@@ -7,7 +7,7 @@ function browsePostRes(browse, json) {
   return {
     type: types.BROWSE_RES_POST,
     browse,
-    posts: json.project.files.children
+    posts: json.project.files
   };
 }
 
