@@ -9,14 +9,15 @@ import Viewfile from './Viewfile.jsx';
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
 import * as browseActions from '../../actions/browseActions';
+import UtilsFormat from '../../utils/formats';
 import './Browse.less';
 
 class BrowseComponent extends React.Component {
   constructor(props) {
     super(props);
 
+    this.format = new UtilsFormat();
     this.browseRow = this.browseRow.bind(this);
-    this.formatBytes = this.formatBytes.bind(this);
   }
 
   componentDidMount() {
@@ -24,15 +25,6 @@ class BrowseComponent extends React.Component {
       "browsePath": "/home/hegdeashwin/projects/elastic-hub"
     };
     this.props.actions.browseProjectDir(browseData);
-  }
-
-  formatBytes(bytes, decimals) {
-     if(bytes == 0) return '0 Byte';
-     var k = 1000; // or 1024 for binary
-     var dm = decimals + 1 || 3;
-     var sizes = ['Bytes', 'KB', 'MB', 'GB', 'TB', 'PB', 'EB', 'ZB', 'YB'];
-     var i = Math.floor(Math.log(bytes) / Math.log(k));
-     return parseFloat((bytes / Math.pow(k, i)).toFixed(dm)) + ' ' + sizes[i];
   }
 
   browseRow(browseEl, index) {
@@ -63,7 +55,7 @@ class BrowseComponent extends React.Component {
         </td>
       );
 
-      elSize = this.formatBytes(browseEl.size);
+      elSize = this.format.size(browseEl.size);
     }
 
     return (
@@ -71,7 +63,7 @@ class BrowseComponent extends React.Component {
         {elIcon}
         {elType}
         <td><span className="label label-primary">{browseEl.extension}</span></td>
-        <td>{elSize}</td>
+        <td><strong>{elSize}</strong></td>
       </tr>
     );
   }
@@ -93,10 +85,10 @@ class BrowseComponent extends React.Component {
   }
 };
 
-// BrowseComponent.propTypes = {
-//   browse: PropTypes.array.isRequired,
-//   actions: PropTypes.object.isRequired
-// };
+BrowseComponent.propTypes = {
+  browse: PropTypes.array.isRequired,
+  actions: PropTypes.object.isRequired
+};
 
 function mapStateToProps(state, ownProps) {
   return {
