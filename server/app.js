@@ -13,11 +13,13 @@ import express from 'express';
 import morgan from 'morgan';
 import bodyParser from 'body-parser';
 import compression from 'compression';
+import { mongoClient } from 'mongodb';
 
 /**
  * Requires a constants utility functions;
  */
 import STACK_CONFIG from '../config/stack.conf';
+import MONGO_CONFIG from '../config/mongo.conf';
 
 /**
  * Create an express app;
@@ -29,6 +31,12 @@ let app = express();
  */
 let accessLogStream = fs.createWriteStream(__dirname + '/' + STACK_CONFIG.logger.dirname + '/' + STACK_CONFIG.logger.filename, {
     flags: 'a'
+});
+
+let mongoConnectionURL = MONGO_CONFIG.connect.url + ':' + MONGO_CONFIG.connect.url.port + '/' + MONGO_CONFIG.connect.database;
+mongoClient.connect(mongoConnectionURL, (error, db) => {
+  console.log('LOG: Connected successfully to Mongo server');
+  db.close();
 });
 
 /**
