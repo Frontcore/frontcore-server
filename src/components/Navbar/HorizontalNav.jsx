@@ -18,6 +18,9 @@ class HorizontalMenu extends React.Component {
         <Navbar.Collapse>
           <Nav>
             <NavItem eventKey={1} href="#"><i className="fa fa-lg fa-home"></i></NavItem>
+            <NavDropdown eventKey={2} title="Tools" id="menu-tools">
+              <MenuItem eventKey={2.1} href="#settings">Settings</MenuItem>
+            </NavDropdown>
           </Nav>
           <Nav pullRight>
             <NavDropdown className="navbar-right" eventKey={4} title="Developers" id="menu-developers">
