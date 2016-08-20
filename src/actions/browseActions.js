@@ -20,7 +20,7 @@ export function browseProjectDir(browse) {
       },
       body: JSON.stringify(browse)
     }).then(res => {
-      res.json().then(function(data) {
+      res.json().then((data) => {
          dispatch(browsePostRes(browse, data));
       });
     }).catch(error => {
