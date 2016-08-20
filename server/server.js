@@ -3,26 +3,25 @@
 /**
  * Requires a in-built utility functions;
  */
-var http = require('http');
-var io = require('socket.io');
+import http from 'http';
 
 /**
  * Requires a constants utility functions;
  */
-var PRODUCT = require('../package.json');
+import PRODUCT from '../package.json';
 
 /**
  * Requires a frontcore utility functions;
  * @requires app:./app.js
  * @requires msg:./utils/message.js
  */
-var app = require('./app'),
-	msg = require('./utils/message');
+import app from './app';
+import msg from './utils/message';
 
 /**
  * Define utility objects;
  */
-var appProp = {};
+let appProp = {};
 appProp.port = app.get('port');
 appProp.address = app.get('uri');
 
@@ -30,13 +29,12 @@ appProp.address = app.get('uri');
  * Create HTTP server.
  * @param {object} app - express app
  */
-var server = http.createServer(app);
-var socket = io(server);
+let server = http.createServer(app);
 
 /**
  * Event listener for HTTP server 'error' event.
  */
-var onError = function(error) {
+let onError = function(error) {
 	if (error.syscall !== 'listen') {
 		throw error;
 	}
@@ -75,21 +73,3 @@ var onListening = function() {
  * @param {string} appProp.port - port on which express server is listening
  */
 server.listen(appProp.port);
-
-/**
- * Subscribe events
- */
-server.on('error', onError);
-server.on('listening', onListening);
-
-socket.on('connection', function(client) {
-	console.log("Client is connected");
-
-	client.emit('isConfReady', {
-		isReady: true
-	});
-
-	client.on("pushConf", function(data) {
-		console.log('Data on Server: ', data);
-	});
-});
