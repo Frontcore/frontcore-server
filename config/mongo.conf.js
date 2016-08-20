@@ -3,8 +3,7 @@
 
 	module.exports = {
 		"connect": {
-			"protocol": "mongodb",
-			"url": "localhost",
+			"url": "mongodb://localhost",
 			"port": 27017,
 			"database": "frontcoredb"
 		}
