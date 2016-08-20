@@ -37,12 +37,7 @@ router.post('/config/file', (req, res, next) => {
       throw error;
     }
 
-    res.status(200).json({
-      "status": {
-        "isUploaded": true,
-        "msg": "New project has been create."
-      }
-    });
+    res.status(200).json(req.file);
   });
 
 });
