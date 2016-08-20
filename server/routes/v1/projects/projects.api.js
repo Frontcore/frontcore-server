@@ -23,7 +23,8 @@ router.get('/list', (req, res, next) => {
     }]);
 });
 
-router.get('/info', (req, res, next) => {
+router.post('/info', (req, res, next) => {
+
   res.status(200).json({
       "name": "elastic-hub",
       "version": "1.3.2",
