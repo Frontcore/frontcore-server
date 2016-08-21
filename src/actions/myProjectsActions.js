@@ -19,32 +19,6 @@ export function loadMyProjects() {
   };
 };
 
-function projectInfoPostRes(project, json) {
-  return {
-    type: types.GET_PROJECT_INFO,
-    project,
-    posts: json
-  };
-}
-
-export function getProjectInfo(project) {
-  return (dispatch) => {
-    fetch('/api/v1/projects/info', {
-      method: 'post',
-      header: {
-        'Content-Type': 'application/json;charset=UTF-8'
-      },
-      body: JSON.stringify(project)
-    }).then(res => {
-        res.json().then((data) => {
-           dispatch(projectInfoPostRes(project, data));
-        });
-      }).catch(error => {
-        console.error(error);
-      });
-  };
-};
-
 function createProjectPostRes(config, json) {
   return {
     type: types.CREATE_PROJECT,
@@ -58,7 +32,7 @@ export function createProject(config) {
     fetch('/api/v1/upload/config/file', {
       method: 'post',
       header: {
-        'Content-Type': 'charset=UTF-8'
+        'Content-Type': 'application/json;charset=UTF-8'
       },
       body: JSON.stringify(config)
     }).then(res => {

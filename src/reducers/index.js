@@ -3,10 +3,12 @@
 import { combineReducers } from 'redux';
 import myProjects from './myProjectsReducer';
 import browse from './browseReducer';
+import project from './projectReducer';
 
 const rootReducer = combineReducers({
   myProjects,
-  browse
+  browse,
+  project
 });
 
 export default rootReducer;

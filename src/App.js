@@ -22,7 +22,6 @@ class App extends React.Component {
             <p>Change this and that and try again. Duis mollis, est non commodo luctus</p>
           </AlertBox>
           <Breadcrumb/>
-          <p className="lead">Project name: <small>elastic-hub</small></p>
           <section className="sub-container">
             <div className="row">
               <div className="col-md-12">
