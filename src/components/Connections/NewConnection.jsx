@@ -38,7 +38,7 @@ class NewConnection extends React.Component {
             </FormGroup>
           </div>
           <div className="col-md-12">
-            <Button type="submit" bsStyle="primary">Connect</Button>
+            <Button type="submit" bsStyle="primary">Update</Button>
           </div>
         </Form>
       </Panel>
