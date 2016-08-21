@@ -13,7 +13,7 @@ import express from 'express';
 import morgan from 'morgan';
 import bodyParser from 'body-parser';
 import compression from 'compression';
-import { mongoClient } from 'mongodb';
+import { MongoClient } from 'mongodb';
 
 /**
  * Requires a constants utility functions;
@@ -33,9 +33,11 @@ let accessLogStream = fs.createWriteStream(__dirname + '/' + STACK_CONFIG.logger
     flags: 'a'
 });
 
-let mongoConnectionURL = MONGO_CONFIG.connect.url + ':' + MONGO_CONFIG.connect.url.port + '/' + MONGO_CONFIG.connect.database;
-mongoClient.connect(mongoConnectionURL, (error, db) => {
-  console.log('LOG: Connected successfully to Mongo server');
+let mongoConnectionURL = MONGO_CONFIG.connect.url + ':' + MONGO_CONFIG.connect.port + '/' + MONGO_CONFIG.connect.database;
+MongoClient.connect(mongoConnectionURL, (error, db) => {
+  if(error) {
+    throw error;
+  }
   db.close();
 });
 
@@ -54,6 +56,8 @@ app.use(compression());
 // app.set('trust proxy', function(ip) {
 //     return (ip === '127.0.0.1') ? true : false;
 // });
+
+app.set('MongoClient', MongoClient);
 
 let NODE_ENV = process.env.NODE_ENV || STACK_CONFIG.server.dev.NODE_ENV;
 switch (NODE_ENV.toLowerCase()) {
