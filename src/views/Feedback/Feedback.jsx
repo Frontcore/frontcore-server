@@ -4,6 +4,13 @@ import React from 'react';
 import ReactDOM from 'react-dom';
 
 class Feeback extends React.Component {
+  componentDidMount() {
+    EventEmitter.emit('update-breadcrumb-path', [{
+      isActive: true,
+      text: 'Feedback'
+    }]);
+  }
+
   render() {
     return (
       <div className="jumbotron feedback-component">
