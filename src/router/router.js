@@ -9,6 +9,7 @@ import App from '../App.js';
 
 import Setup from '../views/Setup/Setup.jsx';
 import Settings from '../views/Settings/Settings.jsx';
+import Feedback from '../views/Feedback/Feedback.jsx';
 import ErrorPage from '../views/ErrorPage/PageNotFound.jsx';
 import Connection from '../views/Settings/Connection.jsx';
 import Notifications from '../views/Settings/Notifications.jsx';
@@ -26,6 +27,7 @@ const Routes = (
       <Route path = "/" component = {App}>
         <IndexRoute component = {Setup} />
         <Route path = "setup" component = {Setup} />
+        <Route path = "feedback" component = {Feedback} />
         <Route path = "settings" component = {Settings}>
           <IndexRedirect to = "/settings/dbconnect" />
           <Route path = "dbconnect" component = {Connection} />
