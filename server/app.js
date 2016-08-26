@@ -13,6 +13,7 @@ import express from 'express';
 import morgan from 'morgan';
 import bodyParser from 'body-parser';
 import compression from 'compression';
+import helmet from 'helmet';
 import { MongoClient } from 'mongodb';
 
 /**
@@ -52,10 +53,8 @@ app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({
     extended: true
 }));
+app.use(helmet());
 app.use(compression());
-// app.set('trust proxy', function(ip) {
-//     return (ip === '127.0.0.1') ? true : false;
-// });
 
 app.set('MongoClient', MongoClient);
 
