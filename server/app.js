@@ -13,6 +13,7 @@ import express from 'express';
 import morgan from 'morgan';
 import bodyParser from 'body-parser';
 import compression from 'compression';
+import winston from 'winston';
 import helmet from 'helmet';
 import { MongoClient } from 'mongodb';
 
@@ -21,6 +22,7 @@ import { MongoClient } from 'mongodb';
  */
 import STACK_CONFIG from '../config/stack.conf';
 import MONGO_CONFIG from '../config/mongo.conf';
+import { ErrorHandler } from './utils/error.utils';
 
 /**
  * Create an express app;
@@ -89,5 +91,13 @@ app.use('/api/' + STACK_CONFIG.api.defaults.version + '/upload', require('./rout
 app.use('/api/' + STACK_CONFIG.api.defaults.version + '/projects', require('./routes/' + STACK_CONFIG.api.defaults.version + '/projects/projects.api'));
 app.use('/api/' + STACK_CONFIG.api.defaults.version + '/browse', require('./routes/' + STACK_CONFIG.api.defaults.version + '/browse/browse.api'));
 app.use('/api/' + STACK_CONFIG.api.defaults.version + '/browse', require('./routes/' + STACK_CONFIG.api.defaults.version + '/browse/content.api'));
+
+
+app.use((error, req, res, next) => {
+  let eHandlerRes = new ErrorHandler(error);
+  eHandlerRes = eHandlerRes.getErrorMessage();
+
+  res.status(eHandlerRes.status).json(eHandlerRes.response);
+});
 
 module.exports = app;
