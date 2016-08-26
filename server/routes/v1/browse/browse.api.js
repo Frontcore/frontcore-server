@@ -5,7 +5,7 @@ import path from 'path';
 import fs from 'fs';
 import dir from 'node-dir';
 import _ from 'underscore';
-import dirUtils from '../utils/dirs.utils';
+import dirUtils from '../../../utils/dirs.utils';
 
 let router = express.Router();
 

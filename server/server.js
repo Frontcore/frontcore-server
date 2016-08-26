@@ -13,10 +13,8 @@ import PRODUCT from '../package.json';
 /**
  * Requires a frontcore utility functions;
  * @requires app:./app.js
- * @requires msg:./utils/message.js
  */
 import app from './app';
-import msg from './utils/message';
 
 /**
  * Define utility objects;
@@ -44,11 +42,11 @@ let onError = function(error) {
 	 */
 	switch (error.code) {
 		case 'EACCES':
-			msg.error('Requires elevated privileges');
+			console.error('Requires elevated privileges');
 			break;
 
 		case 'EADDRINUSE':
-			msg.error('Port is already in use');
+			console.error('Port is already in use');
 			break;
 
 		default:
@@ -62,10 +60,10 @@ let onError = function(error) {
  * Event listener for HTTP server 'listening' event.
  */
 var onListening = function() {
-	msg.log('\n ' + PRODUCT.name + ' v' + PRODUCT.version);
-	msg.line();
+	console.log('\n ' + PRODUCT.name + ' v' + PRODUCT.version);
+	console.line();
 
-	msg.log(' Web server is started on ' + appProp.address + ':' + appProp.port + '\n');
+	console.log(' Web server is started on ' + appProp.address + ':' + appProp.port + '\n');
 };
 
 /**
