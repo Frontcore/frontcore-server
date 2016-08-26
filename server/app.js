@@ -15,7 +15,6 @@ import bodyParser from 'body-parser';
 import compression from 'compression';
 import winston from 'winston';
 import helmet from 'helmet';
-import { MongoClient } from 'mongodb';
 
 /**
  * Requires a constants utility functions;
@@ -23,6 +22,7 @@ import { MongoClient } from 'mongodb';
 import STACK_CONFIG from '../config/stack.conf';
 import MONGO_CONFIG from '../config/mongo.conf';
 import { ErrorHandler } from './utils/error.utils';
+import { MongoDB } from './utils/mongodb.utils';
 
 /**
  * Create an express app;
@@ -36,13 +36,15 @@ let accessLogStream = fs.createWriteStream(__dirname + '/' + STACK_CONFIG.logger
     flags: 'a'
 });
 
-let mongoConnectionURL = MONGO_CONFIG.connect.url + ':' + MONGO_CONFIG.connect.port + '/' + MONGO_CONFIG.connect.database;
-MongoClient.connect(mongoConnectionURL, (error, db) => {
-  if(error) {
-    throw error;
-  }
-  db.close();
+/**
+ * Create an instance of MongoDB class.
+ */
+let mongoClient = new MongoDB({
+  baseUrl: MONGO_CONFIG.connect.url,
+  dbPort: MONGO_CONFIG.connect.port,
+  dbName: MONGO_CONFIG.connect.database
 });
+mongoClient = mongoClient.connect();
 
 /**
  * Setup the logger
@@ -58,7 +60,7 @@ app.use(bodyParser.urlencoded({
 app.use(helmet());
 app.use(compression());
 
-app.set('MongoClient', MongoClient);
+app.set('MongoClient', mongoClient);
 
 let NODE_ENV = process.env.NODE_ENV || STACK_CONFIG.server.dev.NODE_ENV;
 switch (NODE_ENV.toLowerCase()) {

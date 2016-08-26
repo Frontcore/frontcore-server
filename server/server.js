@@ -42,11 +42,11 @@ let onError = function(error) {
 	 */
 	switch (error.code) {
 		case 'EACCES':
-			console.error('Requires elevated privileges');
+			console.error('Requires elevated privileges.');
 			break;
 
 		case 'EADDRINUSE':
-			console.error('Port is already in use');
+			console.error('Port is already in use.');
 			break;
 
 		default:
