@@ -18,12 +18,12 @@ router.post('/project/files', (req, res, next) => {
     exclude: ['node_modules', 'bower_components']
   }, (error, content, next) => {
     if(error) {
-      throw error;
+      return next(error);
     }
     next();
   }, (error, files) => {
     if(error) {
-      throw error;
+      return next(error);
     }
 
     files = dirUtils.getDirectoryTree(browsePath, true);
