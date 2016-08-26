@@ -4,7 +4,8 @@
   "description": "",
   "author": "Ashwin Hegde",
   "scripts": {
-    "start": "babel-node ./server/server.js",
+    "startdev": "NODE_ENV=development babel-node ./server/server.js",
+    "start": "NODE_ENV=production babel-node ./server/server.js",
     "nodemon": "nodemon ./server/server.js --exec babel-node --presets es2015",
     "dev": "webpack -d --watch",
     "build": "webpack -p",
