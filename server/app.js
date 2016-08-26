@@ -1,5 +1,3 @@
-'use strict';
-
 /**
  * Requires a in-built utility functions;
  */
