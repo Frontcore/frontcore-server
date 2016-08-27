@@ -23,7 +23,7 @@ class Dashboard extends React.Component {
     }]);
 
     this.props.actions.getProjectInfo({
-      "data": "Dummy"
+      "project": this.props.params.project
     });
   }
 
