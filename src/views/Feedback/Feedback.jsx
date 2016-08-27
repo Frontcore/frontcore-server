@@ -2,6 +2,7 @@
 
 import React from 'react';
 import ReactDOM from 'react-dom';
+import EventEmitter from '../../utils/eventEmitter';
 
 class Feeback extends React.Component {
   componentDidMount() {
