@@ -1,5 +1,5 @@
 import fs from 'fs';
-import ProjectInfo from '../models/projectInfo.model';
+import Project from '../models/project.model';
 
 exports.create = function(req, res, next) {
   let _reqFile = req.file;
@@ -16,7 +16,7 @@ exports.create = function(req, res, next) {
     _reqFile.description = _fileNodes.description,
     _reqFile.location = _fileNodes.location
 
-    let _entry = new ProjectInfo(_reqFile);
+    let _entry = new Project(_reqFile);
 
     _entry.save();
 
@@ -27,11 +27,15 @@ exports.create = function(req, res, next) {
 exports.info = function(req, res, next) {
   let reqPayload = req.body;
 
-  let query = ProjectInfo.findOne({ name: reqPayload.name }, (error, result) => {
+  let query = Project.findOne({ name: reqPayload.name }, (error, result) => {
     if (error) {
       return next(error)
     }
 
     res.status(200).json(result);
   });
+};
+
+exports.list = function(req, res, next) {
+
 };
