@@ -29,7 +29,7 @@ exports.info = function(req, res, next) {
 
   let query = Project.findOne({ name: reqPayload.name }, (error, result) => {
     if (error) {
-      return next(error)
+      return next(error);
     }
 
     res.status(200).json(result);
@@ -39,7 +39,7 @@ exports.info = function(req, res, next) {
 exports.list = function(req, res, next) {
   let reqPayload = req.body;
 
-  let query = Project.find({}, (error, result) => {
+  let query = Project.find({}, 'name version description location', (error, result) => {
     if (error) {
       return next(error);
     }
