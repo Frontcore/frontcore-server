@@ -8,4 +8,4 @@ let myProjectsSchema = new Schema({
   "location": String
 });
 
-module.exports = mongoose.model('MyProjects', myProjectsSchema);
+module.exports = mongoose.model('MyProjects', myProjectsSchema, 'myprojects');
