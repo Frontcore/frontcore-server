@@ -2,6 +2,8 @@ import express from 'express';
 import path from 'path';
 import multer from 'multer';
 
+import ProjectInfoCtrl from '../../../controllers/projectInfo.controller';
+
 let router = express.Router();
 
 /**
@@ -32,10 +34,10 @@ router.post('/config/file', (req, res, next) => {
 
   upload(req, res, (error) => {
     if(error) {
-      throw error;
+      return next(error);
     }
 
-    res.status(200).json(req.file);
+    return ProjectInfoCtrl.create(req, res, next);
   });
 
 });

@@ -23,6 +23,16 @@ import { ErrorHandler } from './utils/error.utils';
 import { MongoDB } from './utils/mongodb.utils';
 
 /**
+ * Create an instance of MongoDB class.
+ */
+let mongo = new MongoDB({
+  baseUrl: MONGO_CONFIG.connect.url,
+  dbPort: MONGO_CONFIG.connect.port,
+  dbName: MONGO_CONFIG.connect.database
+});
+mongo = mongo.connect();
+
+/**
  * Create an express app;
  */
 let app = express();
@@ -33,16 +43,6 @@ let app = express();
 let accessLogStream = fs.createWriteStream(__dirname + '/' + STACK_CONFIG.logger.dirname + '/' + STACK_CONFIG.logger.filename, {
     flags: 'a'
 });
-
-/**
- * Create an instance of MongoDB class.
- */
-let mongoClient = new MongoDB({
-  baseUrl: MONGO_CONFIG.connect.url,
-  dbPort: MONGO_CONFIG.connect.port,
-  dbName: MONGO_CONFIG.connect.database
-});
-mongoClient = mongoClient.connect();
 
 /**
  * Setup the logger
@@ -57,8 +57,6 @@ app.use(bodyParser.urlencoded({
 }));
 app.use(helmet());
 app.use(compression());
-
-app.set('MongoClient', mongoClient);
 
 let NODE_ENV = process.env.NODE_ENV || STACK_CONFIG.server.dev.NODE_ENV;
 switch (NODE_ENV.toLowerCase()) {
@@ -92,7 +90,9 @@ app.use('/api/' + STACK_CONFIG.api.defaults.version + '/projects', require('./ro
 app.use('/api/' + STACK_CONFIG.api.defaults.version + '/browse', require('./routes/' + STACK_CONFIG.api.defaults.version + '/browse/browse.api'));
 app.use('/api/' + STACK_CONFIG.api.defaults.version + '/browse', require('./routes/' + STACK_CONFIG.api.defaults.version + '/browse/content.api'));
 
-
+/**
+ * Router error handling with ErrorHander class
+ */
 app.use((error, req, res, next) => {
   let eHandlerRes = new ErrorHandler(error);
   eHandlerRes = eHandlerRes.getErrorMessage();
