@@ -1,4 +1,4 @@
-import { MongoClient } from 'mongodb';
+import mongoose from 'mongoose';
 
 export class MongoDB {
   constructor(params) {
@@ -9,13 +9,8 @@ export class MongoDB {
 
   connect() {
     let mongoConnectionURL = this.baseUrl  + ':' + this.dbPort + '/' + this.dbName;
-    MongoClient.connect(mongoConnectionURL, (error, db) => {
-      if(error) {
-        throw error;
-      }
-      db.close();
-    });
-    return MongoClient;
+    mongoose.connect(mongoConnectionURL);
+    return mongoose;
   }
 
 };

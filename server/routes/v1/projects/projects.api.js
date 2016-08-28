@@ -1,35 +1,14 @@
 import express from 'express';
+import ProjectCtrl from '../../../controllers/project.controller';
 
 let router = express.Router();
 
 router.get('/list', (req, res, next) => {
-  res.status(200).json([{
-      "name": "elastic-hub",
-      "version": "1.3.2",
-      "description": "As elasticsearch plugin",
-      "location": "/home/hegdeashwin/projects/elastic-hub"
-    }, {
-      "name": "protocore",
-      "version": "1.0.0",
-      "description": "Front-end stack for jQuery projects",
-      "location": "/home/hegdeashwin/projects/protocore"
-    }, {
-      "name": "nebula",
-      "version": "4.5.3",
-      "description": "Front-end stack for Backbone.js projects",
-      "location": "/home/hegdeashwin/projects/nebula"
-    }]);
+  return ProjectCtrl.list(req, res, next);
 });
 
 router.post('/info', (req, res, next) => {
-  res.status(200).json({
-    "project": {
-      "name": "elastic-hub",
-      "version": "1.3.2",
-      "description": "As elasticsearch plugin",
-      "location": "/home/hegdeashwin/projects/elastic-hub"
-    }
-  });
+  return ProjectCtrl.info(req, res, next);
 });
 
 module.exports = router;
