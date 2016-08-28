@@ -39,7 +39,7 @@ exports.info = function(req, res, next) {
 exports.list = function(req, res, next) {
   let reqPayload = req.body;
 
-  let query = Project.find({}, (error, result) => {
+  let query = Project.find({}, 'name version description location', (error, result) => {
     if (error) {
       return next(error);
     }
