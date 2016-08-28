@@ -37,5 +37,13 @@ exports.info = function(req, res, next) {
 };
 
 exports.list = function(req, res, next) {
+  let reqPayload = req.body;
 
+  let query = Project.find({}, (error, result) => {
+    if (error) {
+      return next(error);
+    }
+
+    res.status(200).json(result);
+  });
 };
