@@ -25,5 +25,13 @@ exports.create = function(req, res, next) {
 };
 
 exports.info = function(req, res, next) {
-  
+  let reqPayload = req.body;
+
+  let query = ProjectInfo.findOne({ name: reqPayload.name }, (error, result) => {
+    if (error) {
+      return next(error)
+    }
+
+    res.status(200).json(result);
+  });
 };

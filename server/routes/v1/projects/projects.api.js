@@ -1,4 +1,5 @@
 import express from 'express';
+import ProjectInfoCtrl from '../../../controllers/projectInfo.controller';
 
 let router = express.Router();
 
@@ -22,14 +23,7 @@ router.get('/list', (req, res, next) => {
 });
 
 router.post('/info', (req, res, next) => {
-  res.status(200).json({
-    "project": {
-      "name": "elastic-hub",
-      "version": "1.3.2",
-      "description": "As elasticsearch plugin",
-      "location": "/home/hegdeashwin/projects/elastic-hub"
-    }
-  });
+  return ProjectInfoCtrl.info(req, res, next);
 });
 
 module.exports = router;
