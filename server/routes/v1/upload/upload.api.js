@@ -2,7 +2,7 @@ import express from 'express';
 import path from 'path';
 import multer from 'multer';
 
-import ProjectInfoCtrl from '../../../controllers/projectInfo.controller';
+import ProjectInfoCtrl from '../../../controllers/project.controller';
 
 let router = express.Router();
 
