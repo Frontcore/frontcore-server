@@ -23,7 +23,7 @@ let server = http.createServer(app);
 /**
  * Event listener for HTTP server 'error' event.
  */
-function onError(error) {
+server.on('error', (error) => {
 	if (error.syscall !== 'listen') {
 		throw error;
 	}
@@ -33,11 +33,11 @@ function onError(error) {
 	 */
 	switch (error.code) {
 		case 'EACCES':
-			console.error('Requires elevated privileges.');
+			console.error('\n Error: Requires elevated privileges.');
 			break;
 
 		case 'EADDRINUSE':
-			console.error('Port is already in use.');
+			console.error('\n Error: ' + app.get('port') + ' port is already in use.');
 			break;
 
 		default:
@@ -45,17 +45,15 @@ function onError(error) {
 	}
 
 	process.exit(1);
-};
+});
 
 /**
  * Event listener for HTTP server 'listening' event.
  */
-function onListening() {
+server.on('listening', () => {
 	console.log('\n ' + PRODUCT.name + ' v' + PRODUCT.version);
-	console.line();
-
 	console.log(' Web server is started on ' + app.get('uri') + ':' + app.get('port') + '\n');
-};
+});
 
 /**
  * Listen on provided port, on all network interfaces.
