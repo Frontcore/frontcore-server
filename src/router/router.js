@@ -16,6 +16,8 @@ import Notifications from '../views/Settings/Notifications.jsx';
 import SSHkey from '../views/Settings/SSHkey.jsx';
 import Dashboard from '../views/Dashboard/Dashboard.jsx';
 import BrowseFs from '../views/BrowseFs/BrowseFs.jsx';
+import Install from '../views/Install/Install.jsx';
+import License from '../views/Install/License.jsx';
 
 import storeConfig from '../store/storeConfig';
 import { Provider } from 'react-redux';
@@ -24,6 +26,10 @@ const store = storeConfig();
 const Routes = (
   <Provider store={store}>
     <Router history={appHistory}>
+      <Route path = "install" component = {Install}>
+        <IndexRedirect to = "/install/license" />
+        <Route path = "license" component = {License} />
+      </Route>
       <Route path = "/" component = {App}>
         <IndexRoute component = {Setup} />
         <Route path = "setup" component = {Setup} />
