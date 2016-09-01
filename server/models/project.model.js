@@ -1,6 +1,11 @@
 import mongoose from 'mongoose';
 let Schema = mongoose.Schema;
 
+let _isStringEmpty = [(val) => {
+  let testVal = val.trim();
+  return (testVal.length > 0);
+}, '{PATH} cannot be empty'];
+
 let projectInfoSchema = new Schema({
   "fieldname": {
     type: String,
@@ -24,17 +29,20 @@ let projectInfoSchema = new Schema({
   "size": Number,
   "name": {
     type: String,
-    required: true
+    required: true,
+    validate: _isStringEmpty
   },
   "version": {
     type: String,
     default: "0.0.1",
-    required: true
+    required: true,
+    validate: _isStringEmpty
   },
   "description": String,
   "location": {
     type: String,
-    required: true
+    required: true,
+    validate: _isStringEmpty
   },
   "createdOn": { type: Date, default: Date.now }
 });

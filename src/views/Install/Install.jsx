@@ -47,8 +47,8 @@ class Install extends React.Component {
           {this.props.children}
           <hr/>
           <ButtonToolbar className="pull-right">
-            <Button type="button" disabled bsStyle="success">Next</Button>
             <Button type="button">Cancel</Button>
+            <Button type="button" disabled bsStyle="primary">Next</Button>
           </ButtonToolbar>
         </div>
       </div>
