@@ -18,6 +18,7 @@ import Dashboard from '../views/Dashboard/Dashboard.jsx';
 import BrowseFs from '../views/BrowseFs/BrowseFs.jsx';
 import Install from '../views/Install/Install.jsx';
 import License from '../views/Install/License.jsx';
+import Database from '../views/Install/Database.jsx';
 
 import storeConfig from '../store/storeConfig';
 import { Provider } from 'react-redux';
@@ -29,6 +30,7 @@ const Routes = (
       <Route path = "install" component = {Install}>
         <IndexRedirect to = "/install/license" />
         <Route path = "license" component = {License} />
+        <Route path = "database" component = {Database} />
       </Route>
       <Route path = "/" component = {App}>
         <IndexRoute component = {Setup} />
