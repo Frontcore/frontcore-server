@@ -82,8 +82,10 @@
     "jest": "^12.1.1",
     "less": "^2.6.1",
     "less-loader": "^2.2.3",
+    "mocha": "^3.0.2",
     "react-addons-test-utils": "^15.0.1",
     "redux-devtools": "^3.2.0",
+    "sinon": "^1.17.5",
     "style-loader": "^0.13.1",
     "url-loader": "^0.5.7",
     "webpack": "^1.12.14"
