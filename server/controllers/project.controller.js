@@ -18,16 +18,21 @@ exports.create = function(req, res, next) {
 
     let _entry = new Project(_reqFile);
 
-    _entry.save();
+    _entry.save((error) => {
+      if (error) {
+        return next(error);
+      } else {
+        res.status(200).json(_reqFile);
+      }
+    });
 
-    res.status(200).json(_reqFile);
   });
 };
 
 exports.info = function(req, res, next) {
   let reqPayload = req.body;
 
-  let query = Project.findOne({ name: reqPayload.name }, (error, result) => {
+  Project.findOne({ name: reqPayload.name }, (error, result) => {
     if (error) {
       return next(error);
     }
@@ -39,7 +44,7 @@ exports.info = function(req, res, next) {
 exports.list = function(req, res, next) {
   let reqPayload = req.body;
 
-  let query = Project.find({}, 'name version description location', (error, result) => {
+  Project.find({}, 'name version description location', (error, result) => {
     if (error) {
       return next(error);
     }
