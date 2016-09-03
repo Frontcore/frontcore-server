@@ -1,8 +1,20 @@
 'use strict';
 
 import React from 'react';
+import ReactDOM from 'react-dom';
+import EventEmitter from '../../utils/eventEmitter';
 
 class License extends React.Component {
+  constructor(props) {
+    super(props);
+
+    this.hasUserAgreed = this.hasUserAgreed.bind(this);
+  }
+
+  hasUserAgreed(e) {
+    EventEmitter.emit('has-user-agreed', e.currentTarget.value);    
+  }
+
   render() {
     return (
       <div className="wizard-license">
@@ -26,13 +38,13 @@ class License extends React.Component {
         </pre>
         <div className="radio">
           <label>
-            <input type="radio" name="agreement" value="iagree"/>
+            <input type="radio" name="iagree" onChange={this.hasUserAgreed} value="true"/>
             I have read and accept the license terms.
           </label>
         </div>
         <div className="radio">
           <label>
-            <input type="radio" name="agreement" value="idonotagree"/>
+            <input type="radio" name="iagree" onChange={this.hasUserAgreed} value="false"/>
             I do not accept the license terms.
           </label>
         </div>

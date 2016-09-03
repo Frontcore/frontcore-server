@@ -1,12 +1,49 @@
 'use strict';
 
 import React from 'react';
-import { IndexLink } from 'react-router';
+import ReactDOM from 'react-dom';
+import { IndexLink, router } from 'react-router';
 import { Navbar, Nav, NavDropdown, MenuItem, ButtonToolbar, Button } from 'react-bootstrap';
+import EventEmitter from '../../utils/eventEmitter';
 import './Install.less';
 
 class Install extends React.Component {
+  constructor(props) {
+    super(props);
+
+    this.state = {
+      step: 'license',
+      hasAgree: false
+    };
+
+    this.redirectTo = this.redirectTo.bind(this);
+  }
+
+  componentWillMount() {
+    EventEmitter.on('has-user-agreed', (hasAgree = false) => {
+      this.setState({
+        hasAgree: hasAgree
+      })
+    });
+  }
+
+  componentWillUnmount() {
+    EventEmitter.off('has-user-agreed');
+  }
+
+  redirectTo() {
+    this.setState({
+      step: 'database'
+    });
+    // todo: redirect to #/install/database
+  }
+
   render() {
+    let disable = true;
+    if(this.state.hasAgree === 'true') {
+      disable = false;
+    }
+
     return (
       <div>
         <Navbar>
@@ -17,9 +54,6 @@ class Install extends React.Component {
             <Navbar.Toggle />
           </Navbar.Header>
           <Navbar.Collapse>
-            <Navbar.Text>
-              <strong>Installation Wizard</strong>
-            </Navbar.Text>
             <Nav pullRight>
               <NavDropdown className="navbar-right" eventKey={4} title="Developers" id="menu-developers">
                 <MenuItem eventKey={4.1} href="//github.com/Frontcore/frontcore" target="_blank">Github Home Page</MenuItem>
@@ -39,16 +73,15 @@ class Install extends React.Component {
           </Navbar.Collapse>
         </Navbar>
         <div className="container install-wizard-component">
-          <p className="lead text-primary">Welcome to the Frontcore <sup><small>v0.0.0 Alpha</small></sup> installation wizard.</p>
+          <p className="lead text-primary">Welcome to the Frontcore <sup><small>v0.0.0 Alpha</small></sup> setup wizard.</p>
           <p>
-            This wizard guides you through installing this program and all required components. Be sure to carefully read and understand all the rights and restrictions described in the license terms. You must accept the license terms before you can install the software.
+            This wizard guides you through installing initial database setup. Be sure to carefully read and understand all the rights and restrictions described in the license terms. You must accept the license terms before you can install the software.
           </p>
           <hr/>
           {this.props.children}
           <hr/>
           <ButtonToolbar className="pull-right">
-            <Button type="button">Cancel</Button>
-            <Button type="button" disabled bsStyle="primary">Next</Button>
+            <Button type="button" class="next-step" disabled={disable} bsStyle="primary" onClick={this.redirectTo}>Continue</Button>
           </ButtonToolbar>
         </div>
       </div>
