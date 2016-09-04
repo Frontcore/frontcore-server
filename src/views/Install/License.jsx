@@ -12,7 +12,8 @@ class License extends React.Component {
   }
 
   hasUserAgreed(e) {
-    EventEmitter.emit('has-user-agreed', e.currentTarget.value);    
+    let agreed = (e.currentTarget.value === 'true') ? true : false;
+    EventEmitter.emit('has-user-agreed', agreed);
   }
 
   render() {
