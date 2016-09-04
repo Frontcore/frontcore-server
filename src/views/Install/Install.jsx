@@ -2,7 +2,7 @@
 
 import React from 'react';
 import ReactDOM from 'react-dom';
-import { IndexLink, router } from 'react-router';
+import { IndexLink, browserHistory } from 'react-router';
 import { Navbar, Nav, NavDropdown, MenuItem, ButtonToolbar, Button } from 'react-bootstrap';
 import EventEmitter from '../../utils/eventEmitter';
 import './Install.less';
@@ -35,7 +35,8 @@ class Install extends React.Component {
     this.setState({
       step: 'database'
     });
-    // todo: redirect to #/install/database
+    browserHistory.push('#/install/database');
+    window.location.reload(); // Temp hack, will remove it soon
   }
 
   render() {
