@@ -40,7 +40,7 @@ class Install extends React.Component {
 
   render() {
     let disable = true;
-    if(this.state.hasAgree === 'true') {
+    if(this.state.hasAgree) {
       disable = false;
     }
 
