@@ -1,7 +1,7 @@
 {
   "name": "frontcore",
   "version": "0.0.0",
-  "description": "A web based centeralize tool to perform static code analysis for your projects",
+  "description": "A web based centralize tool to perform static code analysis for your projects",
   "author": "Ashwin Hegde",
   "scripts": {
     "dev": "NODE_ENV=development babel-node ./server/server.js",
