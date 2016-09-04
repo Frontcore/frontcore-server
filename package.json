@@ -1,7 +1,7 @@
 {
   "name": "frontcore",
   "version": "0.0.0",
-  "description": "",
+  "description": "A web based centeralize tool to perform static code analysis for your projects",
   "author": "Ashwin Hegde",
   "scripts": {
     "dev": "NODE_ENV=development babel-node ./server/server.js",
@@ -9,7 +9,8 @@
     "nodemon": "nodemon ./server/server.js --exec babel-node --presets es2015",
     "bundle": "webpack -d --watch",
     "build": "webpack -p",
-    "test": "jest --no-cache",
+    "btest": "mocha",
+    "ftest": "jest --no-cache",
     "coverage": "jest --coverage"
   },
   "dependencies": {
@@ -22,12 +23,10 @@
     "compression": "^1.5.2",
     "csslint": "^0.10.0",
     "debug": "~2.2.0",
-    "diskdb": "^0.1.15",
     "es6-promise": "^3.2.1",
     "eslint": "^2.6.0",
     "events": "^1.1.0",
     "express": "^4.13.4",
-    "flux": "^2.1.1",
     "font-awesome": "^4.5.0",
     "helmet": "^2.1.2",
     "highcharts": "^4.2.5",
@@ -36,7 +35,6 @@
     "jsonfile": "^2.3.1",
     "jsonwebtoken": "^5.4.1",
     "keymirror": "^0.1.1",
-    "mongodb": "^2.2.7",
     "mongoose": "^4.5.10",
     "morgan": "^1.7.0",
     "multer": "^1.2.0",
