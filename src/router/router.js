@@ -14,6 +14,8 @@ import ErrorPage from '../views/ErrorPage/PageNotFound.jsx';
 import Connection from '../views/Settings/Connection.jsx';
 import Notifications from '../views/Settings/Notifications.jsx';
 import SSHkey from '../views/Settings/SSHkey.jsx';
+import SystemInfo from '../views/Settings/SystemInfo.jsx';
+import Updates from '../views/Settings/Updates.jsx';
 import Dashboard from '../views/Dashboard/Dashboard.jsx';
 import BrowseFs from '../views/BrowseFs/BrowseFs.jsx';
 import Install from '../views/Install/Install.jsx';
@@ -41,6 +43,8 @@ const Routes = (
           <Route path = "dbconnect" component = {Connection} />
           <Route path = "notifications" component = {Notifications} />
           <Route path = "sshkey" component = {SSHkey} />
+          <Route path = "sysinfo" component = {SystemInfo} />
+          <Route path = "updates" component = {Updates} />
         </Route>
         <Route path = ":project">
           <IndexRedirect to = "/:project/dashboard" />
