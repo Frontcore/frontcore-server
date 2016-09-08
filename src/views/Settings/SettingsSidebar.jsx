@@ -10,6 +10,8 @@ class Settings extends React.Component {
         <Link className="list-group-item" to="settings/dbconnect">Connection</Link>
         <Link className="list-group-item" to="settings/notifications">Notifications</Link>
         <Link className="list-group-item" to="settings/sshkey">SSH Key</Link>
+        <Link className="list-group-item" to="settings/sysinfo">System Information</Link>
+        <Link className="list-group-item" to="settings/updates">Updates</Link>
       </div>
     );
   }
