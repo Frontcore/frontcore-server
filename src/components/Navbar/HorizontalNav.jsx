@@ -20,6 +20,7 @@ class HorizontalMenu extends React.Component {
             <NavItem eventKey={1} href="#"><i className="fa fa-lg fa-home"></i></NavItem>
             <NavDropdown eventKey={2} title="Tools" id="menu-tools">
               <MenuItem eventKey={2.1} href="#settings">Settings</MenuItem>
+              <MenuItem eventKey={2.1} href="#rules">Rules</MenuItem>
             </NavDropdown>
           </Nav>
           <Nav pullRight>
