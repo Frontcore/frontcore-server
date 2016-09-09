@@ -1146,12 +1146,4 @@ module.exports = [{
       "recommended": false,
       "fixable": true
     }]
-  }, {
-    "category": "deprecated",
-    "description": "These rules have been deprecated and replaced by newer rules",
-    "rules": []
-  }, {
-    "category": "removed",
-    "description": "These rules from older versions of ESLint have been replaced by newer rules",
-    "rules": []
   }];
