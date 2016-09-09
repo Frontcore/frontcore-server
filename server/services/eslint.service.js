@@ -606,11 +606,546 @@ module.exports = [{
   }, {
     "category": "stylistic-issues",
     "description": "These rules relate to style guidelines, and are therefore quite subjective",
-    "rules": []
+    "rules": [{
+      "rule": "array-bracket-spacing",
+      "description": "enforce consistent spacing inside array brackets",
+      "recommended": false,
+      "fixable": true
+    }, {
+      "rule": "block-spacing",
+      "description": "enforce consistent spacing inside single-line blocks",
+      "recommended": false,
+      "fixable": true
+    }, {
+      "rule": "brace-style",
+      "description": "enforce consistent brace style for blocks",
+      "recommended": false,
+      "fixable": false
+    }, {
+      "rule": "camelcase",
+      "description": "enforce camelcase naming convention",
+      "recommended": false,
+      "fixable": false
+    }, {
+      "rule": "comma-dangle",
+      "description": "require or disallow trailing commas",
+      "recommended": false,
+      "fixable": true
+    }, {
+      "rule": "comma-spacing",
+      "description": "enforce consistent spacing before and after commas",
+      "recommended": false,
+      "fixable": true
+    }, {
+      "rule": "comma-style",
+      "description": "enforce consistent comma style",
+      "recommended": false,
+      "fixable": false
+    }, {
+      "rule": "computed-property-spacing",
+      "description": "enforce consistent spacing inside computed property brackets",
+      "recommended": false,
+      "fixable": true
+    }, {
+      "rule": "consistent-this",
+      "description": "enforce consistent naming when capturing the current execution context",
+      "recommended": false,
+      "fixable": false
+    }, {
+      "rule": "eol-last",
+      "description": "enforce at least one newline at the end of files",
+      "recommended": false,
+      "fixable": true
+    }, {
+      "rule": "func-call-spacing",
+      "description": "require or disallow spacing between function identifiers and their invocations",
+      "recommended": false,
+      "fixable": true
+    }, {
+      "rule": "func-names",
+      "description": "require or disallow named function expressions",
+      "recommended": false,
+      "fixable": false
+    }, {
+      "rule": "func-style",
+      "description": "enforce the consistent use of either function declarations or expressions",
+      "recommended": false,
+      "fixable": false
+    }, {
+      "rule": "id-blacklist",
+      "description": "disallow specified identifiers",
+      "recommended": false,
+      "fixable": false
+    }, {
+      "rule": "id-length",
+      "description": "enforce minimum and maximum identifier lengths",
+      "recommended": false,
+      "fixable": false
+    }, {
+      "rule": "id-match",
+      "description": "require identifiers to match a specified regular expression",
+      "recommended": false,
+      "fixable": false
+    }, {
+      "rule": "indent",
+      "description": "enforce consistent indentation",
+      "recommended": false,
+      "fixable": true
+    }, {
+      "rule": "jsx-quotes",
+      "description": "enforce the consistent use of either double or single quotes in JSX attributes"
+      "recommended": false,
+      "fixable": true
+    }, {
+      "rule": "key-spacing",
+      "description": "enforce consistent spacing between keys and values in object literal properties"
+      "recommended": false,
+      "fixable": true
+    }, {
+      "rule": "keyword-spacing",
+      "description": "enforce consistent spacing before and after keywords"
+      "recommended": false,
+      "fixable": true
+    }, {
+      "rule": "linebreak-style",
+      "description": "enforce consistent linebreak style"
+      "recommended": false,
+      "fixable": true
+    }, {
+      "rule": "lines-around-comment",
+      "description": "require empty lines around comments"
+      "recommended": false,
+      "fixable": true
+    }, {
+      "rule": "max-depth",
+      "description": "enforce a maximum depth that blocks can be nested"
+      "recommended": false,
+      "fixable": false
+    }, {
+      "rule": "max-len",
+      "description": "enforce a maximum line length"
+      "recommended": false,
+      "fixable": false
+    }, {
+      "rule": "max-lines",
+      "description": "enforce a maximum number of lines per file"
+      "recommended": false,
+      "fixable": false
+    }, {
+      "rule": "max-nested-callbacks",
+      "description": "enforce a maximum depth that callbacks can be nested"
+      "recommended": false,
+      "fixable": false
+    }, {
+      "rule": "max-params",
+      "description": "enforce a maximum number of parameters in function definitions"
+      "recommended": false,
+      "fixable": false
+    }, {
+      "rule": "max-statements-per-line",
+      "description": "enforce a maximum number of statements allowed per line"
+      "recommended": false,
+      "fixable": false
+    }, {
+      "rule": "max-statements",
+      "description": "enforce a maximum number of statements allowed in function blocks"
+      "recommended": false,
+      "fixable": false
+    }, {
+      "rule": "multiline-ternary",
+      "description": "enforce newlines between operands of ternary expressions"
+      "recommended": false,
+      "fixable": false
+    }, {
+      "rule": "new-cap",
+      "description": "require constructor function names to begin with a capital letter"
+      "recommended": false,
+      "fixable": false
+    }, {
+      "rule": "new-parens",
+      "description": "require parentheses when invoking a constructor with no arguments"
+      "recommended": false,
+      "fixable": false
+    }, {
+      "rule": "newline-after-var",
+      "description": "require or disallow an empty line after var declarations"
+      "recommended": false,
+      "fixable": false
+    }, {
+      "rule": "newline-before-return",
+      "description": "require an empty line before return statements"
+      "recommended": false,
+      "fixable": false
+    }, {
+      "rule": "newline-per-chained-call",
+      "description": "require a newline after each call in a method chain"
+      "recommended": false,
+      "fixable": false
+    }, {
+      "rule": "no-array-constructor",
+      "description": "disallow Array constructors"
+      "recommended": false,
+      "fixable": false
+    }, {
+      "rule": "no-bitwise",
+      "description": "disallow bitwise operators"
+      "recommended": false,
+      "fixable": false
+    }, {
+      "rule": "no-continue",
+      "description": "disallow continue statements"
+      "recommended": false,
+      "fixable": false
+    }, {
+      "rule": "no-inline-comments",
+      "description": "disallow inline comments after code"
+      "recommended": false,
+      "fixable": false
+    }, {
+      "rule": "no-lonely-if",
+      "description": "disallow if statements as the only statement in else blocks"
+      "recommended": false,
+      "fixable": false
+    }, {
+      "rule": "no-mixed-operators",
+      "description": "disallow mixed binary operators"
+      "recommended": false,
+      "fixable": false
+    }, {
+      "rule": "no-mixed-spaces-and-tabs",
+      "description": "disallow mixed spaces and tabs for indentation"
+      "recommended": true,
+      "fixable": false
+    }, {
+      "rule": "no-multiple-empty-lines",
+      "description": "disallow multiple empty lines"
+      "recommended": false,
+      "fixable": true
+    }, {
+      "rule": "no-negated-condition",
+      "description": "disallow negated conditions"
+      "recommended": false,
+      "fixable": false
+    }, {
+      "rule": "no-nested-ternary",
+      "description": "disallow nested ternary expressions"
+      "recommended": false,
+      "fixable": false
+    }, {
+      "rule": "no-new-object",
+      "description": "disallow Object constructors"
+      "recommended": false,
+      "fixable": false
+    }, {
+      "rule": "no-plusplus",
+      "description": "disallow the unary operators ++ and --"
+      "recommended": false,
+      "fixable": false
+    }, {
+      "rule": "no-restricted-syntax",
+      "description": "disallow specified syntax"
+      "recommended": false,
+      "fixable": false
+    }, {
+      "rule": "no-tabs",
+      "description": "disallow tabs in file"
+      "recommended": false,
+      "fixable": false
+    }, {
+      "rule": "no-ternary",
+      "description": "disallow ternary operators"
+      "recommended": false,
+      "fixable": false
+    }, {
+      "rule": "no-trailing-spaces",
+      "description": "disallow trailing whitespace at the end of lines"
+      "recommended": false,
+      "fixable": true
+    }, {
+      "rule": "no-underscore-dangle",
+      "description": "disallow dangling underscores in identifiers"
+      "recommended": false,
+      "fixable": false
+    }, {
+      "rule": "no-unneeded-ternary",
+      "description": "disallow ternary operators when simpler alternatives exist"
+      "recommended": false,
+      "fixable": false
+    }, {
+      "rule": "no-whitespace-before-property",
+      "description": "disallow whitespace before properties"
+      "recommended": false,
+      "fixable": true
+    }, {
+      "rule": "object-curly-newline",
+      "description": "enforce consistent line breaks inside braces"
+      "recommended": false,
+      "fixable": true
+    }, {
+      "rule": "object-curly-spacing",
+      "description": "enforce consistent spacing inside braces"
+      "recommended": false,
+      "fixable": true
+    }, {
+      "rule": "object-property-newline",
+      "description": "enforce placing object properties on separate lines"
+      "recommended": false,
+      "fixable": false
+    }, {
+      "rule": "one-var-declaration-per-line",
+      "description": "require or disallow newlines around var declarations"
+      "recommended": false,
+      "fixable": false
+    }, {
+      "rule": "one-var",
+      "description": "enforce variables to be declared either together or separately in functions"
+      "recommended": false,
+      "fixable": false
+    }, {
+      "rule": "operator-assignment",
+      "description": "require or disallow assignment operator shorthand where possible"
+      "recommended": false,
+      "fixable": false
+    }, {
+      "rule": "operator-linebreak",
+      "description": "enforce consistent linebreak style for operators"
+      "recommended": false,
+      "fixable": false
+    }, {
+      "rule": "padded-blocks",
+      "description": "require or disallow padding within blocks"
+      "recommended": false,
+      "fixable": true
+    }, {
+      "rule": "quote-props",
+      "description": "require quotes around object literal property names"
+      "recommended": false,
+      "fixable": false
+    }, {
+      "rule": "quotes",
+      "description": "enforce the consistent use of either backticks, double, or single quotes"
+      "recommended": false,
+      "fixable": true
+    }, {
+      "rule": "require-jsdoc",
+      "description": "require JSDoc comments"
+      "recommended": false,
+      "fixable": false
+    }, {
+      "rule": "semi-spacing",
+      "description": "enforce consistent spacing before and after semicolons"
+      "recommended": false,
+      "fixable": true
+    }, {
+      "rule": "semi",
+      "description": "require or disallow semicolons instead of ASI"
+      "recommended": false,
+      "fixable": true
+    }, {
+      "rule": "sort-keys",
+      "description": "requires object keys to be sorted"
+      "recommended": false,
+      "fixable": false
+    }, {
+      "rule": "sort-vars",
+      "description": "require variables within the same declaration block to be sorted"
+      "recommended": false,
+      "fixable": false
+    }, {
+      "rule": "space-before-blocks",
+      "description": "enforce consistent spacing before blocks"
+      "recommended": false,
+      "fixable": true
+    }, {
+      "rule": "space-before-function-paren",
+      "description": "enforce consistent spacing before function definition opening parenthesis"
+      "recommended": false,
+      "fixable": true
+    }, {
+      "rule": "space-in-parens",
+      "description": "enforce consistent spacing inside parentheses"
+      "recommended": false,
+      "fixable": true
+    }, {
+      "rule": "space-infix-ops",
+      "description": "require spacing around operators"
+      "recommended": false,
+      "fixable": true
+    }, {
+      "rule": "space-unary-ops",
+      "description": "enforce consistent spacing before or after unary operators"
+      "recommended": false,
+      "fixable": true
+    }, {
+      "rule": "spaced-comment",
+      "description": "enforce consistent spacing after the // or /* in a comment"
+      "recommended": false,
+      "fixable": true
+    }, {
+      "rule": "unicode-bom",
+      "description": "require or disallow Unicode byte order mark (BOM)"
+      "recommended": false,
+      "fixable": true
+    }, {
+      "rule": "wrap-regex",
+      "description": "require parenthesis around regex literals"
+      "recommended": false,
+      "fixable": false
+    }]
   }, {
     "category": "ecma-script-6",
     "description": "These rules relate to ES6, also known as ES2015",
-    "rules": []
+    "rules": [{
+      "rule": "arrow-body-style",
+      "description": "require braces around arrow function bodies",
+      "recommended": false,
+      "fixable": false
+    }, {
+      "rule": "arrow-parens",
+      "description": "require parentheses around arrow function arguments",
+      "recommended": false,
+      "fixable": true
+    }, {
+      "rule": "arrow-spacing",
+      "description": "enforce consistent spacing before and after the arrow in arrow functions",
+      "recommended": false,
+      "fixable": true
+    }, {
+      "rule": "constructor-super",
+      "description": "require super() calls in constructors",
+      "recommended": true,
+      "fixable": false
+    }, {
+      "rule": "generator-star-spacing",
+      "description": "enforce consistent spacing around * operators in generator functions",
+      "recommended": false,
+      "fixable": true
+    }, {
+      "rule": "no-class-assign",
+      "description": "disallow reassigning class members",
+      "recommended": true,
+      "fixable": false
+    }, {
+      "rule": "no-confusing-arrow",
+      "description": "disallow arrow functions where they could be confused with comparisons",
+      "recommended": false,
+      "fixable": false
+    }, {
+      "rule": "no-const-assign",
+      "description": "disallow reassigning const variables",
+      "recommended": true,
+      "fixable": false
+    }, {
+      "rule": "no-dupe-class-members",
+      "description": "disallow duplicate class members",
+      "recommended": true,
+      "fixable": false
+    }, {
+      "rule": "no-duplicate-imports",
+      "description": "disallow duplicate module imports",
+      "recommended": false,
+      "fixable": false
+    }, {
+      "rule": "no-new-symbol",
+      "description": "disallow new operators with the Symbol object",
+      "recommended": true,
+      "fixable": false
+    }, {
+      "rule": "no-restricted-imports",
+      "description": "disallow specified modules when loaded by import",
+      "recommended": false,
+      "fixable": false
+    }, {
+      "rule": "no-this-before-super",
+      "description": "disallow this/super before calling super() in constructors",
+      "recommended": true,
+      "fixable": false
+    }, {
+      "rule": "no-useless-computed-key",
+      "description": "disallow unnecessary computed property keys in object literals",
+      "recommended": false,
+      "fixable": false
+    }, {
+      "rule": "no-useless-constructor",
+      "description": "disallow unnecessary constructors",
+      "recommended": false,
+      "fixable": false
+    }, {
+      "rule": "no-useless-rename",
+      "description": "disallow renaming import, export, and destructured assignments to the same name",
+      "recommended": false,
+      "fixable": true
+    }, {
+      "rule": "no-var",
+      "description": "require let or const instead of var",
+      "recommended": false,
+      "fixable": true
+    }, {
+      "rule": "object-shorthand",
+      "description": "require or disallow method and property shorthand syntax for object literals",
+      "recommended": false,
+      "fixable": true
+    }, {
+      "rule": "prefer-arrow-callback",
+      "description": "require arrow functions as callbacks",
+      "recommended": false,
+      "fixable": false
+    }, {
+      "rule": "prefer-const",
+      "description": "require const declarations for variables that are never reassigned after declared",
+      "recommended": false,
+      "fixable": true
+    }, {
+      "rule": "prefer-reflect",
+      "description": "require Reflect methods where applicable",
+      "recommended": false,
+      "fixable": false
+    }, {
+      "rule": "prefer-rest-params",
+      "description": "require rest parameters instead of arguments",
+      "recommended": false,
+      "fixable": false
+    }, {
+      "rule": "prefer-spread",
+      "description": "require spread operators instead of .apply()",
+      "recommended": false,
+      "fixable": false
+    }, {
+      "rule": "prefer-template",
+      "description": "require template literals instead of string concatenation",
+      "recommended": false,
+      "fixable": false
+    }, {
+      "rule": "require-yield",
+      "description": "require generator functions to contain yield",
+      "recommended": true,
+      "fixable": false
+    }, {
+      "rule": "rest-spread-spacing",
+      "description": "enforce spacing between rest and spread operators and their expressions",
+      "recommended": false,
+      "fixable": true
+    }, {
+      "rule": "sort-imports",
+      "description": "enforce sorted import declarations within modules",
+      "recommended": false,
+      "fixable": false
+    }, {
+      "rule": "symbol-description",
+      "description": "require symbol descriptions",
+      "recommended": false,
+      "fixable": false
+    }, {
+      "rule": "template-curly-spacing",
+      "description": "require or disallow spacing around embedded expressions of template strings",
+      "recommended": false,
+      "fixable": true
+    }, {
+      "rule": "yield-star-spacing",
+      "description": "require or disallow spacing around the * in yield* expressions",
+      "recommended": false,
+      "fixable": true
+    }]
   }, {
     "category": "deprecated",
     "description": "These rules have been deprecated and replaced by newer rules",
