@@ -42,8 +42,6 @@ exports.info = function(req, res, next) {
 };
 
 exports.list = function(req, res, next) {
-  let reqPayload = req.body;
-
   Project.find({}, 'name version description location', (error, result) => {
     if (error) {
       return next(error);
