@@ -12,6 +12,10 @@ class JavaScriptRules extends React.Component {
   constructor(props) {
     super(props);
 
+    this.state = {
+      open: false
+    };
+
     this.categoryRow = this.categoryRow.bind(this);
     this.ruleRow = this.ruleRow.bind(this);
   }
@@ -57,10 +61,10 @@ class JavaScriptRules extends React.Component {
 
   categoryRow(data, index) {
     let header = (
-      <h3><strong>{data.category}</strong></h3>
+      <h3 onClick={() => this.setState({open: !this.state.open})}><strong>{data.category}</strong></h3>
     );
     return (
-      <Panel header={header} key={index}>
+      <Panel header={header} collapsible eventKey={index}>
         <p className="category-desciption bg-primary">{data.description}</p>
         <div className="list-group">
           {data.rules.map(this.ruleRow)}
