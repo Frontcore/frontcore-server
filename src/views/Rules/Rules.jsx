@@ -3,6 +3,7 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 import EventEmitter from '../../utils/eventEmitter';
+import RulesSidebar from './RulesSidebar.jsx';
 
 class Rules extends React.Component {
   componentDidMount() {
@@ -15,9 +16,14 @@ class Rules extends React.Component {
   render() {
     return (
       <div className="rules-component">
-        <p className="lead">
-          Rules
-        </p>
+        <div className="row">
+          <div className="col-md-3">
+            <RulesSidebar/>
+          </div>
+          <div className="col-md-9">
+            {this.props.children}
+          </div>
+        </div>
       </div>
     );
   }

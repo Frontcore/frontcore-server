@@ -11,6 +11,7 @@ import Setup from '../views/Setup/Setup.jsx';
 import Settings from '../views/Settings/Settings.jsx';
 import Feedback from '../views/Feedback/Feedback.jsx';
 import Rules from '../views/Rules/Rules.jsx';
+import RulesContent from '../views/Rules/RulesContent.jsx';
 import ErrorPage from '../views/ErrorPage/PageNotFound.jsx';
 import Connection from '../views/Settings/Connection.jsx';
 import Notifications from '../views/Settings/Notifications.jsx';
@@ -39,7 +40,10 @@ const Routes = (
         <IndexRoute component = {Setup} />
         <Route path = "setup" component = {Setup} />
         <Route path = "feedback" component = {Feedback} />
-        <Route path = "rules" component = {Rules} />
+        <Route path = "rules" component = {Rules}>
+          <IndexRedirect to = "/rules/content" />
+          <Route path = "content" component = {RulesContent} />
+        </Route>
         <Route path = "settings" component = {Settings}>
           <IndexRedirect to = "/settings/dbconnect" />
           <Route path = "dbconnect" component = {Connection} />
