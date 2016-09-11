@@ -9,7 +9,7 @@ let _isStringEmpty = [(val) => {
 /**
  * Project information schema
  */
-let projectInfoSchema = new Schema({
+let projectSchema = new Schema({
   "fieldname": {
     type: String,
     default: "config",
@@ -52,10 +52,10 @@ let projectInfoSchema = new Schema({
 
 /**
  * Project information Mongoose model schema
- * @module ProjectInfo
- * @param {String} ProjectInfo - model name
- * @param {Object} projectInfoSchema - schema object
- * @param {String} projectinfo - collection name
+ * @module Project
+ * @param {String} Project - model name
+ * @param {Object} projectSchema - schema object
+ * @param {String} project - collection name
  * @returns {Object} Project information Mongoose model
  */
-module.exports = mongoose.model('ProjectInfo', projectInfoSchema, 'projectinfo');
+module.exports = mongoose.model('Project', projectSchema, 'project');
