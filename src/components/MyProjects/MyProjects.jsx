@@ -20,7 +20,7 @@ class MyProjectsComponent extends React.Component {
   }
 
   myProjectRow(project, index) {
-    let buildLink = project.name + "/dashboard";
+    let buildLink = project._id + "/dashboard";
     return (
       <Link key={index} to={buildLink} className="list-group-item">
         <h4 className="list-group-item-heading">{project.name} <Label>v{project.version}</Label></h4>

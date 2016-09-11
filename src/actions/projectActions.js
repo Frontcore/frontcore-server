@@ -7,23 +7,24 @@ function projectInfoPostRes(project, json) {
   return {
     type: types.GET_PROJECT_INFO,
     project,
-    posts: json.project
+    posts: json
   };
 }
 
 export function getProjectInfo(project) {
   return (dispatch) => {
-    fetch('/api/v1/projects/info', {
+    fetch('/api/v1/project/info', {
       method: 'post',
-      header: {
-        'Content-Type': 'application/json;charset=UTF-8'
+      headers: {
+        'Accept': 'application/json',
+        'Content-Type': 'application/json; charset=utf-8'
       },
       body: JSON.stringify(project)
     }).then(res => {
         res.json().then((data) => {
            dispatch(projectInfoPostRes(project, data));
         });
-      }).catch(error => {
+      }).catch((error) => {
         console.error(error);
       });
   };
