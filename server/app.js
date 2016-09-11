@@ -51,13 +51,33 @@ app.use(morgan('combined', {
     stream: accessLogStream
 }));
 
+/**
+ * For parsing application/json
+ */
 app.use(bodyParser.json());
+
+/**
+ * For parsing application/x-www-form-urlencoded
+ */
 app.use(bodyParser.urlencoded({
     extended: true
 }));
+
+/**
+ * Protect app from some well-known web vulnerabilities
+ * by setting HTTP headers appropriately.
+ */
 app.use(helmet());
+
+/**
+ * Gzip compressing can greatly decrease the size of the response body
+ * and hence increase the speed of a web app.
+ */
 app.use(compression());
 
+/**
+ * Setup NODE_ENV
+ */
 let NODE_ENV = process.env.NODE_ENV || STACK_CONFIG.server.dev.NODE_ENV;
 switch (NODE_ENV.toLowerCase()) {
     case STACK_CONFIG.server.dev.NODE_ENV.toLowerCase():
