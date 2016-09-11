@@ -67,7 +67,7 @@ switch (NODE_ENV.toLowerCase()) {
          */
         app.set('port', process.env.PORT || STACK_CONFIG.server.dev.port);
         app.set('uri', STACK_CONFIG.server.dev.ip);
-        app.use(express.static(path.join(__dirname, STACK_CONFIG.server.dev.codebase)));
+        app.use(express.static(path.join(__dirname, STACK_CONFIG.client.dist)));
         break;
 
     case STACK_CONFIG.server.prod.NODE_ENV.toLowerCase():
@@ -77,19 +77,21 @@ switch (NODE_ENV.toLowerCase()) {
          */
         app.set('port', process.env.PORT || STACK_CONFIG.server.prod.port);
         app.set('uri', STACK_CONFIG.server.prod.ip);
-        app.use(express.static(path.join(__dirname, STACK_CONFIG.server.prod.codebase)));
+        app.use(express.static(path.join(__dirname, STACK_CONFIG.client.dist)));
         break;
 }
 
 /**
  * Syntax:
- * app.use('/api/<version>/', require('./routes/<version>/<api-file>'));
+ * app.use('/api/<version>/<root-route-name>', require('./routes/<version>/<api-file>'));
  */
 app.use('/api/' + STACK_CONFIG.api.defaults.version + '/upload', require('./routes/' + STACK_CONFIG.api.defaults.version + '/upload/upload.api'));
+app.use('/api/' + STACK_CONFIG.api.defaults.version + '/project', require('./routes/' + STACK_CONFIG.api.defaults.version + '/project/project.api'));
 app.use('/api/' + STACK_CONFIG.api.defaults.version + '/projects', require('./routes/' + STACK_CONFIG.api.defaults.version + '/projects/projects.api'));
 app.use('/api/' + STACK_CONFIG.api.defaults.version + '/browse', require('./routes/' + STACK_CONFIG.api.defaults.version + '/browse/browse.api'));
 app.use('/api/' + STACK_CONFIG.api.defaults.version + '/browse', require('./routes/' + STACK_CONFIG.api.defaults.version + '/browse/content.api'));
 app.use('/api/' + STACK_CONFIG.api.defaults.version + '/lint', require('./routes/' + STACK_CONFIG.api.defaults.version + '/lints/eslint.api'));
+
 /**
  * Router error handling with ErrorHander class
  */

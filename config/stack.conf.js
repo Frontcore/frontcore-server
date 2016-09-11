@@ -7,15 +7,16 @@ module.exports = {
     "dev": {
       "port": "9000",
       "ip": "127.0.0.1",
-      "codebase": "../dist",
       "NODE_ENV": "development"
     },
     "prod": {
       "port": "8000",
       "ip": "127.0.0.1",
-      "codebase": "../dist",
       "NODE_ENV": "production"
     }
+  },
+  "client": {
+    "dist": "../dist"
   },
   "api": {
     "defaults": {

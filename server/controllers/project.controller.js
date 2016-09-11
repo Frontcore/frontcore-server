@@ -46,13 +46,3 @@ exports.info = function(req, res, next) {
     res.status(200).json(result);
   });
 };
-
-exports.list = function(req, res, next) {
-  Project.find({}, 'name version description location', (error, result) => {
-    if (error) {
-      return next(error);
-    }
-
-    res.status(200).json(result);
-  });
-};

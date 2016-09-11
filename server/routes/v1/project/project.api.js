@@ -1,16 +1,16 @@
 import express from 'express';
-import ProjectCtrl from '../../../controllers/projects.controller';
+import ProjectCtrl from '../../../controllers/project.controller';
 
 let router = express.Router();
 
 /**
- * GET /projects/list - get the list of projects
+ * POST /projects/info - get the project information
  * @param {Object} req - request object
  * @param {Object} res - response object
  * @param {Function} next - next() function
  */
-router.get('/list', (req, res, next) => {
-  return ProjectCtrl.list(req, res, next);
+router.post('/info', (req, res, next) => {
+  return ProjectCtrl.info(req, res, next);
 });
 
 /**
