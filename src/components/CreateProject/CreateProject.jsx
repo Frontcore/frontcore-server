@@ -18,7 +18,7 @@ class MyProjects extends React.Component {
 
   render() {
     let header = (
-      <h3>Create a new project</h3>
+      <h3><strong>Create a new project</strong></h3>
     );
 
     return (
