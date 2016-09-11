@@ -38,7 +38,7 @@ exports.create = function(req, res, next) {
 exports.info = function(req, res, next) {
   let reqPayload = req.body;
 
-  Project.findOne({ name: reqPayload.name }, (error, result) => {
+  Project.findById(reqPayload.id, (error, result) => {
     if (error) {
       return next(error);
     }

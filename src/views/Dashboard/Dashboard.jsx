@@ -23,7 +23,7 @@ class Dashboard extends React.Component {
     }]);
 
     this.props.actions.getProjectInfo({
-      "project": this.props.params.project
+      "id": this.props.params.projectid
     });
   }
 

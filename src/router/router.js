@@ -52,8 +52,8 @@ const Routes = (
           <Route path = "sysinfo" component = {SystemInfo} />
           <Route path = "updates" component = {Updates} />
         </Route>
-        <Route path = ":project">
-          <IndexRedirect to = "/:project/dashboard" />
+        <Route path = ":projectid">
+          <IndexRedirect to = "/:projectid/dashboard" />
           <Route path = "dashboard" component = {Dashboard} />
           <Route path = "browse/source(/**)(/*.*)" component = {BrowseFs} />
         </Route>
