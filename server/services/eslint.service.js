@@ -1,4 +1,4 @@
-[
+module.exports = [
   {
     "category": "Possible Errors",
     "description": "These rules relate to possible syntax or logic errors in JavaScript code",
@@ -1385,4 +1385,4 @@
       }
     ]
   }
-]
+];

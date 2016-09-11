@@ -1,6 +1,12 @@
 import fs from 'fs';
 import Project from '../models/project.model';
 
+/**
+ * Create project and store frontcore.json configuration information
+ * @param {Object} req - request object
+ * @param {Object} res - response object
+ * @param {Function} next - next() function
+ */
 exports.create = function(req, res, next) {
   let _reqFile = req.file;
 
