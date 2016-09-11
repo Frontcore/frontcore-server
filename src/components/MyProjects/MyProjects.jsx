@@ -32,11 +32,11 @@ class MyProjectsComponent extends React.Component {
 
   render() {
     let header = (
-      <h3>My projects</h3>
+      <h3><strong>My projects</strong></h3>
     );
 
-    return (
-      <Panel className="my-projects-component" header={header}>
+    let listGroupWrapper = (
+      <div>
         <Form>
           <FormGroup controlId="filterProject">
             <FormControl type="text" placeholder="Filter your project by name, version or location"/>
@@ -45,6 +45,26 @@ class MyProjectsComponent extends React.Component {
         <div className="list-group">
           {this.props.myProjects.map(this.myProjectRow)}
         </div>
+      </div>
+    );
+
+    if(!this.props.myProjects.length) {
+      listGroupWrapper = (
+        <div className="bg-info">
+          <p>Since you are able to read this, it means that you have successfully started your Frontcore server.</p>
+          <p>This also means that you have not yet created any project. So here are a few pointers for your next step:</p>
+          <ol>
+            <li>Create <strong>frontcore.json</strong> configuration on your project root directory using <a href="//github.com/Frontcore/frontcore-cli" target="_blank"><strong>frontcore-cli</strong></a> tool.</li>
+            <li>Upload that generated frontcore.json file using "Create a new project" component and create your project.</li>
+          </ol>
+          Learn more about <a href="#" target="_blank"><strong>how to create new project?</strong></a>
+        </div>
+      );
+    }
+
+    return (
+      <Panel className="my-projects-component" header={header}>
+        {listGroupWrapper}
       </Panel>
     );
   }
