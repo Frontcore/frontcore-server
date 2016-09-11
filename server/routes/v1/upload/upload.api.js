@@ -30,16 +30,24 @@ let upload = multer({
   }
 }).single('config');
 
+/**
+ * POST /upload/config/file - upload the frontcore.json configuration file
+ * into the uploads directory
+ * @param {Object} req - request object
+ * @param {Object} res - response object
+ * @param {Function} next - next() function
+ */
 router.post('/config/file', (req, res, next) => {
-
   upload(req, res, (error) => {
     if(error) {
       return next(error);
     }
-
     return ProjectInfoCtrl.create(req, res, next);
   });
-
 });
 
+/**
+ * @module router
+ * @returns {Object} express router
+ */
 module.exports = router;
