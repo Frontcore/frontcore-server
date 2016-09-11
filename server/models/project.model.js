@@ -6,6 +6,9 @@ let _isStringEmpty = [(val) => {
   return (testVal.length > 0);
 }, '{PATH} cannot be empty'];
 
+/**
+ * Project information schema
+ */
 let projectInfoSchema = new Schema({
   "fieldname": {
     type: String,
@@ -47,4 +50,12 @@ let projectInfoSchema = new Schema({
   "createdOn": { type: Date, default: Date.now }
 });
 
+/**
+ * Project information Mongoose model schema
+ * @module ProjectInfo
+ * @param {String} ProjectInfo - model name
+ * @param {Object} projectInfoSchema - schema object
+ * @param {String} projectinfo - collection name
+ * @returns {Object} Project information Mongoose model
+ */
 module.exports = mongoose.model('ProjectInfo', projectInfoSchema, 'projectinfo');
