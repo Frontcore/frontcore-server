@@ -30,8 +30,9 @@ class Dashboard extends React.Component {
   render() {
     return (
       <div className="dashboard-container">
-        <h3>Project name: {this.props.project.name} <small><sup>v{this.props.project.version}</sup></small></h3>
-        <p className="lead">{this.props.project.description}</p>
+        <div class="page-header">
+          <h4>Project: {this.props.project.name} <small><sup>v{this.props.project.version}</sup></small> - <small>{this.props.project.description}</small></h4>
+        </div>
         <div className="row">
           <div className="col-md-12">
             <TotalIssues />
