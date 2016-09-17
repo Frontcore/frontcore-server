@@ -5,7 +5,7 @@ let Schema = mongoose.Schema;
  * Extended schema for project sub-directory
  */
 let childrenSchema = new Schema({
-  "projPath": String
+  "projPath": String,
   "name": String,
   "isFile": Boolean,
   "size": Number,
