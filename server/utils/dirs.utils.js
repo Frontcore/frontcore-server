@@ -6,7 +6,7 @@ import fs from 'fs';
 /**
  * Utility function to construct JavaScript object for directory & files structure.
  */
-exports.getDirectoryTree = function directoryTree (projPath, onlyOneLevel, extensions) {
+exports.getDirectoryTree = function directoryTree (projPath, deepScan, extensions) {
 	const name = path.basename(projPath);
 	const item = { projPath, name };
 	item.isFile = false;
@@ -28,16 +28,19 @@ exports.getDirectoryTree = function directoryTree (projPath, onlyOneLevel, exten
 		item.extension = ext;
 	} else if (stats.isDirectory()) {
 		try {
-      if(onlyOneLevel) {
+			if(deepScan) {
+				item.children = fs.readdirSync(projPath)
+					.map(child => directoryTree(path.join(projPath, child), true, extensions))
+					.filter(e => !!e);
+			} else {
         item.children = fs.readdirSync(projPath)
-          .map(child => directoryTree(path.join(projPath, child), false, extensions))
+        	.map(child => directoryTree(path.join(projPath, child), false, extensions))
           .filter(e => !!e);
-
-        if (!item.children.length) {
-          return null;
-        }
-        item.size = item.children.reduce((prev, cur) => prev + cur.size, 0);
+			}
+      if (!item.children.length) {
+        return null;
       }
+      item.size = item.children.reduce((prev, cur) => prev + cur.size, 0);
 		} catch(ex) {
       /**
        * User does not have permissions, ignore directory

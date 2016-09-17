@@ -1,5 +1,8 @@
 import fs from 'fs';
+import dir from 'node-dir';
 import Project from '../models/project.model';
+import ProjectDir from '../models/projectdir.model';
+import dirUtils from '../utils/dirs.utils';
 
 /**
  * Create project and store frontcore.json configuration information
@@ -28,17 +31,24 @@ exports.create = function(req, res, next) {
       if (error) {
         return next(error);
       } else {
-        res.status(200).json(_reqFile);
+        let _files = dirUtils.getDirectoryTree(_reqFile.location, true, true);
+        _files = new ProjectDir(_files);
+        _files.save((error) => {
+          if (error) {
+            return next(error);
+          } else {
+            res.status(200).json(_reqFile);
+          }
+        });
       }
     });
-
   });
 };
 
 exports.info = function(req, res, next) {
-  let reqPayload = req.body;
+  let _reqPayload = req.body;
 
-  Project.findById(reqPayload.id, (error, result) => {
+  Project.findById(_reqPayload.id, (error, result) => {
     if (error) {
       return next(error);
     }

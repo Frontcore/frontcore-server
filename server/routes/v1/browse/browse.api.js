@@ -30,7 +30,7 @@ router.post('/project/files', (req, res, next) => {
       return next(error);
     }
 
-    files = dirUtils.getDirectoryTree(browsePath, true);
+    files = dirUtils.getDirectoryTree(browsePath, false);
 
     let projRootDir = browsePath.split('/');
     projRootDir = projRootDir[projRootDir.length - 1];
