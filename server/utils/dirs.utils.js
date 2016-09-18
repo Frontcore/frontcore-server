@@ -4,7 +4,10 @@ import path from 'path';
 import fs from 'fs';
 
 /**
- * Utility function to construct JavaScript object for directory & files structure.
+ * Utility function to construct object for directory & files structure
+ * @param {String} projPath - project location
+ * @param {Boolean} deepScan - deep scan into sub-directory
+ * @param {String} extensions - file extensions
  */
 exports.getDirectoryTree = function directoryTree (projPath, deepScan, extensions) {
 	const name = path.basename(projPath);
