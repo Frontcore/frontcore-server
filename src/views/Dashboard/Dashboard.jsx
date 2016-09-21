@@ -1,11 +1,10 @@
-'use strict';
-
 import React, { PropTypes } from 'react';
 import EventEmitter from '../../utils/eventEmitter';
 import TotalIssues from '../../components/TotalIssues/TotalIssues.jsx';
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
 import * as projectActions from '../../actions/projectActions';
+import PanelBox from '../../components/PanelBox/PanelBox.jsx';
 
 class Dashboard extends React.Component {
   constructor(props) {
@@ -34,8 +33,10 @@ class Dashboard extends React.Component {
           <h4>Project: {this.props.project.name} <small><sup>v{this.props.project.version}</sup></small> - <small>{this.props.project.description}</small></h4>
         </div>
         <div className="row">
-          <div className="col-md-12">
-            <TotalIssues />
+          <div className="col-md-6">
+            <PanelBox>
+              <h1>Data</h1>
+            </PanelBox>
           </div>
         </div>
       </div>
