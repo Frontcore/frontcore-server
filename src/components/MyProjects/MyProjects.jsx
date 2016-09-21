@@ -3,10 +3,11 @@
 import React, { PropTypes } from 'react';
 import { Link } from 'react-router';
 import './MyProjects.less';
-import { Panel, Form, FormGroup, FormControl, Label } from 'react-bootstrap';
+import { Form, FormGroup, FormControl, Label } from 'react-bootstrap';
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
 import * as myProjectsActions from '../../actions/myProjectsActions';
+import PanelBox from '../PanelBox/PanelBox.jsx';
 
 class MyProjectsComponent extends React.Component {
   constructor(props) {
@@ -32,7 +33,7 @@ class MyProjectsComponent extends React.Component {
 
   render() {
     let header = (
-      <h3><strong>My projects</strong></h3>
+      <p className="lead"><i className="fa fa-th-list"></i> My projects</p>
     );
 
     let listGroupWrapper = (
@@ -63,9 +64,9 @@ class MyProjectsComponent extends React.Component {
     }
 
     return (
-      <Panel className="my-projects-component" header={header}>
+      <PanelBox noAction header={header} extendedClass="my-projects-component">
         {listGroupWrapper}
-      </Panel>
+      </PanelBox>
     );
   }
 };

@@ -27,14 +27,38 @@ class Dashboard extends React.Component {
   }
 
   render() {
+    let FilesStatisticsHeader = (
+      <p className="lead"><i className="fa fa-pie-chart"></i> Files statistics</p>
+    );
+
+    let LOCHeader = (
+      <p className="lead"><i className="fa fa-bar-chart"></i> Lines of code</p>
+    );
+
+    let LintErrorsHeader = (
+      <p className="lead"><i className="fa fa-bar-chart"></i> Lint errors</p>
+    );
+
     return (
       <div className="dashboard-container">
         <div class="page-header">
           <h4>Project: {this.props.project.name} <small><sup>v{this.props.project.version}</sup></small> - <small>{this.props.project.description}</small></h4>
         </div>
         <div className="row">
-          <div className="col-md-6">
-            <PanelBox>
+          <div className="col-md-4">
+            <PanelBox header={FilesStatisticsHeader}>
+              <h1>Data</h1>
+            </PanelBox>
+          </div>
+          <div className="col-md-8">
+            <PanelBox header={LOCHeader}>
+              <h1>Data</h1>
+            </PanelBox>
+          </div>
+        </div>
+        <div className="row">
+          <div className="col-md-12">
+            <PanelBox header={LintErrorsHeader}>
               <h1>Data</h1>
             </PanelBox>
           </div>

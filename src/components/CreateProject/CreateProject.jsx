@@ -4,6 +4,7 @@ import React from 'react';
 import Dropzone from 'react-dropzone';
 import './CreateProject.less';
 import { Button, Panel, Form, FormGroup, FormControl, ControlLabel, ProgressBar } from 'react-bootstrap';
+import PanelBox from '../PanelBox/PanelBox.jsx';
 
 class MyProjects extends React.Component {
   constructor() {
@@ -18,11 +19,11 @@ class MyProjects extends React.Component {
 
   render() {
     let header = (
-      <h3><strong>Create a new project</strong></h3>
+      <p className="lead"><i className="fa fa-plus"></i> Create a new project</p>
     );
 
     return (
-      <Panel className="create-project-component" header={header}>
+      <PanelBox noAction header={header} extendedClass="create-project-component">
         <Form>
           <FormGroup controlId="formControlsFile">
             <ControlLabel>Upload frontcore configuration JSON file:</ControlLabel>
@@ -33,7 +34,7 @@ class MyProjects extends React.Component {
           <ProgressBar now={60} />
           <Button type="submit" bsStyle="primary">Create Project</Button>
         </Form>
-      </Panel>
+      </PanelBox>
     );
   }
 };
