@@ -27,6 +27,7 @@ export class MongoDB {
 
   connect() {
     let mongoConnectionURL = this.baseUrl  + ':' + this.dbPort + '/' + this.dbName;
+    mongoose.Promise = global.Promise;
     mongoose.connect(mongoConnectionURL);
     return mongoose;
   }
