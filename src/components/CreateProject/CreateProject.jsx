@@ -19,7 +19,7 @@ class MyProjects extends React.Component {
 
   render() {
     let header = (
-      <p className="lead"><i className="fa fa-plus"></i> Create a new project</p>
+      <p><i className="fa fa-plus"></i> Create a new project</p>
     );
 
     return (

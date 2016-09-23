@@ -5,6 +5,7 @@ import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
 import * as projectActions from '../../actions/projectActions';
 import PanelBox from '../../components/PanelBox/PanelBox.jsx';
+import { DropdownButton, MenuItem } from 'react-bootstrap';
 
 class Dashboard extends React.Component {
   constructor(props) {
@@ -28,15 +29,25 @@ class Dashboard extends React.Component {
 
   render() {
     let FilesStatisticsHeader = (
-      <p className="lead"><i className="fa fa-pie-chart"></i> Files statistics</p>
+      <p><i className="fa fa-pie-chart"></i> Files statistics</p>
+    );
+    let actionMenu = (
+      <i className="fa fa-lg fa-ellipsis-v"></i>
+    );
+    let graphActions = (
+      <DropdownButton noCaret pullRight bsStyle="link" title={actionMenu}>
+        <MenuItem eventKey="1">Print</MenuItem>
+        <MenuItem divider />
+        <MenuItem eventKey="2">Customize</MenuItem>
+      </DropdownButton>
     );
 
     let LOCHeader = (
-      <p className="lead"><i className="fa fa-bar-chart"></i> Lines of code</p>
+      <p><i className="fa fa-bar-chart"></i> Lines of code</p>
     );
 
     let LintErrorsHeader = (
-      <p className="lead"><i className="fa fa-bar-chart"></i> Lint errors</p>
+      <p><i className="fa fa-bar-chart"></i> Lint errors</p>
     );
 
     return (
@@ -46,19 +57,19 @@ class Dashboard extends React.Component {
         </div>
         <div className="row">
           <div className="col-md-4">
-            <PanelBox header={FilesStatisticsHeader}>
+            <PanelBox actions={graphActions} header={FilesStatisticsHeader}>
               <h1>Data</h1>
             </PanelBox>
           </div>
           <div className="col-md-8">
-            <PanelBox header={LOCHeader}>
+            <PanelBox actions={graphActions} header={LOCHeader}>
               <h1>Data</h1>
             </PanelBox>
           </div>
         </div>
         <div className="row">
           <div className="col-md-12">
-            <PanelBox header={LintErrorsHeader}>
+            <PanelBox actions={graphActions} header={LintErrorsHeader}>
               <h1>Data</h1>
             </PanelBox>
           </div>

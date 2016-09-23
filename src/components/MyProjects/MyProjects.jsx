@@ -33,7 +33,7 @@ class MyProjectsComponent extends React.Component {
 
   render() {
     let header = (
-      <p className="lead"><i className="fa fa-th-list"></i> My projects</p>
+      <p><i className="fa fa-th-list"></i> My projects</p>
     );
 
     let listGroupWrapper = (
