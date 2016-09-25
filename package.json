@@ -14,13 +14,11 @@
     "coverage": "jest --coverage"
   },
   "dependencies": {
-    "async-es": "^2.0.1",
     "babel-relay-plugin": "^0.9.3",
     "body-parser": "^1.15.0",
     "bootstrap": "^3.3.6",
     "brace": "^0.8.0",
     "classnames": "^2.2.3",
-    "co": "^4.6.0",
     "compression": "^1.5.2",
     "csslint": "^0.10.0",
     "debug": "~2.2.0",
@@ -38,7 +36,6 @@
     "history": "^2.0.1",
     "isomorphic-fetch": "^2.2.1",
     "jsonfile": "^2.3.1",
-    "jsonwebtoken": "^5.4.1",
     "keymirror": "^0.1.1",
     "mongoose": "^4.5.10",
     "morgan": "^1.7.0",
@@ -48,7 +45,6 @@
     "object-assign": "^4.1.0",
     "passport": "^0.3.0",
     "passport-local": "^1.0.0",
-    "passport-oauth": "^1.0.0",
     "react": "^15.1.0",
     "react-ace": "^3.2.0",
     "react-bootstrap": "^0.29.4",
@@ -65,6 +61,7 @@
     "socket.io": "^1.4.5",
     "superagent": "^1.8.3",
     "underscore": "^1.8.3",
+    "validator": "^5.7.0",
     "winston": "^2.2.0"
   },
   "devDependencies": {
