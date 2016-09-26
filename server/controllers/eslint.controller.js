@@ -7,7 +7,7 @@ import ESLintService from '../services/eslint.service';
  * @param {Object} res - response object
  * @param {Function} next - next() function
  */
-exports.list = function(req, res, next) {
+exports.list = (req, res, next) => {
   ESLint.find({}, (error, result) => {
     if (error) {
       return next(error);
@@ -23,7 +23,7 @@ exports.list = function(req, res, next) {
  * @param {Object} res - response object
  * @param {Function} next - next() function
  */
-exports.add = function(req, res, next) {
+exports.add = (req, res, next) => {
   ESLint.collection.insert(ESLintService, (error, docs) => {
     if (error) {
       return next(error);

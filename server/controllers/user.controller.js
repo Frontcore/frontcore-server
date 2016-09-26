@@ -6,7 +6,7 @@ import User from '../models/user.model';
  * @param {Object} res - response object
  * @param {Function} next - next() function
  */
-exports.authenticate = function(req, res, next) {
+exports.authenticate = (req, res, next) => {
 
 };
 
@@ -16,7 +16,7 @@ exports.authenticate = function(req, res, next) {
  * @param {Object} res - response object
  * @param {Function} next - next() function
  */
-exports.changePwd = function(req, res, next) {
+exports.changePwd = (req, res, next) => {
 
 };
 
@@ -26,7 +26,7 @@ exports.changePwd = function(req, res, next) {
  * @param {Object} res - response object
  * @param {Function} next - next() function
  */
-exports.getProfile = function(req, res, next) {
+exports.getProfile = (req, res, next) => {
 
 };
 
@@ -36,6 +36,6 @@ exports.getProfile = function(req, res, next) {
  * @param {Object} res - response object
  * @param {Function} next - next() function
  */
-exports.updateProfile = function(req, res, next) {
+exports.updateProfile = (req, res, next) => {
 
 };

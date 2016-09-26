@@ -2,7 +2,7 @@ import path from 'path';
 import _ from 'underscore';
 import dirUtils from '../utils/dirs.utils';
 
-exports.browse = function(req, res, next) {
+exports.browse = (req, res, next) => {
   let bodyPayload = req.body;
   let browsePath = path.normalize(bodyPayload.browsePath);
 
