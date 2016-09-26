@@ -45,9 +45,10 @@ class HorizontalMenu extends React.Component {
               <MenuItem eventKey={4.6} href="//github.com/Frontcore/frontcore" target="_blank">About Frontcore</MenuItem>
             </NavDropdown>
             <NavDropdown className="navbar-right" eventKey={5} title={help}>
-              <MenuItem eventKey={5.1} href="//github.com/Frontcore/frontcore/wiki" target="_blank">Documentation</MenuItem>
+              <MenuItem eventKey={5.1}>Welcome</MenuItem>
+              <MenuItem eventKey={5.2} href="//github.com/Frontcore/frontcore/wiki" target="_blank">Documentation</MenuItem>
               <MenuItem divider />
-              <MenuItem eventKey={5.2} href="#feedback">Feedback</MenuItem>
+              <MenuItem eventKey={5.3} href="#feedback">Feedback</MenuItem>
             </NavDropdown>
           </Nav>
         </Navbar.Collapse>
