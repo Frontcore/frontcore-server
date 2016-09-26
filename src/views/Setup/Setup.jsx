@@ -35,6 +35,7 @@ class Setup extends React.Component {
         <label className="checkbox-inline pull-left">
           <input type="checkbox"/> Don't show again (Access from 'Help -> Welcome' menu)
         </label>
+        <Button type="button" bsStyle="primary">Start Project Tour</Button>
         <Button onClick={()=>this.setState({ show: false })} className="btn btn-default">Close</Button>
       </div>
     );
