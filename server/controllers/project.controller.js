@@ -10,7 +10,7 @@ import dirUtils from '../utils/dirs.utils';
  * @param {Object} res - response object
  * @param {Function} next - next() function
  */
-exports.create = function(req, res, next) {
+exports.create = (req, res, next) => {
   let _reqFile = req.file;
 
   fs.readFile(_reqFile.path, 'utf-8', (error, fileContent) => {
@@ -45,7 +45,7 @@ exports.create = function(req, res, next) {
   });
 };
 
-exports.info = function(req, res, next) {
+exports.info = (req, res, next) => {
   let _reqPayload = req.body;
 
   Project.findById(_reqPayload.id, (error, result) => {
