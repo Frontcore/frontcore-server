@@ -23,6 +23,8 @@ import BrowseFs from '../views/BrowseFs/BrowseFs.jsx';
 import Install from '../views/Install/Install.jsx';
 import License from '../views/Install/License.jsx';
 import Database from '../views/Install/Database.jsx';
+import Login from '../views/Auth/Login.jsx';
+import ForgotPassword from '../views/Auth/ForgotPassword.jsx';
 
 import storeConfig from '../store/storeConfig';
 import { Provider } from 'react-redux';
@@ -36,6 +38,8 @@ const Routes = (
         <Route path = "license" component = {License} />
         <Route path = "database" component = {Database} />
       </Route>
+      <Route path = "login" component = {Login} />
+      <Route path = "forgotpwd" component = {ForgotPassword} />
       <Route path = "/" component = {App}>
         <IndexRoute component = {Setup} />
         <Route path = "setup" component = {Setup} />
