@@ -9,9 +9,9 @@
     "nodemon": "nodemon ./server/server.js --exec babel-node --presets es2015",
     "bundle": "webpack -d --watch",
     "build": "webpack -p",
-    "btest": "mocha",
-    "ftest": "jest --no-cache",
-    "coverage": "jest --coverage"
+    "test": "mocha && jest --no-cache",
+    "coverage": "jest --coverage",
+    "nspcheck": "nsp check"
   },
   "dependencies": {
     "babel-relay-plugin": "^0.9.3",
@@ -85,6 +85,7 @@
     "less": "^2.6.1",
     "less-loader": "^2.2.3",
     "mocha": "^3.0.2",
+    "nsp": "^2.6.2",
     "react-addons-test-utils": "^15.0.1",
     "redux-devtools": "^3.2.0",
     "sinon": "^1.17.5",
