@@ -15,10 +15,12 @@ import PRODUCT from '../package.json';
 import app from './app';
 
 /**
- * Create HTTP server.
+ * Create HTTP server
  * @param {object} app - express app
+ * and Listen on provided port, on all network interfaces.
+ * @param {string} app.get('port') - port on which express server is listening
  */
-let server = http.createServer(app);
+let server = http.createServer(app).listen(app.get('port'));
 
 /**
  * Event listener for HTTP server 'error' event.
@@ -52,11 +54,6 @@ server.on('error', (error) => {
  */
 server.on('listening', () => {
 	console.log('\n ' + PRODUCT.name + ' v' + PRODUCT.version);
-	console.log(' Web server is started on ' + app.get('uri') + ':' + app.get('port') + '\n');
+	console.log(' Web server is started on ' + app.get('uri') + ':' + app.get('port'));
+	console.log(' Process ' + process.pid + ' is listening to all incoming requests');
 });
-
-/**
- * Listen on provided port, on all network interfaces.
- * @param {string} app.get('port') - port on which express server is listening
- */
-server.listen(app.get('port'));
