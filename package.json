@@ -6,6 +6,7 @@
   "scripts": {
     "dev": "NODE_ENV=development babel-node ./server/server.js",
     "start": "NODE_ENV=production babel-node ./server/server.js",
+    "cluster": "NODE_ENV=production NODE_DEBUG=cluster babel-node ./server/cluster.js",
     "nodemon": "nodemon ./server/server.js --exec babel-node --presets es2015",
     "bundle": "webpack -d --watch",
     "build": "webpack -p",
