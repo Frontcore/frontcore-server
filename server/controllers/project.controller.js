@@ -31,6 +31,9 @@ exports.create = (req, res, next) => {
       if (error) {
         return next(error);
       } else {
+        /**
+         * Cache project directory structure
+         */
         let _files = dirUtils.getDirectoryTree(_reqFile.location, true, true);
         _files = new ProjectDir(_files);
         _files.save((error) => {
@@ -45,6 +48,12 @@ exports.create = (req, res, next) => {
   });
 };
 
+/**
+ * Fetch project information by object-id
+ * @param {Object} req - request object
+ * @param {Object} res - response object
+ * @param {Function} next - next() function
+ */
 exports.info = (req, res, next) => {
   let _reqPayload = req.body;
 
