@@ -1,5 +1,5 @@
 # frontcore
 
 ```
-sudo npm install -g node-inspector webpack nsp jest
+sudo npm install -g node-inspector webpack nsp jest-cli
 ```
