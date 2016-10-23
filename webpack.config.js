@@ -14,11 +14,6 @@ var config = {
     template: './src/index.html'
   })],
 
-  resolve: {
-    extensions: ['', 'js', 'jsx'],
-    modulesDirectories: ['node_modules']
-  },
-
   module: {
     loaders: [{
       test: /\.jsx?$/,
