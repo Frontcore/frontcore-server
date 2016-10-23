@@ -20,7 +20,7 @@ var config = {
       exclude: /node_modules/,
       loader: 'babel',
       query: {
-        presets: ['es2015', 'react', 'stage-0']
+        presets: ['es2015', 'react', 'stage-0', 'stage-1']
       }
     }, {
       test: /\.(jpg|jpeg|png|gif|svg)$/i,
