@@ -1,7 +1,7 @@
 import React, { PropTypes } from 'react';
 
 import HorizontalNav from './components/Navbar/HorizontalNav.jsx';
-import AlertBox from './components/Alert/AlertBox.jsx';
+import AlertBox from './components/AlertBox/AlertBox.jsx';
 import Breadcrumb from './components/Breadcrumb/Breadcrumb.jsx';
 import Footer from './components/Footer/Footer.jsx';
 
