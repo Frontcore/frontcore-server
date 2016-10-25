@@ -4,6 +4,7 @@ import { Link } from 'react-router';
 import PanelBox from '../../components/PanelBox/PanelBox.jsx';
 import AlertBox from '../../components/AlertBox/AlertBox.jsx';
 import { Form, FormControl, FormGroup, ControlLabel, Button, Checkbox } from 'react-bootstrap';
+import Validate from '../../utils/validation';
 import './Login.less';
 
 class Login extends React.Component {
@@ -20,17 +21,12 @@ class Login extends React.Component {
       shouldAlert: false,
       alertType: "danger"
     };
+
+    this.check = new Validate();
   }
 
   componentDidMount() {
     this.primaryFocus();
-  }
-
-  isNotEmpty(elVal) {
-    if(elVal === '') {
-      return false;
-    }
-    return true;
   }
 
   primaryFocus() {
@@ -43,22 +39,51 @@ class Login extends React.Component {
     const username = ReactDOM.findDOMNode(this.refs.username).value;
     const password = ReactDOM.findDOMNode(this.refs.password).value;
 
-    if (this.isNotEmpty(username.trim()) && this.isNotEmpty(password)) {
-      // Todo: temp condition, will be removed later on
-      if (username === "temp" && password === "temp") {
-        this.setState({
-          shouldAlert: false
-        });
-      } else {
+    if (!this.check.isEmpty(username) && !this.check.isEmpty(password)) {
+
+      let unameConstraints = {
+        username: { length: { minimum: 5 } }
+      };
+
+      let unameEl = {
+        username: username
+      };
+
+      let pwdConstraints = {
+        password: { length: { minimum: 8 } }
+      };
+
+      let pwdEl = {
+        password: password
+      };
+
+      if (!this.check.isMinLenExpected(unameEl, unameConstraints) && !this.check.isMinLenExpected(pwdEl, pwdConstraints)) {
         this.alertMsg = (
           <div>
-            <h4><i className="fa fa-lg fa-exclamation-circle" aria-hidden="true"></i> Authentication Error</h4>
-            <p>Username or password seems to be incorrect. Please try again!</p>
+            <h4><i className="fa fa-lg fa-exclamation-circle" aria-hidden="true"></i> Application Error</h4>
+            <p>Username should be minimum 5 characters and Password should be minimum 8 characters</p>
           </div>
         );
         this.setState({
           shouldAlert: true
         });
+      } else {
+        // Todo: temp condition, will be removed later on
+        if (username === "temp" && password === "temp") {
+          this.setState({
+            shouldAlert: false
+          });
+        } else {
+          this.alertMsg = (
+            <div>
+              <h4><i className="fa fa-lg fa-exclamation-circle" aria-hidden="true"></i> Authentication Error</h4>
+              <p>Username or password seems to be incorrect. Please try again!</p>
+            </div>
+          );
+          this.setState({
+            shouldAlert: true
+          });
+        }
       }
     } else {
       this.alertMsg = (
@@ -100,7 +125,7 @@ class Login extends React.Component {
               <Form>
                 <FormGroup>
                   <ControlLabel>Username</ControlLabel>
-                  <FormControl id="username" ref="username" onFocus={this.resetState} type="text" placeholder="Enter your frontcore username" />
+                  <FormControl id="username" ref="username" onFocus={this.resetState} onBlur={this.hasMinExpectedLength} type="text" placeholder="Enter your frontcore username" />
                 </FormGroup>
                 <FormGroup>
                   <ControlLabel>Password</ControlLabel>

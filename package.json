@@ -65,7 +65,7 @@
     "socket.io": "^1.4.5",
     "superagent": "^1.8.3",
     "underscore": "^1.8.3",
-    "validator": "^5.7.0",
+    "validate.js": "^0.10.0",
     "winston": "^2.2.0"
   },
   "devDependencies": {
