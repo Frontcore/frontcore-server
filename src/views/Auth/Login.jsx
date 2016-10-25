@@ -14,7 +14,7 @@ class Login extends React.Component {
 
     this.onLoginSubmit = this.onLoginSubmit.bind(this);
     this.primaryFocus = this.primaryFocus.bind(this);
-    this.onInputChange = this.onInputChange.bind(this);
+    this.resetState = this.resetState.bind(this);
 
     this.state = {
       shouldAlert: false,
@@ -44,11 +44,26 @@ class Login extends React.Component {
     const password = ReactDOM.findDOMNode(this.refs.password).value;
 
     if (this.isNotEmpty(username.trim()) && this.isNotEmpty(password)) {
-      console.log('Sending ' + username + ' & ' + password);
+      // Todo: temp condition, will be removed later on
+      if (username === "temp" && password === "temp") {
+        this.setState({
+          shouldAlert: false
+        });
+      } else {
+        this.alertMsg = (
+          <div>
+            <h4><i className="fa fa-lg fa-exclamation-circle" aria-hidden="true"></i> Authentication Error</h4>
+            <p>Username or password seems to be incorrect. Please try again!</p>
+          </div>
+        );
+        this.setState({
+          shouldAlert: true
+        });
+      }
     } else {
       this.alertMsg = (
         <div>
-          <h4><i className="fa fa-lg fa-exclamation-circle" aria-hidden="true"></i> Application error</h4>
+          <h4><i className="fa fa-lg fa-exclamation-circle" aria-hidden="true"></i> Application Error</h4>
           <p>Username or password cannot be empty. Please try again!</p>
         </div>
       );
@@ -58,7 +73,7 @@ class Login extends React.Component {
     }
   }
 
-  onInputChange() {
+  resetState() {
     this.setState({
       shouldAlert: false
     });
@@ -85,11 +100,11 @@ class Login extends React.Component {
               <Form>
                 <FormGroup>
                   <ControlLabel>Username</ControlLabel>
-                  <FormControl id="username" ref="username" onChange={this.onInputChange} type="text" placeholder="Enter your frontcore username" />
+                  <FormControl id="username" ref="username" onFocus={this.resetState} type="text" placeholder="Enter your frontcore username" />
                 </FormGroup>
                 <FormGroup>
                   <ControlLabel>Password</ControlLabel>
-                  <FormControl id="password" ref="password" type="password" placeholder="Enter your frontcore password" />
+                  <FormControl id="password" ref="password" onFocus={this.resetState} type="password" placeholder="Enter your frontcore password" />
                 </FormGroup>
                 <FormGroup>
                   <Checkbox>Keep me logged in</Checkbox>
