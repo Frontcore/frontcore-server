@@ -10,15 +10,20 @@ class Login extends React.Component {
   constructor(props) {
     super(props);
 
+    this.alertMsg = null;
+
     this.onLoginSubmit = this.onLoginSubmit.bind(this);
     this.primaryFocus = this.primaryFocus.bind(this);
+    this.onInputChange = this.onInputChange.bind(this);
+
+    this.state = {
+      shouldAlert: false,
+      alertType: "danger"
+    };
   }
 
   componentDidMount() {
     this.primaryFocus();
-
-    const username = this.refs.username.value;
-    const password = this.refs.password.value;
   }
 
   isNotEmpty(elVal) {
@@ -41,8 +46,22 @@ class Login extends React.Component {
     if (this.isNotEmpty(username.trim()) && this.isNotEmpty(password)) {
       console.log('Sending ' + username + ' & ' + password);
     } else {
-      console.log('username or password is empty')
+      this.alertMsg = (
+        <div>
+          <h4><i className="fa fa-lg fa-exclamation-circle" aria-hidden="true"></i> Application error</h4>
+          <p>Username or password cannot be empty. Please try again!</p>
+        </div>
+      );
+      this.setState({
+        shouldAlert: true
+      });
     }
+  }
+
+  onInputChange() {
+    this.setState({
+      shouldAlert: false
+    });
   }
 
   render() {
@@ -50,19 +69,23 @@ class Login extends React.Component {
       <p title="Frontcore v0.0.0 Alpha"><i className="fa fa-lg fa-sign-in" aria-hidden="true"></i> <strong>Login to Frontcore <sup><small>v0.0.0 Alpha</small></sup></strong></p>
     );
 
+    const shouldAlert = this.state.shouldAlert;
+    const alertMsg = this.alertMsg;
+
     return (
       <div className="container login-container">
         <div className="row">
           <div className="col-md-6 col-md-offset-3">
             <PanelBox header={header}>
-              <AlertBox type="danger">
-                <h4><i className="fa fa-lg fa-exclamation-circle" aria-hidden="true"></i> Authentication error</h4>
-                <p>Incorrect username or password. Please try again!</p>
-              </AlertBox>
+              {shouldAlert &&
+                <AlertBox type={this.state.alertType} showAlert={shouldAlert}>
+                  {alertMsg}
+                </AlertBox>
+              }
               <Form>
                 <FormGroup>
                   <ControlLabel>Username</ControlLabel>
-                  <FormControl id="username" ref="username" type="text" placeholder="Enter your frontcore username" />
+                  <FormControl id="username" ref="username" onChange={this.onInputChange} type="text" placeholder="Enter your frontcore username" />
                 </FormGroup>
                 <FormGroup>
                   <ControlLabel>Password</ControlLabel>

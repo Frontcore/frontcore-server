@@ -10,7 +10,7 @@ export default class AlertBox extends React.Component {
     super(props);
 
     this.state = {
-      isVisible: true
+      isVisible: this.props.showAlert
     };
 
     this.handleAlertDismiss = this.handleAlertDismiss.bind(this);
