@@ -4,6 +4,7 @@ import HorizontalNav from './components/Navbar/HorizontalNav.jsx';
 import AlertBox from './components/AlertBox/AlertBox.jsx';
 import Breadcrumb from './components/Breadcrumb/Breadcrumb.jsx';
 import Footer from './components/Footer/Footer.jsx';
+import Notification from './components/Notification/Notification.jsx';
 
 import 'bootstrap/dist/css/bootstrap-theme.min.css';
 import 'bootstrap/dist/css/bootstrap.min.css';
@@ -15,6 +16,7 @@ class App extends React.Component {
   render() {
     return (
       <div>
+				<Notification />
         <HorizontalNav />
         <div className="container">
           <AlertBox type="danger">
