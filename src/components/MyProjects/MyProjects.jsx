@@ -7,7 +7,7 @@ import { bindActionCreators } from 'redux';
 import * as myProjectsActions from '../../actions/myProjectsActions';
 import PanelBox from '../PanelBox/PanelBox.jsx';
 
-class MyProjectsComponent extends React.Component {
+class MyProjects extends React.Component {
   constructor(props) {
     super(props);
 
@@ -69,7 +69,7 @@ class MyProjectsComponent extends React.Component {
   }
 };
 
-MyProjectsComponent.propTypes = {
+MyProjects.propTypes = {
   myProjects: PropTypes.array.isRequired,
   actions: PropTypes.object.isRequired
 };
@@ -86,4 +86,4 @@ function mapDispatchToProps(dispatch) {
   };
 }
 
-export default connect(mapStateToProps, mapDispatchToProps)(MyProjectsComponent);
+export default connect(mapStateToProps, mapDispatchToProps)(MyProjects);
