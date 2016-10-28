@@ -30,7 +30,7 @@ router.put('/change/pwd', (req, res, next) => {
  * @param {Function} next - next() function
  */
 router.get('/profile', (req, res, next) => {
-  return UserCtrl.getProfile(req, res, next);
+  return UserCtrl.setProfile(req, res, next);
 });
 
 /**
