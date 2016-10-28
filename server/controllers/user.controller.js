@@ -29,7 +29,25 @@ exports.changePwd = (req, res, next) => {
  * @param {Function} next - next() function
  */
 exports.setProfile = (req, res, next) => {
-  // todo - coming soon
+  let _reqPayload = req.body;
+
+  let _user = {};
+  _user.firstName = _reqPayload.firstName;
+  _user.lastName = _reqPayload.lastName;
+  _user.email = _reqPayload.email;
+  _user.username = _reqPayload.username;
+  _user.password = _reqPayload.password;
+  _user.token = "abcd"; // todo, temp token
+
+  User.collection.insert(_user, (error, user) => {
+    if (error) {
+      return next(error);
+    } else {
+      res.status(200).json({
+        "acknowledge": true
+      });
+    }
+  });
 };
 
 /**
