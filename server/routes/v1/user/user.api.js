@@ -29,7 +29,7 @@ router.put('/change/pwd', (req, res, next) => {
  * @param {Object} res - response object
  * @param {Function} next - next() function
  */
-router.get('/profile', (req, res, next) => {
+router.post('/profile', (req, res, next) => {
   return UserCtrl.setProfile(req, res, next);
 });
 
