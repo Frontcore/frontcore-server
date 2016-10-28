@@ -10,9 +10,9 @@ let userSchema = new Schema({
   "email": { type: String, required: true, unique: true },
   "username": { type: String, required: true, unique: true },
   "password": { type: String , required: true },
-  "hasWelcomed": {type: Boolean, required: true, default: false },
-  "createdOn": { type: Date, default: Date.now },
-  "updatedOn": { type: Date, default: Date.now },
+  "welcomeTo": { type: Boolean, required: true, default: false },
+  "createdOn": { type: Date, require: true, default: Date.now },
+  "updatedOn": { type: Date, require: true, default: Date.now },
   "token": { type: String, required: true }
 });
 

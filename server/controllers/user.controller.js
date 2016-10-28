@@ -7,7 +7,9 @@ import User from '../models/user.model';
  * @param {Function} next - next() function
  */
 exports.authenticate = (req, res, next) => {
-
+  // todo - coming soon
+  let _reqPayload = req.body;
+  res.status(200).json(_reqPayload);
 };
 
 /**
@@ -17,7 +19,17 @@ exports.authenticate = (req, res, next) => {
  * @param {Function} next - next() function
  */
 exports.changePwd = (req, res, next) => {
+  // todo - coming soon
+};
 
+/**
+ * Add user profile information
+ * @param {Object} req - request object
+ * @param {Object} res - response object
+ * @param {Function} next - next() function
+ */
+exports.setProfile = (req, res, next) => {
+  // todo - coming soon
 };
 
 /**
@@ -27,7 +39,7 @@ exports.changePwd = (req, res, next) => {
  * @param {Function} next - next() function
  */
 exports.getProfile = (req, res, next) => {
-
+  // todo - coming soon
 };
 
 /**
@@ -37,5 +49,5 @@ exports.getProfile = (req, res, next) => {
  * @param {Function} next - next() function
  */
 exports.updateProfile = (req, res, next) => {
-
+  // todo - coming soon
 };

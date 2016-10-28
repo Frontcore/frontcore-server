@@ -1,5 +1,5 @@
 import express from 'express';
-import UserCtrl from '../../../controller/user.controller';
+import UserCtrl from '../../../controllers/user.controller';
 
 let router = express.Router();
 
@@ -29,8 +29,8 @@ router.put('/change/pwd', (req, res, next) => {
  * @param {Object} res - response object
  * @param {Function} next - next() function
  */
-router.get('/profile', (req, res, next) => {
-  return UserCtrl.getProfile(req, res, next);
+router.post('/profile', (req, res, next) => {
+  return UserCtrl.setProfile(req, res, next);
 });
 
 /**
