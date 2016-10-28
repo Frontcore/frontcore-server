@@ -111,6 +111,7 @@ app.use('/api/' + STACK_CONFIG.api.defaults.version + '/projects', require('./ro
 app.use('/api/' + STACK_CONFIG.api.defaults.version + '/browse', require('./routes/' + STACK_CONFIG.api.defaults.version + '/browse/browse.api'));
 app.use('/api/' + STACK_CONFIG.api.defaults.version + '/browse', require('./routes/' + STACK_CONFIG.api.defaults.version + '/browse/content.api'));
 app.use('/api/' + STACK_CONFIG.api.defaults.version + '/lint', require('./routes/' + STACK_CONFIG.api.defaults.version + '/lints/eslint.api'));
+app.use('/api/' + STACK_CONFIG.api.defaults.version + '/auth', require('./routes/' + STACK_CONFIG.api.defaults.version + '/user/user.api'));
 
 /**
  * Router error handling with ErrorHander class
