@@ -4,7 +4,7 @@ import UserCtrl from '../../../controller/user.controller';
 let router = express.Router();
 
 /**
- * POST /login - get the project information
+ * POST /auth/login - authenticate user's credentials
  * @param {Object} req - request object
  * @param {Object} res - response object
  * @param {Function} next - next() function
@@ -14,7 +14,7 @@ router.post('/login', (req, res, next) => {
 });
 
 /**
- * PUT /change/pwd - get the project information
+ * PUT /auth/change/pwd - change user's password
  * @param {Object} req - request object
  * @param {Object} res - response object
  * @param {Function} next - next() function
@@ -24,7 +24,7 @@ router.put('/change/pwd', (req, res, next) => {
 });
 
 /**
- * GET /profile - get the project information
+ * POST auth/profile - create user's profile
  * @param {Object} req - request object
  * @param {Object} res - response object
  * @param {Function} next - next() function
@@ -34,7 +34,17 @@ router.get('/profile', (req, res, next) => {
 });
 
 /**
- * PUT /profile - get the project information
+ * GET auth/profile - get user's profile
+ * @param {Object} req - request object
+ * @param {Object} res - response object
+ * @param {Function} next - next() function
+ */
+router.get('/profile', (req, res, next) => {
+  return UserCtrl.getProfile(req, res, next);
+});
+
+/**
+ * PUT auth/profile - update user's profile
  * @param {Object} req - request object
  * @param {Object} res - response object
  * @param {Function} next - next() function
