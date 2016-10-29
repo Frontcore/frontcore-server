@@ -8,11 +8,14 @@ import fs from 'fs';
  * Requires a 3rd party utility functions;
  */
 import express from 'express';
+import session from 'express-session';
 import morgan from 'morgan';
 import bodyParser from 'body-parser';
 import compression from 'compression';
 import winston from 'winston';
 import helmet from 'helmet';
+import passport from 'passport';
+import { LocalStrategy } from 'passport-local';
 
 /**
  * Requires a constants utility functions;
@@ -75,6 +78,29 @@ app.use(helmet());
  */
 app.use(compression());
 
+app.use(session({
+  secret: 'frontcore-server',
+  resave: false,
+  saveUninitialized: false
+}));
+
+/**
+ * Initialize passport & passport session
+ */
+app.use(passport.initialize());
+app.use(passport.session());
+
+/**
+ * Passport will serialize and deserialize user instances to and from the session.
+ */
+passport.serializeUser((user, done) => {
+  done(null, user);
+});
+
+passport.deserializeUser((user, done) => {
+  done(null, user);
+});
+
 /**
  * Setup NODE_ENV
  */
@@ -111,7 +137,8 @@ app.use('/api/' + STACK_CONFIG.api.defaults.version + '/projects', require('./ro
 app.use('/api/' + STACK_CONFIG.api.defaults.version + '/browse', require('./routes/' + STACK_CONFIG.api.defaults.version + '/browse/browse.api'));
 app.use('/api/' + STACK_CONFIG.api.defaults.version + '/browse', require('./routes/' + STACK_CONFIG.api.defaults.version + '/browse/content.api'));
 app.use('/api/' + STACK_CONFIG.api.defaults.version + '/lint', require('./routes/' + STACK_CONFIG.api.defaults.version + '/lints/eslint.api'));
-app.use('/api/' + STACK_CONFIG.api.defaults.version + '/auth', require('./routes/' + STACK_CONFIG.api.defaults.version + '/user/user.api'));
+app.use('/api/' + STACK_CONFIG.api.defaults.version + '/user', require('./routes/' + STACK_CONFIG.api.defaults.version + '/user/user.api'));
+app.use('/api/' + STACK_CONFIG.api.defaults.version + '/auth', require('./routes/' + STACK_CONFIG.api.defaults.version + '/user/authenticate.api'));
 
 /**
  * Router error handling with ErrorHander class
