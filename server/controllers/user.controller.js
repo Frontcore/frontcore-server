@@ -1,26 +1,40 @@
+import passport from 'passport';
+import { Strategy } from 'passport-local';
 import User from '../models/user.model';
 
-/**
- * Authenticate user inputed username and password
- * @param {Object} req - request object
- * @param {Object} res - response object
- * @param {Function} next - next() function
- */
-exports.authenticate = (req, res, next) => {
-  // todo - coming soon
+let initRegister = (req, username, password, callback) => {
   let _reqPayload = req.body;
-  res.status(200).json(_reqPayload);
+
+  User.findOne({ "username": username }, (error, user) => {
+    if (error) {
+      return callback(error);
+    }
+
+    if (user) {
+      return callback(null, false);
+    }
+
+    let _newUser = new User();
+    _newUser.firstName = _reqPayload.firstName;
+    _newUser.lastName = _reqPayload.lastName;
+    _newUser.email = _reqPayload.email;
+    _newUser.username = _reqPayload.username;
+    _newUser.password = _newUser.hashPassword(_reqPayload.password);
+    _newUser.token = "abcd"; // todo, temp token
+
+    _newUser.save((error) => {
+      if (error) {
+        return callback(null, error);
+      }
+
+      return callback(null, _newUser);
+    });
+  });
 };
 
-/**
- * Change user password
- * @param {Object} req - request object
- * @param {Object} res - response object
- * @param {Function} next - next() function
- */
-exports.changePwd = (req, res, next) => {
-  // todo - coming soon
-};
+passport.use("local-register", new Strategy({
+   passReqToCallback: true
+}, initRegister));
 
 /**
  * Add user profile information
@@ -29,24 +43,8 @@ exports.changePwd = (req, res, next) => {
  * @param {Function} next - next() function
  */
 exports.setProfile = (req, res, next) => {
-  let _reqPayload = req.body;
-
-  let _user = {};
-  _user.firstName = _reqPayload.firstName;
-  _user.lastName = _reqPayload.lastName;
-  _user.email = _reqPayload.email;
-  _user.username = _reqPayload.username;
-  _user.password = _reqPayload.password;
-  _user.token = "abcd"; // todo, temp token
-
-  User.collection.insert(_user, (error, user) => {
-    if (error) {
-      return next(error);
-    } else {
-      res.status(200).json({
-        "acknowledge": true
-      });
-    }
+  res.status(200).json({
+    "acknowledge": true
   });
 };
 
