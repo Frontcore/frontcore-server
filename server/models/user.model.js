@@ -1,4 +1,6 @@
 import mongoose from 'mongoose';
+import bcrypt from 'bcrypt-nodejs';
+
 let Schema = mongoose.Schema;
 
 /**
@@ -15,6 +17,14 @@ let userSchema = new Schema({
   "updatedOn": { type: Date, require: true, default: Date.now },
   "token": { type: String, required: true }
 });
+
+userSchema.methods.hashPassword = (password) => {
+  return bcrypt.hashSync(password, bcrypt.genSaltSync());
+};
+
+userSchema.methods.validatePassword = (password) => {
+  return bcrypt.compareSync(password, this.password);
+};
 
 /**
  * User Mongoose model schema
