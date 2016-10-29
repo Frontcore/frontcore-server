@@ -22,8 +22,8 @@ userSchema.methods.hashPassword = (password) => {
   return bcrypt.hashSync(password, bcrypt.genSaltSync());
 };
 
-userSchema.methods.validatePassword = (password) => {
-  return bcrypt.compareSync(password, this.password);
+userSchema.methods.validatePassword = (userPassword, dbPassword, callback) => {
+  return bcrypt.compareSync(userPassword, dbPassword);
 };
 
 /**
