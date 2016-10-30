@@ -34,7 +34,13 @@ passport.use('local-login', new Strategy({
  * @param {Function} next - next() function
  */
 exports.login = (req, res, next) => {
-  let _user = _.pick(req.user, 'username', 'firstName', 'lastName', 'email', 'welcomeTo', 'createdOn', 'updatedOn', 'token');
+  let _user = req.user;
+  let _token = jwt.sign({
+    id: _user.id
+  }, 'frontcore');
+
+  _user = _.pick(req.user, 'username', 'firstName', 'lastName', 'email', 'welcomeTo', 'createdOn', 'updatedOn');
+  _user.token = _token;
 
   res.status(200).json({
     "acknowledge": true,
