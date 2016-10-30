@@ -57,7 +57,7 @@ exports.setProfile = (req, res, next) => {
 exports.getProfile = (req, res, next) => {
   let _reqPayload = req.body;
 
-  User.findOne({ "username": _reqPayload.username }, (error, user) => {
+  User.findOne({ "username": _reqPayload.username }, 'firstName lastName email username welcomeTo createdOn updatedOn', (error, user) => {
     if (error) {
       return next(error);
     }
