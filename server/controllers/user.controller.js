@@ -55,7 +55,16 @@ exports.setProfile = (req, res, next) => {
  * @param {Function} next - next() function
  */
 exports.getProfile = (req, res, next) => {
-  // todo - coming soon
+  let _reqPayload = req.body;
+
+  User.findOne({ "username": _reqPayload.username }, (error, user) => {
+    if (error) {
+      return next(error);
+    }
+
+    res.status(200).json(user);
+  });
+
 };
 
 /**
