@@ -1,5 +1,7 @@
 import passport from 'passport';
 import { Strategy } from 'passport-local';
+import jwt from 'jsonwebtoken';
+import _ from 'underscore';
 import User from '../models/user.model';
 
 let initLogin = (req, username, password, callback) => {
@@ -32,8 +34,11 @@ passport.use('local-login', new Strategy({
  * @param {Function} next - next() function
  */
 exports.login = (req, res, next) => {
+  let _user = _.pick(req.user, 'username', 'firstName', 'lastName', 'email', 'welcomeTo', 'createdOn', 'updatedOn', 'token');
+
   res.status(200).json({
-    "acknowledge": true
+    "acknowledge": true,
+    "user": _user
   });
 };
 
