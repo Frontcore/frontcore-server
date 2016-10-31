@@ -1,43 +1,11 @@
-import jwt from 'jsonwebtoken';
 import _ from 'underscore';
 import User from '../models/user.model';
 import Strategy from '../utils/strategy.utils';
 
-let initLogin = (req, username, password, callback) => {
-  User.findOne({ username: username }, (error, userInfo) => {
-
-    if (error) {
-      return callback(null, error);
-    }
-
-    if (!userInfo) {
-      return callback(null, false);
-    }
-
-    if (!userInfo.validatePassword(password, userInfo.password)) {
-      return callback(null, error);
-    }
-
-    return callback(null, userInfo);
-  });
-};
-
-let initTokenVerify = (token, callback) => {
-  console.log('token: ', token);
-  jwt.verify(token, 'frontcore', (error, decoded) => {
-    if (error) {
-      return callback(error);
-    }
-
-    console.log('decoded: ', decoded);
-    // let _user = users[decoded.id];
-    // return callback(null, _user ? _user : false);
-  });
-};
-
-let strategy = new Strategy();
-strategy.strategyForLogin(initLogin);
-strategy.strategyForTokenVerify(initTokenVerify);
+let strategy = new Strategy({
+  'userModel': User
+});
+strategy.authStrategy();
 
 /**
  * Authenticate user inputed username and password
@@ -46,15 +14,44 @@ strategy.strategyForTokenVerify(initTokenVerify);
  * @param {Function} next - next() function
  */
 exports.login = (req, res, next) => {
-  let _user = req.user;
-  let _userInfo = new User();
+  let _reqPayload = req.body;
 
-  let _token = _userInfo.generateToken(_user.id);
+  User.findOne({ "username": _reqPayload.username }, (error, _user) => {
+    if (error) {
+      return next(error);
+    }
 
-  _user = _.pick(req.user, 'username', 'firstName', 'lastName', 'email', 'welcomeTo', 'createdOn', 'updatedOn');
-  _user.token = _token;
+    if (!_user) {
+      res.status(200).json({
+        "success": false,
+        "message": "Authenticate failed. User not found."
+      });
+    }
 
-  res.status(200).json(_user);
+    _user.comparePassword(_reqPayload.password, (error, isMatch) => {
+      if (error) {
+        return next(error);
+      }
+
+      if (isMatch) {
+        let _userInfo = _.pick(req.user, 'username', 'firstName', 'lastName', 'email', 'welcomeTo', 'createdOn', 'updatedOn');
+        let _token = _user.generateToken(_user.id);
+
+        _userInfo.token = 'JWT ' + _token; // Specific format to passport-jwt 'JWT Token_String'
+
+        res.status(200).json({
+          "success": true,
+          "user": _userInfo
+        });
+      } else {
+        res.status(200).json({
+          "success": false,
+          "message": "Authenticate failed. Password did not match."
+        });
+      }
+    });
+
+  });
 };
 
 /**

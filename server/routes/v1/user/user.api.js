@@ -10,7 +10,8 @@ let router = express.Router();
  * @param {Object} res - response object
  * @param {Function} next - next() function
  */
-router.post('/profile', (req, res, next) => {
+router.post('/profile', passport.authenticate('jwt'), (req, res, next) => {
+  console.log('GET USER Profile');
   return UserCtrl.getProfile(req, res, next);
 });
 
@@ -20,7 +21,7 @@ router.post('/profile', (req, res, next) => {
  * @param {Object} res - response object
  * @param {Function} next - next() function
  */
-router.post('/create', passport.authenticate('create-user'), (req, res, next) => {
+router.post('/create', (req, res, next) => {
   return UserCtrl.setProfile(req, res, next);
 });
 

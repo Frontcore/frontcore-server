@@ -18,7 +18,7 @@
   },
   "dependencies": {
     "babel-relay-plugin": "^0.9.3",
-    "bcrypt-nodejs": "0.0.3",
+    "bcrypt": "^0.8.7",
     "body-parser": "^1.15.0",
     "bootstrap": "^3.3.6",
     "brace": "^0.8.0",
@@ -50,8 +50,7 @@
     "nodemailer": "^1.4.0",
     "object-assign": "^4.1.0",
     "passport": "^0.3.0",
-    "passport-http-bearer": "^1.0.1",
-    "passport-local": "^1.0.0",
+    "passport-jwt": "^2.2.0",
     "react": "^15.3.2",
     "react-ace": "^3.2.0",
     "react-bootstrap": "^0.29.5",

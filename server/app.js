@@ -1,12 +1,5 @@
-/**
- * Requires a in-built utility functions;
- */
 import path from 'path';
 import fs from 'fs';
-
-/**
- * Requires a 3rd party utility functions;
- */
 import express from 'express';
 import session from 'express-session';
 import morgan from 'morgan';
@@ -132,28 +125,6 @@ switch (NODE_ENV.toLowerCase()) {
  */
 app.use('/api/' + STACK_CONFIG.api.defaults.version + '/auth', require('./routes/' + STACK_CONFIG.api.defaults.version + '/user/authenticate.api'));
 app.use('/api/' + STACK_CONFIG.api.defaults.version + '/user', require('./routes/' + STACK_CONFIG.api.defaults.version + '/user/user.api'));
-
-app.all('*', (req, res, next) => {
-  passport.authenticate('verify-token', (error, user, info) => {
-    console.log('error: ', error);
-    console.log('user: ', user);
-    console.log('info: ', info);
-
-    if (error) {
-      return next(error);
-    }
-
-    if (user) {
-      console.log('IF:');
-      req.user = user;
-      return next();
-    } else {
-      console.log('ELSE:');
-      return res.status(401).json({ status: 'error', code: 'unauthorized' });
-    }
-  })(req, res, next);
-});
-
 app.use('/api/' + STACK_CONFIG.api.defaults.version + '/upload', require('./routes/' + STACK_CONFIG.api.defaults.version + '/upload/upload.api'));
 app.use('/api/' + STACK_CONFIG.api.defaults.version + '/project', require('./routes/' + STACK_CONFIG.api.defaults.version + '/project/project.api'));
 app.use('/api/' + STACK_CONFIG.api.defaults.version + '/projects', require('./routes/' + STACK_CONFIG.api.defaults.version + '/projects/projects.api'));

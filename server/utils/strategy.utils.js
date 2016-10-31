@@ -1,25 +1,33 @@
 import passport from 'passport';
-import { Strategy as LocalStrategy } from 'passport-local';
-import { Strategy as BearerStrategy } from 'passport-http-bearer';
+import { Strategy as JwtStrategy } from 'passport-jwt';
+import { ExtractJwt } from 'passport-jwt';
+
+const secret = 'frontcore';
 
 class Strategy {
 
-  strategyForLogin(params) {
-    passport.use('login', new LocalStrategy({
-       passReqToCallback: true
-    }, params));
+  constructor(props) {
+    this.userModel = props.userModel;
   }
 
-  strategyForCreateUser(params) {
-    passport.use('create-user', new LocalStrategy({
-       passReqToCallback: true
-    }, params));
-  }
+  authStrategy() {
+    let options = {};
+    options.jwtFromRequest = ExtractJwt.fromAuthHeader();
+    options.secretOrKey = secret;
 
-  strategyForTokenVerify(params) {
-    passport.use('verify-token', new BearerStrategy(params));
+    passport.use(new JwtStrategy(options, function(jwt_payload, callback) {
+      this.userModel.findOne({id: jwt_payload.id}, function(error, user) {
+        if (error) {
+          return callback(error, false);
+        }
+        if (!user) {
+          callback(null, false);
+        }
+        callback(null, user);
+      });
+    }));
   }
-
+  
 };
 
 module.exports = Strategy;

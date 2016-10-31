@@ -1,6 +1,6 @@
 import mongoose from 'mongoose';
+import bcrypt from 'bcrypt';
 import jwt from 'jsonwebtoken';
-import bcrypt from 'bcrypt-nodejs';
 
 let Schema = mongoose.Schema;
 let secret = 'frontcore';
@@ -19,16 +19,19 @@ let userSchema = new Schema({
   "updatedOn": { type: Date, require: true, default: Date.now }
 });
 
-userSchema.pre('save', (next) => {
+
+// note: the issue is your arrow function uses lexical this
+// https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Functions/Arrow_functions
+userSchema.pre('save', function(next) { // Problem with => way
   let _user = this;
 
   if (this.isModified('password') || this.isNew) {
-    bcrypt.genSalt(10, (error, salt) => {
+    bcrypt.genSalt(10, function(error, salt) {
       if (error) {
         return next(error);
       }
 
-      bcrypt.hash(_user.password, salt, (error, hash) => {
+      bcrypt.hash(_user.password, salt, function(error, hash) {
         if (error) {
           return next(error);
         }
@@ -41,22 +44,21 @@ userSchema.pre('save', (next) => {
   }
 });
 
-userSchema.methods.hashPassword = (password) => {
-  return bcrypt.hashSync(password, bcrypt.genSaltSync());
-};
-
-userSchema.methods.validatePassword = (userPassword, dbPassword, callback) => {
-  return bcrypt.compareSync(userPassword, dbPassword);
+userSchema.methods.comparePassword = function(password, callback) {
+  bcrypt.compare(password, this.password, function(error, isMatch) {
+    if (error) {
+      return callback(error);
+    }
+    callback(null, isMatch);
+  });
 };
 
 userSchema.methods.generateToken = (user) => {
   return jwt.sign({
     id: user.id
-  }, secret);
-};
-
-userSchema.methods.verifyToken = () => {
-
+  }, secret, {
+    expiresIn: '8h'
+  });
 };
 
 /**
