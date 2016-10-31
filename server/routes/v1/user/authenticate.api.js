@@ -10,7 +10,7 @@ let router = express.Router();
  * @param {Object} res - response object
  * @param {Function} next - next() function
  */
-router.post('/login', passport.authenticate('local-login'), (req, res, next) => {
+router.post('/login', passport.authenticate('login'), (req, res, next) => {
   return AuthCtrl.login(req, res, next);
 });
 

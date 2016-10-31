@@ -1,8 +1,7 @@
-import passport from 'passport';
-import { Strategy } from 'passport-local';
 import jwt from 'jsonwebtoken';
 import _ from 'underscore';
 import User from '../models/user.model';
+import Strategy from '../utils/strategy.utils';
 
 let initLogin = (req, username, password, callback) => {
   User.findOne({ username: username }, (error, userInfo) => {
@@ -23,9 +22,22 @@ let initLogin = (req, username, password, callback) => {
   });
 };
 
-passport.use('local-login', new Strategy({
-   passReqToCallback: true
-}, initLogin));
+let initTokenVerify = (token, callback) => {
+  console.log('token: ', token);
+  jwt.verify(token, 'frontcore', (error, decoded) => {
+    if (error) {
+      return callback(error);
+    }
+
+    console.log('decoded: ', decoded);
+    // let _user = users[decoded.id];
+    // return callback(null, _user ? _user : false);
+  });
+};
+
+let strategy = new Strategy();
+strategy.strategyForLogin(initLogin);
+strategy.strategyForTokenVerify(initTokenVerify);
 
 /**
  * Authenticate user inputed username and password
@@ -35,17 +47,14 @@ passport.use('local-login', new Strategy({
  */
 exports.login = (req, res, next) => {
   let _user = req.user;
-  let _token = jwt.sign({
-    id: _user.id
-  }, 'frontcore');
+  let _userInfo = new User();
+
+  let _token = _userInfo.generateToken(_user.id);
 
   _user = _.pick(req.user, 'username', 'firstName', 'lastName', 'email', 'welcomeTo', 'createdOn', 'updatedOn');
   _user.token = _token;
 
-  res.status(200).json({
-    "acknowledge": true,
-    "user": _user
-  });
+  res.status(200).json(_user);
 };
 
 /**

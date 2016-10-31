@@ -1,6 +1,5 @@
-import passport from 'passport';
-import { Strategy } from 'passport-local';
 import User from '../models/user.model';
+import Strategy from '../utils/strategy.utils';
 
 let initRegister = (req, username, password, callback) => {
   let _reqPayload = req.body;
@@ -32,9 +31,8 @@ let initRegister = (req, username, password, callback) => {
   });
 };
 
-passport.use("local-register", new Strategy({
-   passReqToCallback: true
-}, initRegister));
+let strategy = new Strategy();
+strategy.strategyForCreateUser(initRegister);
 
 /**
  * Add user profile information
@@ -56,6 +54,8 @@ exports.setProfile = (req, res, next) => {
  */
 exports.getProfile = (req, res, next) => {
   let _reqPayload = req.body;
+
+  console.log('Session 2: ', req.session);
 
   User.findOne({ "username": _reqPayload.username }, 'firstName lastName email username welcomeTo createdOn updatedOn', (error, user) => {
     if (error) {
