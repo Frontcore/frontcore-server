@@ -14,7 +14,6 @@ import passport from 'passport';
  */
 import STACK_CONFIG from '../config/stack.conf';
 import MONGO_CONFIG from '../config/mongo.conf';
-import { ErrorHandler } from './utils/error.utils';
 import { MongoDB } from './utils/mongodb.utils';
 
 /**
@@ -136,11 +135,7 @@ app.use('/api/' + STACK_CONFIG.api.defaults.version + '/lint', require('./routes
  * Router error handling with ErrorHander class
  */
 app.use((error, req, res, next) => {
-  let eHandlerRes = new ErrorHandler(error);
-  eHandlerRes = eHandlerRes.getErrorMessage();
-  console.log('eHandlerRes: ', eHandlerRes);
-
-  res.status(500).json(!eHandlerRes ? {} : eHandlerRes);
+  res.status(500).json(!error ? {} : error);
 });
 
 module.exports = app;
