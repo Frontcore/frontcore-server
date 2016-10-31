@@ -11,7 +11,6 @@ let router = express.Router();
  * @param {Function} next - next() function
  */
 router.post('/profile', passport.authenticate('jwt'), (req, res, next) => {
-  console.log('GET USER Profile');
   return UserCtrl.getProfile(req, res, next);
 });
 

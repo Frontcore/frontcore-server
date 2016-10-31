@@ -1,11 +1,5 @@
 import _ from 'underscore';
 import User from '../models/user.model';
-import Strategy from '../utils/strategy.utils';
-
-let strategy = new Strategy({
-  'userModel': User
-});
-strategy.authStrategy();
 
 /**
  * Authenticate user inputed username and password

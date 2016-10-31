@@ -6,17 +6,13 @@ const secret = 'frontcore';
 
 class Strategy {
 
-  constructor(props) {
-    this.userModel = props.userModel;
-  }
-
-  authStrategy() {
+  authStrategy(User) {
     let options = {};
     options.jwtFromRequest = ExtractJwt.fromAuthHeader();
     options.secretOrKey = secret;
 
     passport.use(new JwtStrategy(options, function(jwt_payload, callback) {
-      this.userModel.findOne({id: jwt_payload.id}, function(error, user) {
+      User.findOne({id: jwt_payload.id}, function(error, user) {
         if (error) {
           return callback(error, false);
         }
@@ -27,7 +23,7 @@ class Strategy {
       });
     }));
   }
-  
+
 };
 
 module.exports = Strategy;

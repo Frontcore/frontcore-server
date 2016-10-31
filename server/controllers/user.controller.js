@@ -1,4 +1,8 @@
 import User from '../models/user.model';
+import Strategy from '../utils/strategy.utils';
+
+let strategy = new Strategy();
+strategy.authStrategy(User);
 
 /**
  * Add user profile information
@@ -50,16 +54,11 @@ exports.setProfile = (req, res, next) => {
 exports.getProfile = (req, res, next) => {
   let _reqPayload = req.body;
 
-  console.log(_reqPayload);
-
   User.findOne({ "username": _reqPayload.username }, 'firstName lastName email username welcomeTo createdOn updatedOn', (error, user) => {
     if (error) {
-      console.log(error);
-
       return next(error);
     }
 
-    console.log(user);
     res.status(200).json(user);
   });
 
