@@ -1,31 +1,11 @@
-import passport from 'passport';
-import { Strategy } from 'passport-local';
-import jwt from 'jsonwebtoken';
 import _ from 'underscore';
 import User from '../models/user.model';
+import Strategy from '../utils/strategy.utils';
 
-let initLogin = (req, username, password, callback) => {
-  User.findOne({ username: username }, (error, userInfo) => {
-
-    if (error) {
-      return callback(null, error);
-    }
-
-    if (!userInfo) {
-      return callback(null, false);
-    }
-
-    if (!userInfo.validatePassword(password, userInfo.password)) {
-      return callback(null, error);
-    }
-
-    return callback(null, userInfo);
-  });
-};
-
-passport.use('local-login', new Strategy({
-   passReqToCallback: true
-}, initLogin));
+let strategy = new Strategy({
+  'userModel': User
+});
+strategy.authStrategy();
 
 /**
  * Authenticate user inputed username and password
@@ -34,17 +14,43 @@ passport.use('local-login', new Strategy({
  * @param {Function} next - next() function
  */
 exports.login = (req, res, next) => {
-  let _user = req.user;
-  let _token = jwt.sign({
-    id: _user.id
-  }, 'frontcore');
+  let _reqPayload = req.body;
 
-  _user = _.pick(req.user, 'username', 'firstName', 'lastName', 'email', 'welcomeTo', 'createdOn', 'updatedOn');
-  _user.token = _token;
+  User.findOne({ "username": _reqPayload.username }, (error, _user) => {
+    if (error) {
+      return next(error);
+    }
 
-  res.status(200).json({
-    "acknowledge": true,
-    "user": _user
+    if (!_user) {
+      res.status(200).json({
+        "success": false,
+        "message": "Authenticate failed. User not found."
+      });
+    }
+
+    _user.comparePassword(_reqPayload.password, (error, isMatch) => {
+      if (error) {
+        return next(error);
+      }
+
+      if (isMatch) {
+        let _userInfo = _.pick(req.user, 'username', 'firstName', 'lastName', 'email', 'welcomeTo', 'createdOn', 'updatedOn');
+        let _token = _user.generateToken(_user.id);
+
+        _userInfo.token = 'JWT ' + _token; // Specific format to passport-jwt 'JWT Token_String'
+
+        res.status(200).json({
+          "success": true,
+          "user": _userInfo
+        });
+      } else {
+        res.status(200).json({
+          "success": false,
+          "message": "Authenticate failed. Password did not match."
+        });
+      }
+    });
+
   });
 };
 

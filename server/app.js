@@ -1,12 +1,5 @@
-/**
- * Requires a in-built utility functions;
- */
 import path from 'path';
 import fs from 'fs';
-
-/**
- * Requires a 3rd party utility functions;
- */
 import express from 'express';
 import session from 'express-session';
 import morgan from 'morgan';
@@ -15,7 +8,6 @@ import compression from 'compression';
 import winston from 'winston';
 import helmet from 'helmet';
 import passport from 'passport';
-import { LocalStrategy } from 'passport-local';
 
 /**
  * Requires a constants utility functions;
@@ -131,14 +123,14 @@ switch (NODE_ENV.toLowerCase()) {
  * Syntax:
  * app.use('/api/<version>/<root-route-name>', require('./routes/<version>/<api-file>'));
  */
+app.use('/api/' + STACK_CONFIG.api.defaults.version + '/auth', require('./routes/' + STACK_CONFIG.api.defaults.version + '/user/authenticate.api'));
+app.use('/api/' + STACK_CONFIG.api.defaults.version + '/user', require('./routes/' + STACK_CONFIG.api.defaults.version + '/user/user.api'));
 app.use('/api/' + STACK_CONFIG.api.defaults.version + '/upload', require('./routes/' + STACK_CONFIG.api.defaults.version + '/upload/upload.api'));
 app.use('/api/' + STACK_CONFIG.api.defaults.version + '/project', require('./routes/' + STACK_CONFIG.api.defaults.version + '/project/project.api'));
 app.use('/api/' + STACK_CONFIG.api.defaults.version + '/projects', require('./routes/' + STACK_CONFIG.api.defaults.version + '/projects/projects.api'));
 app.use('/api/' + STACK_CONFIG.api.defaults.version + '/browse', require('./routes/' + STACK_CONFIG.api.defaults.version + '/browse/browse.api'));
 app.use('/api/' + STACK_CONFIG.api.defaults.version + '/browse', require('./routes/' + STACK_CONFIG.api.defaults.version + '/browse/content.api'));
 app.use('/api/' + STACK_CONFIG.api.defaults.version + '/lint', require('./routes/' + STACK_CONFIG.api.defaults.version + '/lints/eslint.api'));
-app.use('/api/' + STACK_CONFIG.api.defaults.version + '/user', require('./routes/' + STACK_CONFIG.api.defaults.version + '/user/user.api'));
-app.use('/api/' + STACK_CONFIG.api.defaults.version + '/auth', require('./routes/' + STACK_CONFIG.api.defaults.version + '/user/authenticate.api'));
 
 /**
  * Router error handling with ErrorHander class
@@ -146,8 +138,9 @@ app.use('/api/' + STACK_CONFIG.api.defaults.version + '/auth', require('./routes
 app.use((error, req, res, next) => {
   let eHandlerRes = new ErrorHandler(error);
   eHandlerRes = eHandlerRes.getErrorMessage();
+  console.log('eHandlerRes: ', eHandlerRes);
 
-  res.status(eHandlerRes.status).json(eHandlerRes.response);
+  res.status(500).json(!eHandlerRes ? {} : eHandlerRes);
 });
 
 module.exports = app;

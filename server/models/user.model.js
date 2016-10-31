@@ -1,7 +1,9 @@
 import mongoose from 'mongoose';
-import bcrypt from 'bcrypt-nodejs';
+import bcrypt from 'bcrypt';
+import jwt from 'jsonwebtoken';
 
 let Schema = mongoose.Schema;
+let secret = 'frontcore';
 
 /**
  * User schema
@@ -12,18 +14,51 @@ let userSchema = new Schema({
   "email": { type: String, required: true, unique: true },
   "username": { type: String, required: true, unique: true },
   "password": { type: String , required: true },
-  "welcomeTo": { type: Boolean, required: true, default: false },
+  "welcomeTo": { type: Boolean, required: true, default: true },
   "createdOn": { type: Date, require: true, default: Date.now },
-  "updatedOn": { type: Date, require: true, default: Date.now },
-  "token": { type: String, required: true }
+  "updatedOn": { type: Date, require: true, default: Date.now }
 });
 
-userSchema.methods.hashPassword = (password) => {
-  return bcrypt.hashSync(password, bcrypt.genSaltSync());
+
+// note: the issue is your arrow function uses lexical this
+// https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Functions/Arrow_functions
+userSchema.pre('save', function(next) { // Problem with => way
+  let _user = this;
+
+  if (this.isModified('password') || this.isNew) {
+    bcrypt.genSalt(10, function(error, salt) {
+      if (error) {
+        return next(error);
+      }
+
+      bcrypt.hash(_user.password, salt, function(error, hash) {
+        if (error) {
+          return next(error);
+        }
+        _user.password = hash;
+        next();
+      });
+    });
+  } else {
+    return next();
+  }
+});
+
+userSchema.methods.comparePassword = function(password, callback) {
+  bcrypt.compare(password, this.password, function(error, isMatch) {
+    if (error) {
+      return callback(error);
+    }
+    callback(null, isMatch);
+  });
 };
 
-userSchema.methods.validatePassword = (userPassword, dbPassword, callback) => {
-  return bcrypt.compareSync(userPassword, dbPassword);
+userSchema.methods.generateToken = (user) => {
+  return jwt.sign({
+    id: user.id
+  }, secret, {
+    expiresIn: '8h'
+  });
 };
 
 /**
