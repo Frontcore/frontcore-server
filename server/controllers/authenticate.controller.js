@@ -1,5 +1,10 @@
 import _ from 'underscore';
 import User from '../models/user.model';
+import msgUtils from '../utils/message.utils';
+
+let failureRes = {
+  "success": false
+};
 
 /**
  * Authenticate user inputed username and password
@@ -16,10 +21,8 @@ exports.login = (req, res, next) => {
     }
 
     if (!_user) {
-      res.status(200).json({
-        "success": false,
-        "message": "Authenticate failed. User not found."
-      });
+      failureRes.message = msgUtils.login.username;
+      return res.status(422).json(failureRes);
     }
 
     _user.comparePassword(_reqPayload.password, (error, isMatch) => {
@@ -38,10 +41,8 @@ exports.login = (req, res, next) => {
           "user": _userInfo
         });
       } else {
-        res.status(200).json({
-          "success": false,
-          "message": "Authenticate failed. Password did not match."
-        });
+        failureRes.message = msgUtils.login.password;
+        return res.status(401).json(failureRes);
       }
     });
 

@@ -4,6 +4,10 @@ import Strategy from '../utils/strategy.utils';
 let strategy = new Strategy();
 strategy.authStrategy(User);
 
+let failureRes = {
+  "success": false
+};
+
 /**
  * Add user profile information
  * @param {Object} req - request object
@@ -19,10 +23,8 @@ exports.setProfile = (req, res, next) => {
     }
 
     if (user) {
-      res.status(200).json({
-        "success": false,
-        "message": "The username already exists."
-      });
+      failureRes.message = msgUtils.register.username;
+      return res.status(422).json(failureRes);
     }
 
     let _newUser = new User();
@@ -37,10 +39,8 @@ exports.setProfile = (req, res, next) => {
         return next(error);
       }
 
-      res.status(200).json({
-        "success": true,
-        "message": "The user has been created successfully."
-      });
+      failureRes.message = msgUtils.register.created;
+      return res.status(200).json(failureRes);
     });
   });
 };
