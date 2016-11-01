@@ -13,6 +13,7 @@ import Feedback from '../views/Feedback/Feedback.jsx';
 import Rules from '../views/Rules/Rules.jsx';
 import RulesContent from '../views/Rules/RulesContent.jsx';
 import ErrorPage from '../views/ErrorPage/PageNotFound.jsx';
+import Profile from '../views/Settings/Profile.jsx';
 import Connection from '../views/Settings/Connection.jsx';
 import Notifications from '../views/Settings/Notifications.jsx';
 import SSHkey from '../views/Settings/SSHkey.jsx';
@@ -49,7 +50,8 @@ const Routes = (
           <Route path = "content" component = {RulesContent} />
         </Route>
         <Route path = "settings" component = {Settings}>
-          <IndexRedirect to = "/settings/dbconnect" />
+          <IndexRedirect to = "/settings/profile" />
+					<Route path = "profile" component = {Profile} />
           <Route path = "dbconnect" component = {Connection} />
           <Route path = "notifications" component = {Notifications} />
           <Route path = "sshkey" component = {SSHkey} />
