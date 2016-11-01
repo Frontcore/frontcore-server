@@ -1,5 +1,3 @@
-'use strict';
-
 import React from 'react';
 import ReactDOM from 'react-dom';
 import { Button, Panel, Form, FormGroup, FormControl, ControlLabel, Radio, Checkbox } from 'react-bootstrap';

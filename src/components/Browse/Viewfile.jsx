@@ -1,5 +1,3 @@
-'use strict';
-
 import React from 'react';
 import { Panel } from 'react-bootstrap';
 import brace from 'brace';

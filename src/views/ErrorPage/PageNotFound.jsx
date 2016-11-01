@@ -1,10 +1,6 @@
-'use strict';
-
 import React from 'react';
 import { Link } from 'react-router';
-
 import pageNotFoundImg  from '../../assets/imgs/page-not-found.png';
-
 import './PageNotFound.less';
 
 class PageNotFound extends React.Component {

@@ -1,5 +1,3 @@
-'use strict';
-
 import React from 'react';
 import JavaScriptRules from '../../components/Rules/JavaScriptRules.jsx';
 

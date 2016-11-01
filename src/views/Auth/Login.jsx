@@ -135,7 +135,7 @@ class Login extends React.Component {
                   <Checkbox>Keep me logged in</Checkbox>
                 </FormGroup>
                 <Button type="submit" bsStyle="primary" onClick={this.onLoginSubmit}>Login</Button>
-                <Link to="forgotpwd" className="btn btn-default pull-right">Forgot Password?</Link>
+                <a href="//github.com/Frontcore/frontcore-documentation" target="_blank" className="btn btn-success pull-right">Help</a>
               </Form>
             </PanelBox>
           </div>
