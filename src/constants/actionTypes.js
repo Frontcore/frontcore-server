@@ -3,3 +3,4 @@ export const BROWSE_RES_POST = 'BROWSE_RES_POST';
 export const GET_PROJECT_INFO = 'GET_PROJECT_INFO';
 export const CREATE_PROJECT = 'CREATE_PROJECT';
 export const LOAD_RULES = 'LOAD_RULES';
+export const AUTHENTICATE = 'AUTHENTICATE';
