@@ -12,6 +12,11 @@ import Validate from '../../utils/validation';
 import './Login.less';
 
 class Login extends React.Component {
+
+  static contextTypes = {
+    router: React.PropTypes.object
+  }
+
   constructor(props) {
     super(props);
 
@@ -29,6 +34,10 @@ class Login extends React.Component {
     this.check = new Validate();
   }
 
+  componentDidMount() {
+    this.primaryFocus();
+  }
+
   componentWillReceiveProps(nextProps) {
     if (!nextProps.authenticate.success) {
       this.alertMsg = (
@@ -41,15 +50,16 @@ class Login extends React.Component {
         shouldAlert: true
       });
     } else {
-      console.log('Success Authentication');
       if (nextProps.authenticate.success) {
-        console.log('Received Token: ', nextProps.authenticate.user.token);
+        this.context.router.push('/');
       }
     }
   }
 
-  componentDidMount() {
-    this.primaryFocus();
+  componentWillUpdate(nextProps) {
+    if(!nextProps.authenticate.success) {
+      this.context.router.push('/');
+    }
   }
 
   primaryFocus() {
