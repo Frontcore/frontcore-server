@@ -131,9 +131,6 @@ class Login extends React.Component {
                   <ControlLabel>Password</ControlLabel>
                   <FormControl id="password" ref="password" onFocus={this.resetState} type="password" placeholder="Enter your frontcore password" />
                 </FormGroup>
-                <FormGroup>
-                  <Checkbox>Keep me logged in</Checkbox>
-                </FormGroup>
                 <Button type="submit" bsStyle="primary" onClick={this.onLoginSubmit}>Login</Button>
                 <a href="//github.com/Frontcore/frontcore-documentation" target="_blank" className="btn btn-success pull-right">Help</a>
               </Form>
