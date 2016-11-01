@@ -1,7 +1,4 @@
-'use strict';
-
 import React from 'react';
-
 import EventEmitter from '../../utils/eventEmitter';
 import { Link } from 'react-router';
 import SettingsSidebar from './SettingsSidebar.jsx';

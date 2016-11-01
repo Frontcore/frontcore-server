@@ -1,5 +1,3 @@
-'use strict';
-
 import React from 'react';
 import './Toolbar.less';
 import { ButtonGroup, Button } from 'react-bootstrap';

@@ -1,5 +1,3 @@
-'use strict';
-
 import React from 'react';
 import Highcharts from 'highcharts';
 import { Panel } from 'react-bootstrap';

@@ -1,6 +1,10 @@
-import React from 'react';
+import React, { PropTypes } from 'react';
 import ReactDOM from 'react-dom';
 import { Link } from 'react-router';
+import { connect } from 'react-redux';
+import { bindActionCreators } from 'redux';
+import _ from 'underscore';
+import * as authenticateActions from '../../actions/authenticateActions';
 import PanelBox from '../../components/PanelBox/PanelBox.jsx';
 import AlertBox from '../../components/AlertBox/AlertBox.jsx';
 import { Form, FormControl, FormGroup, ControlLabel, Button, Checkbox } from 'react-bootstrap';
@@ -25,6 +29,25 @@ class Login extends React.Component {
     this.check = new Validate();
   }
 
+  componentWillReceiveProps(nextProps) {
+    if (!nextProps.authenticate.success) {
+      this.alertMsg = (
+        <div>
+          <h4><i className="fa fa-lg fa-exclamation-circle" aria-hidden="true"></i> Authentication Error</h4>
+          <p>{nextProps.authenticate.message}</p>
+        </div>
+      );
+      this.setState({
+        shouldAlert: true
+      });
+    } else {
+      console.log('Success Authentication');
+      if (nextProps.authenticate.success) {
+        console.log('Received Token: ', nextProps.authenticate.user.token);
+      }
+    }
+  }
+
   componentDidMount() {
     this.primaryFocus();
   }
@@ -36,28 +59,34 @@ class Login extends React.Component {
   onLoginSubmit(e) {
     e.preventDefault();
 
-    const username = ReactDOM.findDOMNode(this.refs.username).value;
-    const password = ReactDOM.findDOMNode(this.refs.password).value;
+    const _username = ReactDOM.findDOMNode(this.refs.username).value;
+    const _password = ReactDOM.findDOMNode(this.refs.password).value;
 
-    if (!this.check.isEmpty(username) && !this.check.isEmpty(password)) {
+    /**
+     * Check if username and password are empty
+     */
+    if (!this.check.isEmpty(_username) || !this.check.isEmpty(_password)) {
 
-      let unameConstraints = {
+      let _unameConstraints = {
         username: { length: { minimum: 5 } }
       };
 
-      let unameEl = {
-        username: username
+      let _unameEl = {
+        username: _username
       };
 
-      let pwdConstraints = {
+      let _pwdConstraints = {
         password: { length: { minimum: 8 } }
       };
 
-      let pwdEl = {
-        password: password
+      let _pwdEl = {
+        password: _password
       };
 
-      if (!this.check.isMinLenExpected(unameEl, unameConstraints) && !this.check.isMinLenExpected(pwdEl, pwdConstraints)) {
+      /**
+       * Check if username and password full-fills minimum characters condition
+       */
+      if (!this.check.isMinLenExpected(_unameEl, _unameConstraints) || !this.check.isMinLenExpected(_pwdEl, _pwdConstraints)) {
         this.alertMsg = (
           <div>
             <h4><i className="fa fa-lg fa-exclamation-circle" aria-hidden="true"></i> Application Error</h4>
@@ -68,22 +97,13 @@ class Login extends React.Component {
           shouldAlert: true
         });
       } else {
-        // Todo: temp condition, will be removed later on
-        if (username === "temp" && password === "temp") {
-          this.setState({
-            shouldAlert: false
-          });
-        } else {
-          this.alertMsg = (
-            <div>
-              <h4><i className="fa fa-lg fa-exclamation-circle" aria-hidden="true"></i> Authentication Error</h4>
-              <p>Username or password seems to be incorrect. Please try again!</p>
-            </div>
-          );
-          this.setState({
-            shouldAlert: true
-          });
-        }
+        /**
+         * Hit action and verify provided credentials with server
+         */
+        this.props.actions.isAuthenticate({
+          "username": _username,
+          "password": _password
+        });
       }
     } else {
       this.alertMsg = (
@@ -99,9 +119,11 @@ class Login extends React.Component {
   }
 
   resetState() {
-    this.setState({
-      shouldAlert: false
-    });
+    if (this.state.shouldAlert) {
+      this.setState({
+        shouldAlert: false
+      });
+    }
   }
 
   render() {
@@ -125,17 +147,14 @@ class Login extends React.Component {
               <Form>
                 <FormGroup>
                   <ControlLabel>Username</ControlLabel>
-                  <FormControl id="username" ref="username" onFocus={this.resetState} onBlur={this.hasMinExpectedLength} type="text" placeholder="Enter your frontcore username" />
+                  <FormControl id="username" ref="username" onBlur={this.resetState} type="text" placeholder="Enter your frontcore username" />
                 </FormGroup>
                 <FormGroup>
                   <ControlLabel>Password</ControlLabel>
-                  <FormControl id="password" ref="password" onFocus={this.resetState} type="password" placeholder="Enter your frontcore password" />
-                </FormGroup>
-                <FormGroup>
-                  <Checkbox>Keep me logged in</Checkbox>
+                  <FormControl id="password" ref="password" onBlur={this.resetState} type="password" placeholder="Enter your frontcore password" />
                 </FormGroup>
                 <Button type="submit" bsStyle="primary" onClick={this.onLoginSubmit}>Login</Button>
-                <Link to="forgotpwd" className="btn btn-default pull-right">Forgot Password?</Link>
+                <a href="//github.com/Frontcore/frontcore-documentation" target="_blank" className="btn btn-success pull-right">Help</a>
               </Form>
             </PanelBox>
           </div>
@@ -145,4 +164,20 @@ class Login extends React.Component {
   }
 };
 
-export default Login;
+Login.propTypes = {
+  actions: PropTypes.object.isRequired
+};
+
+function mapStateToProps(state, ownProps) {
+  return {
+    authenticate: state.authenticate
+  };
+}
+
+function mapDispatchToProps(dispatch) {
+  return {
+    actions: bindActionCreators(authenticateActions, dispatch)
+  };
+}
+
+export default connect(mapStateToProps, mapDispatchToProps)(Login);
