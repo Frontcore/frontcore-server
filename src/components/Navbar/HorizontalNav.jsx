@@ -48,6 +48,9 @@ class HorizontalMenu extends React.Component {
               <MenuItem divider />
               <MenuItem eventKey={5.3} href="#feedback">Feedback</MenuItem>
             </NavDropdown>
+            <Navbar.Text pullRight>
+              Welcome, <i className="fa fa-lg fa-user" aria-hidden="true"></i> <Link to="/settings/profile">Ashwin Hegde</Link>
+            </Navbar.Text>
           </Nav>
         </Navbar.Collapse>
       </Navbar>
