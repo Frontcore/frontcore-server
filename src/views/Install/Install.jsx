@@ -1,12 +1,15 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
-import { IndexLink, browserHistory } from 'react-router';
 import { Navbar, Nav, NavDropdown, MenuItem, ButtonToolbar, Button } from 'react-bootstrap';
 import HorizontalNav from '../../components/Navbar/HorizontalNav.jsx';
 import EventEmitter from '../../utils/eventEmitter';
 import './Install.less';
 
 export default class Install extends React.Component {
+  static contextTypes = {
+    router: React.PropTypes.object
+  }
+
   constructor(props) {
     super(props);
 
@@ -34,8 +37,7 @@ export default class Install extends React.Component {
     this.setState({
       step: 'database'
     });
-    browserHistory.push('#/install/database');
-    window.location.reload(); // Temp hack, will remove it soon
+    this.context.router.push('/install/database');
   }
 
   render() {
