@@ -1,5 +1,4 @@
 import React from 'react';
-import ReactDOM from 'react-dom';
 import EventEmitter from '../../utils/eventEmitter';
 
 export default class License extends React.Component {
@@ -9,8 +8,8 @@ export default class License extends React.Component {
     this.hasUserAgreed = this.hasUserAgreed.bind(this);
   }
 
-  hasUserAgreed(e) {
-    let agreed = (e.currentTarget.value === 'true') ? true : false;
+  hasUserAgreed(event) {
+    let agreed = (event.currentTarget.value === 'true') ? true : false;
     EventEmitter.emit('should-continue-enable', agreed);
   }
 
