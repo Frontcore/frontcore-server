@@ -1,5 +1,4 @@
 import React from 'react';
-import ReactDOM from 'react-dom';
 import { Navbar, Nav, NavDropdown, MenuItem, ButtonToolbar, Button } from 'react-bootstrap';
 import HorizontalNav from '../../components/Navbar/HorizontalNav.jsx';
 import EventEmitter from '../../utils/eventEmitter';
@@ -14,18 +13,17 @@ export default class Install extends React.Component {
     super(props);
 
     this.state = {
-      step: 'license',
       shouldContinueEnable: false
     };
 
     this.redirectTo = this.redirectTo.bind(this);
   }
 
-  componentWillMount() {
-    EventEmitter.on('should-continue-enable', (shouldContinueEnable = false) => {
+  componentDidMount() {
+    EventEmitter.on('should-continue-enable', (shouldContinueEnable) => {
       this.setState({
         shouldContinueEnable: shouldContinueEnable
-      })
+      });
     });
   }
 
@@ -34,18 +32,10 @@ export default class Install extends React.Component {
   }
 
   redirectTo() {
-    this.setState({
-      step: 'database'
-    });
     this.context.router.push('/install/database');
   }
 
   render() {
-    let disable = true;
-    if(this.state.shouldContinueEnable) {
-      disable = false;
-    }
-
     return (
       <div>
         <HorizontalNav />
@@ -60,7 +50,7 @@ export default class Install extends React.Component {
           </div>
           <hr/>
           <ButtonToolbar className="pull-right">
-            <Button type="button" className="next-step" disabled={disable} bsStyle="primary" onClick={this.redirectTo}>Continue</Button>
+            <Button type="button" className="next-step" disabled={!this.state.shouldContinueEnable} bsStyle="primary" onClick={this.redirectTo}>Continue</Button>
           </ButtonToolbar>
         </div>
       </div>
