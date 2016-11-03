@@ -1,12 +1,23 @@
 import React from 'react';
-import EventEmitter from '../../utils/eventEmitter';
+import ReactDOM from 'react-dom';
+import AlertBox from '../../components/AlertBox/AlertBox.jsx';
 import { Form, FormControl, FormGroup, ControlLabel, Button, Checkbox } from 'react-bootstrap';
 
 class Database extends React.Component {
   constructor(props) {
     super(props);
 
-    EventEmitter.emit('should-continue-enable', true);
+    this.alertMsg = null;
+
+    this.primaryFocus = this.primaryFocus.bind(this);
+  }
+
+  componentDidMount() {
+    this.primaryFocus();
+  }
+
+  primaryFocus() {
+    ReactDOM.findDOMNode(this.refs.firstName).focus();
   }
 
   render() {
@@ -15,7 +26,7 @@ class Database extends React.Component {
         <div className="container database-component">
           <div className="row">
             <div className="col-md-12">
-              <h5>You must fill up the before you can install and setup user and database for this software.</h5>
+              <h5>Please fill up below form for setup user and database to complete.</h5>
             </div>
           </div>
           <div className="row">
