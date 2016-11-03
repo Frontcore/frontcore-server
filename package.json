@@ -8,13 +8,14 @@
     "start:prod": "NODE_ENV=production babel-node ./server/server.js",
     "start:cluster": "NODE_ENV=production NODE_DEBUG=cluster babel-node ./server/cluster.js",
     "start:nodemon": "nodemon ./server/server.js --exec babel-node --presets es2015",
-    "bundle": "webpack -d --watch",
-    "build": "webpack -p",
+		"start:debug": "NODE_ENV=development babel-node --debug-brk ./server/server.js",
+		"dist:clean": "rimraf dist",
+    "bundle": "npm run dist:clean && webpack -d --watch",
+    "build": "npm run dist:clean && webpack -p",
     "test": "mocha && jest --no-cache && jest --coverage",
     "jest": "jest --no-cache",
-    "coverage": "jest --coverage",
-    "nspcheck": "nsp check",
-    "debug": "NODE_ENV=development babel-node --debug-brk ./server/server.js"
+    "coverage": "npm run dist:clean && jest --coverage",
+    "nspcheck": "nsp check"
   },
   "dependencies": {
     "babel-relay-plugin": "^0.9.3",
@@ -104,6 +105,7 @@
     "react-addons-test-utils": "^15.0.1",
     "react-test-renderer": "^15.3.2",
     "redux-devtools": "^3.2.0",
+    "rimraf": "^2.5.4",
     "sinon": "^1.17.5",
     "style-loader": "^0.13.1",
     "supertest": "^2.0.1",
