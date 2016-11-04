@@ -7,8 +7,6 @@ export default class Validation {
 	}
 
 	isMinLenExpected(...params) {
-		// console.log(params[0]);
-		// console.log(Object.keys(params[0]));
 		if (!validate(params[0], params[1])) {
 			return true;
 		}
