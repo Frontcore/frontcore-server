@@ -55,13 +55,7 @@ class Login extends React.Component {
       }
     }
   }
-
-  componentWillUpdate(nextProps) {
-    if(!nextProps.authenticate.success) {
-      this.context.router.push('/');
-    }
-  }
-
+  
   primaryFocus() {
     ReactDOM.findDOMNode(this.refs.username).focus();
   }
