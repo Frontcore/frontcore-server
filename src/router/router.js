@@ -22,8 +22,6 @@ import Updates from '../views/Settings/Updates.jsx';
 import Dashboard from '../views/Dashboard/Dashboard.jsx';
 import BrowseFs from '../views/BrowseFs/BrowseFs.jsx';
 import Install from '../views/Install/Install.jsx';
-import License from '../views/Install/License.jsx';
-import Database from '../views/Install/Database.jsx';
 import Login from '../views/Auth/Login.jsx';
 import ForgotPassword from '../views/Auth/ForgotPassword.jsx';
 
@@ -34,11 +32,7 @@ const store = storeConfig();
 const Routes = (
   <Provider store={store}>
     <Router history={appHistory}>
-      <Route path = "install" component = {Install}>
-        <IndexRedirect to = "/install/license" />
-        <Route path = "license" component = {License} />
-        <Route path = "database" component = {Database} />
-      </Route>
+      <Route path = "install" component = {Install} />
       <Route path = "login" component = {Login} />
       <Route path = "forgotpwd" component = {ForgotPassword} />
       <Route path = "/" component = {App}>
