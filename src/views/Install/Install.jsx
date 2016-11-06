@@ -18,9 +18,18 @@ export default class Install extends React.Component {
   }
 
   stepShouldChange() {
-    let _hasValidateFunc = (typeof this.refs.agree.validate) ? true : false;
-    if (_hasValidateFunc && this.refs.agree.validate()) {
+    let _hasValidateFunc = (typeof this.refs.agree.validate === 'function') ? true : false;
+
+    /**
+     * If no validate function found then its assumed no form validation exist for
+     * that particular step.
+     */
+    if (!_hasValidateFunc) {
       return true;
+    } else {
+      if (this.refs.agree.validate()) {
+        return true;
+      }
     }
     return false;
   }
