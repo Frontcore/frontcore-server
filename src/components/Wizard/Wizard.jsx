@@ -33,6 +33,7 @@ export default class Wizard extends React.Component {
       this.setState({
         currentStep: _stepCounter
       });
+      this.props.onStepChange();
     }
   }
 
@@ -93,8 +94,6 @@ export default class Wizard extends React.Component {
 
     return (
       <div className="container install-wizard">
-        <h2 className="text-primary">Welcome to the Frontcore <sup><small>v0.0.0 Alpha</small></sup> setup wizard.</h2>
-        <h4>This wizard guides you through installing initial user and database setup.</h4>
         <div className="row">
           {
             this.childContainer(currentStep, _children)
@@ -111,7 +110,8 @@ export default class Wizard extends React.Component {
 
 Wizard.propTypes = {
   currentStep: React.PropTypes.number,
-  stepShouldChange: React.PropTypes.func
+  stepShouldChange: React.PropTypes.func,
+  onStepChange: React.PropTypes.func,
 };
 
 Step.defaultProps = {

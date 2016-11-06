@@ -19,7 +19,7 @@ export default class License extends React.Component {
         <div className="container license-component">
           <div className="row">
             <div className="col-md-12">
-              <h5>Be sure to carefully read and understand all the rights and restrictions described in the license terms. You must accept the license terms before you can install and setup user and database for this software.</h5>
+              <h5>Be sure to carefully read and understand all the rights and restrictions described in the license terms. You must accept the license terms before you can install and setup user account and database.</h5>
             </div>
           </div>
 
@@ -45,7 +45,7 @@ export default class License extends React.Component {
               </pre>
               <div className="radio">
                 <label>
-                  <input type="radio" ref="agree" name="agreement" class="agree" value="true"/>
+                  <input type="radio" name="agreement" class="agree" value="true"/>
                   I have read and accept the license terms.
                 </label>
               </div>
