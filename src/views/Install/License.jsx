@@ -45,7 +45,7 @@ export default class License extends React.Component {
               </pre>
               <div className="radio">
                 <label>
-                  <input type="radio" name="agreement" class="agree" value="true"/>
+                  <input type="radio" ref="agree" name="agreement" class="agree" value="true"/>
                   I have read and accept the license terms.
                 </label>
               </div>
