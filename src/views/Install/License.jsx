@@ -1,16 +1,16 @@
 import React from 'react';
-import EventEmitter from '../../utils/eventEmitter';
+import ReactDOM from 'react-dom';
 
 export default class License extends React.Component {
   constructor(props) {
     super(props);
 
-    this.hasUserAgreed = this.hasUserAgreed.bind(this);
+    this.validate = this.validate.bind(this);
   }
 
-  hasUserAgreed(event) {
-    let agreed = (event.currentTarget.value === 'true') ? true : false;
-    EventEmitter.emit('should-continue-enable', agreed);
+  validate() {
+    let _hasUserAgreed = ReactDOM.findDOMNode(this).querySelectorAll("input[name=agreement]");
+    return _hasUserAgreed[0].checked;
   }
 
   render() {
@@ -45,13 +45,13 @@ export default class License extends React.Component {
               </pre>
               <div className="radio">
                 <label>
-                  <input type="radio" name="iagree" onChange={this.hasUserAgreed} value="true"/>
+                  <input type="radio" name="agreement" class="agree" value="true"/>
                   I have read and accept the license terms.
                 </label>
               </div>
               <div className="radio">
                 <label>
-                  <input type="radio" name="iagree" onChange={this.hasUserAgreed} value="false"/>
+                  <input type="radio" name="agreement" class="disagree" value="false"/>
                   I do not accept the license terms.
                 </label>
               </div>
