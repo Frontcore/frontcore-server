@@ -15,16 +15,14 @@ export default class Install extends React.Component {
       hasValidateFail: false
     };
     this.stepShouldChange = this.stepShouldChange.bind(this);
-    this.onStepChange = this.onStepChange.bind(this);
   }
 
   stepShouldChange() {
-    console.log("LOG: Install => Step Should Change");
-    return true;
-  }
-
-  onStepChange(_stepCounter) {
-    console.log('_stepCounter: ', _stepCounter);
+    let _hasValidateFunc = (typeof this.refs.agree.validate) ? true : false;
+    if (_hasValidateFunc && this.refs.agree.validate()) {
+      return true;
+    }
+    return false;
   }
 
   render() {
@@ -33,7 +31,7 @@ export default class Install extends React.Component {
         <HorizontalNav />
         <Wizard currentStep={1} stepShouldChange={this.stepShouldChange} onStepChange={this.onStepChange}>
           <Step stepNavigation="License">
-            <License/>
+            <License ref="agree"/>
           </Step>
           <Step stepNavigation="Database">
             <Database/>
