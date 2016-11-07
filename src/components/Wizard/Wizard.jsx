@@ -24,6 +24,7 @@ export default class Wizard extends React.Component {
     this.goNext = this.goNext.bind(this);
     this.goPrevious = this.goPrevious.bind(this);
     this.changeStep = this.changeStep.bind(this);
+    this.goFinish = this.goFinish.bind(this);
     this.wizardButtons = this.wizardButtons.bind(this);
     this.childContainer = this.childContainer.bind(this);
   }
@@ -45,6 +46,10 @@ export default class Wizard extends React.Component {
   goPrevious() {
     let _stepCounter = this.state.currentStep - 1;
     this.changeStep(_stepCounter);
+  }
+
+  goFinish() {
+    this.changeStep(this.state.currentStep);
   }
 
   wizardButtons(_currentStep, _stepLength) {
