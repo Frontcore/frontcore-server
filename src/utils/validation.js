@@ -13,4 +13,11 @@ export default class Validation {
 		return false;
 	}
 
+	isEmail(...params) {
+		if (!validate(params[0], params[1])) {
+			return true;
+		}
+		return false;
+	}
+
 };

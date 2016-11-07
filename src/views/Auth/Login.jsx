@@ -24,7 +24,7 @@ class Login extends React.Component {
 
     this.onLoginSubmit = this.onLoginSubmit.bind(this);
     this.primaryFocus = this.primaryFocus.bind(this);
-    this.resetState = this.resetState.bind(this);
+    this.resetAlertState = this.resetAlertState.bind(this);
 
     this.state = {
       shouldAlert: false,
@@ -55,7 +55,7 @@ class Login extends React.Component {
       }
     }
   }
-  
+
   primaryFocus() {
     ReactDOM.findDOMNode(this.refs.username).focus();
   }
@@ -94,7 +94,7 @@ class Login extends React.Component {
         this.alertMsg = (
           <div>
             <h4><i className="fa fa-lg fa-exclamation-circle" aria-hidden="true"></i> Application Error</h4>
-            <p>Username should be minimum 5 characters and Password should be minimum 8 characters</p>
+            <p>Username must be minimum 5 characters and Password must be minimum 8 characters</p>
           </div>
         );
         this.setState({
@@ -122,7 +122,7 @@ class Login extends React.Component {
     }
   }
 
-  resetState() {
+  resetAlertState() {
     if (this.state.shouldAlert) {
       this.setState({
         shouldAlert: false
@@ -135,7 +135,7 @@ class Login extends React.Component {
       <p title="Frontcore v0.0.0 Alpha"><i className="fa fa-lg fa-sign-in" aria-hidden="true"></i> <strong>Login to Frontcore <sup><small>v0.0.0 Alpha</small></sup></strong></p>
     );
 
-    const shouldAlert = this.state.shouldAlert;
+    const { shouldAlert } = this.state;
     const alertMsg = this.alertMsg;
 
     return (
@@ -151,11 +151,11 @@ class Login extends React.Component {
               <Form>
                 <FormGroup>
                   <ControlLabel>Username</ControlLabel>
-                  <FormControl id="username" ref="username" onBlur={this.resetState} type="text" placeholder="Enter your frontcore username" />
+                  <FormControl id="username" ref="username" onBlur={this.resetAlertState} type="text" placeholder="Enter your frontcore username" />
                 </FormGroup>
                 <FormGroup>
                   <ControlLabel>Password</ControlLabel>
-                  <FormControl id="password" ref="password" onBlur={this.resetState} type="password" placeholder="Enter your frontcore password" />
+                  <FormControl id="password" ref="password" onBlur={this.resetAlertState} type="password" placeholder="Enter your frontcore password" />
                 </FormGroup>
                 <Button type="submit" bsStyle="primary" onClick={this.onLoginSubmit}>Login</Button>
                 <a href="//github.com/Frontcore/frontcore-documentation" target="_blank" className="btn btn-success pull-right">Help</a>
