@@ -35,23 +35,18 @@ describe('Validation utility module', () => {
   });
 
   describe('method to check email is correct', () => {
-    let _validation = {};
     let _emailFormatConstraints = {};
     let _emailEl = {};
 
     beforeEach(() => {
-      _validation = new Validation();
-
       _emailFormatConstraints = {
         email: {
           email: true
         }
       };
-
     });
 
     afterEach(() => {
-      _validation = {};
       _emailFormatConstraints = {};
       _emailEl = {};
     });
