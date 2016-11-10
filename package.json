@@ -113,7 +113,7 @@
     "webpack": "^1.13.2"
   },
   "jest": {
-    "scriptPreprocessor": "./node_modules/babel-jest",
+    "scriptPreprocessor": "./jest-preprocessor",
     "moduleFileExtensions": [
       "js",
       "json",
