@@ -91,4 +91,45 @@ describe('Validation utility module', () => {
       expect(_validation.isEmail(_emailEl, _emailFormatConstraints)).toBe(true);
     });
   });
+
+  describe('method to check minimum length is correct', () => {
+    let _unameConstraints = {};
+    let _unameEl = {};
+
+    beforeEach(() => {
+      _unameConstraints = {
+        username: { length: { minimum: 5 } }
+      };
+    });
+
+    afterEach(() => {
+      _unameConstraints = {};
+      _unameEl = {};
+    });
+
+    it('check that username "" is satisfying minimum 5', () => {
+      _unameEl = {
+        username: ""
+      };
+
+      expect(_validation.isMinLenExpected(_unameEl, _unameConstraints)).toBe(true);
+    });
+
+    it('check that username "ashwin" is satisfying minimum 5', () => {
+      _unameEl = {
+        username: "ashwin"
+      };
+
+      expect(_validation.isMinLenExpected(_unameEl, _unameConstraints)).toBe(true);
+    });
+
+    it('check that username "ash" is satisfying minimum 5', () => {
+      _unameEl = {
+        username: "ash"
+      };
+
+      expect(_validation.isMinLenExpected(_unameEl, _unameConstraints)).toBe(false);
+    });
+  });
+
 });
