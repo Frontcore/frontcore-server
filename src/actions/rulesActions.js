@@ -15,4 +15,4 @@ export function loadRules() {
         console.error(error);
       });
   };
-};
+}

@@ -26,4 +26,4 @@ export function getProjectInfo(project) {
         console.error(error);
       });
   };
-};
+}

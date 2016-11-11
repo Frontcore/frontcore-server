@@ -25,4 +25,4 @@ export function browseProjectDir(browse) {
       console.error(error);
     });
   };
-};
+}
