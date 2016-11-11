@@ -11,4 +11,4 @@ export default function rulesReducer(state = [], action) {
       return state;
   }
 
-};
+}
