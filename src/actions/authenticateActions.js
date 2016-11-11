@@ -26,4 +26,4 @@ export function isAuthenticate(credentials) {
         console.error(error);
       });
   };
-};
+}

@@ -1,6 +1,6 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
-import ReactTestUtils from 'react-addons-test-utils'
+import ReactTestUtils from 'react-addons-test-utils';
 import AlertBox from '../AlertBox.jsx';
 
 describe('<AlertBox /> component', function() {
@@ -20,8 +20,9 @@ describe('<AlertBox /> component', function() {
   });
 
 	it('should output a danger alert type', function() {
+		let _showAlert = true;
 		let _instance = ReactTestUtils.renderIntoDocument(
-			<AlertBox type="danger" showAlert={true}>
+			<AlertBox type="danger" showAlert={_showAlert}>
 				Hello World
 			</AlertBox>
 		);
@@ -29,8 +30,9 @@ describe('<AlertBox /> component', function() {
 	});
 
 	it('should output a success alert type', function() {
+		let _showAlert = true;
 		let _instance = ReactTestUtils.renderIntoDocument(
-			<AlertBox type="success" showAlert={true}>
+			<AlertBox type="success" showAlert={_showAlert}>
 				Hello World
 			</AlertBox>
 		);

@@ -11,4 +11,4 @@ export default function myProjectsReducer(state = [], action) {
       return state;
   }
 
-};
+}

@@ -11,4 +11,4 @@ export default function browseReducer(state = [], action) {
       return state;
   }
 
-};
+}
