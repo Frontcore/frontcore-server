@@ -13,6 +13,13 @@ export default class Validation {
 		return false;
 	}
 
+	isMaxLenExpected(...params) {
+		if (!validate(params[0], params[1])) {
+			return true;
+		}
+		return false;
+	}
+
 	isEmail(...params) {
 		if (!validate(params[0], params[1])) {
 			return true;
