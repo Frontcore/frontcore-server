@@ -1,5 +1,3 @@
-'use strict';
-
 import path from 'path';
 import fs from 'fs';
 
@@ -59,4 +57,4 @@ exports.getDirectoryTree = function directoryTree (projPath, deepScan, extension
 		return null;
 	}
 	return item;
-}
+};

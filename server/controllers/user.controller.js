@@ -1,5 +1,6 @@
 import User from '../models/user.model';
 import Strategy from '../utils/strategy.utils';
+import msgUtils from '../utils/message.utils';
 
 let strategy = new Strategy();
 strategy.authStrategy(User);
