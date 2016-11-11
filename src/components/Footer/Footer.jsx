@@ -1,9 +1,7 @@
 import React from 'react';
-import ReactDOM from 'react-dom';
-
 import './Footer.less';
 
-class Footer extends React.Component {
+export default class Footer extends React.Component {
   render() {
     return (
       <footer>
@@ -21,5 +19,3 @@ class Footer extends React.Component {
     );
   }
 };
-
-export default Footer;

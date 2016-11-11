@@ -1,7 +1,7 @@
 import React from 'react';
-import { Panel, DropdownButton, MenuItem } from 'react-bootstrap';
+import { Panel } from 'react-bootstrap';
 
-class PanelBox extends React.Component {
+export dfault class PanelBox extends React.Component {
   constructor(props) {
     super(props);
   }
@@ -31,5 +31,3 @@ class PanelBox extends React.Component {
     )
   }
 };
-
-export default PanelBox;

@@ -1,5 +1,4 @@
 import React from 'react';
-import ReactDOM from 'react-dom';
 import AlertBox from '../AlertBox/AlertBox.jsx';
 import './Notification.less';
 

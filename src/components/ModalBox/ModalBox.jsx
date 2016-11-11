@@ -1,7 +1,7 @@
 import React from 'react';
 import { Modal, Button } from 'react-bootstrap';
 
-class ModalBox extends React.Component {
+export default class ModalBox extends React.Component {
   render() {
     return (
       <Modal {...this.props} bsSize="large">
@@ -18,5 +18,3 @@ class ModalBox extends React.Component {
     );
   }
 };
-
-export default ModalBox;
