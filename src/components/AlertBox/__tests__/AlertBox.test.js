@@ -5,6 +5,11 @@ import AlertBox from '../AlertBox.jsx';
 
 describe('<AlertBox /> component', function() {
 
+	it('should alert exist', function() {
+		let _instance = ReactTestUtils.renderIntoDocument(<AlertBox />);
+		expect(ReactTestUtils.isCompositeComponent(_instance)).toBeTruthy();
+	});
+
   it('should output a alert with message', function() {
     let _instance = ReactTestUtils.renderIntoDocument(
       <AlertBox>
