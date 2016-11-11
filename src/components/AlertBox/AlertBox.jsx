@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { PropTypes } from 'react';
 import ReactDOM from 'react-dom';
 import { Alert } from 'react-bootstrap';
 
@@ -33,4 +33,9 @@ export default class AlertBox extends React.Component {
       </Alert>
     );
   }
+};
+
+AlertBox.propTypes = {
+  type: React.PropTypes.string,
+  showAlert: React.PropTypes.bool
 };
