@@ -132,4 +132,36 @@ describe('Validation utility module', () => {
     });
   });
 
+	describe('method to check maximum length is correct', () => {
+    let _unameConstraints = {};
+    let _unameEl = {};
+
+    beforeEach(() => {
+      _unameConstraints = {
+        username: { length: { maximum: 20 } }
+      };
+    });
+
+    afterEach(() => {
+      _unameConstraints = {};
+      _unameEl = {};
+    });
+
+    it('check that username "the text is more than 19 characters" is satisfying maximum 20', () => {
+      _unameEl = {
+        username: "the text is more than 19 characters"
+      };
+
+      expect(_validation.isMaxLenExpected(_unameEl, _unameConstraints)).toBe(false);
+    });
+
+    it('check that username "some short text" is satisfying maximum 20', () => {
+      _unameEl = {
+        username: "some short text"
+      };
+
+      expect(_validation.isMaxLenExpected(_unameEl, _unameConstraints)).toBe(true);
+    });
+  });
+
 });
