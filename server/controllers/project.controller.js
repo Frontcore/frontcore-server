@@ -22,8 +22,8 @@ exports.create = (req, res, next) => {
 
     _reqFile.name = _fileNodes.name;
     _reqFile.version = _fileNodes.version;
-    _reqFile.description = _fileNodes.description,
-    _reqFile.location = _fileNodes.location
+    _reqFile.description = _fileNodes.description;
+    _reqFile.location = _fileNodes.location;
 
     let _entry = new Project(_reqFile);
 
