@@ -1,7 +1,7 @@
 import React from 'react';
 import { Panel } from 'react-bootstrap';
 
-export dfault class PanelBox extends React.Component {
+export default class PanelBox extends React.Component {
   constructor(props) {
     super(props);
   }
