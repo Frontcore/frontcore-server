@@ -8,4 +8,4 @@ module.exports = {
 		"port": 27017,
 		"database": "frontcoredb"
 	}
-};
+}

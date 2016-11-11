@@ -31,5 +31,4 @@ export class MongoDB {
     mongoose.connect(mongoConnectionURL);
     return mongoose;
   }
-
-};
+}
