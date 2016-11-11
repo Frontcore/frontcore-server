@@ -35,8 +35,8 @@ exports.getDirectoryTree = function directoryTree (projPath, deepScan, extension
 					.filter(e => !!e);
 			} else {
         item.children = fs.readdirSync(projPath)
-        	.map(child => directoryTree(path.join(projPath, child), false, extensions))
-          .filter(e => !!e);
+					.map(child => directoryTree(path.join(projPath, child), false, extensions))
+					.filter(e => !!e);
 			}
       if (!item.children.length) {
         return null;
