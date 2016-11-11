@@ -114,7 +114,7 @@
     "webpack": "^1.13.2"
   },
   "jest": {
-    "scriptPreprocessor": "./jest-preprocessor",
+    "scriptPreprocessor": "./config/jest.preprocessor.conf",
     "moduleFileExtensions": [
       "js",
       "json",
@@ -127,11 +127,7 @@
     "unmockedModulePathPatterns": [
       "react",
       "react-dom"
-    ],
-    "moduleNameMapper": {
-      "^.+\\.(jpg|jpeg|png)$": "src/__mocks__/fileMock.js",
-      "^.+\\.(css|less)$": "src/__mocks__/styleMock.js"
-    }
+    ]
   },
   "engines": {
     "node": ">=6.0.0"
