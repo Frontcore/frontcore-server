@@ -4,7 +4,7 @@ import './Breadcrumb.less';
 
 import EventEmitter from '../../utils/eventEmitter';
 
-class Breadcrumb extends React.Component {
+export default class Breadcrumb extends React.Component {
   constructor(props) {
     super(props);
 
@@ -44,6 +44,4 @@ class Breadcrumb extends React.Component {
       </ol>
     );
   }
-}
-
-export default Breadcrumb;
+};
