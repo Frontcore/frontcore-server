@@ -17,7 +17,7 @@
     "test:client": "jest",
     "test:coverage": "npm run coverage:clean && jest --coverage",
     "nspcheck": "nsp check",
-    "link:all": "eslint webpack.config.* config src server",
+    "lint:all": "eslint config src server",
     "lint:client": "eslint src",
     "lint:server": "eslint server"
   },

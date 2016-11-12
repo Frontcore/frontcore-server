@@ -1,5 +1,6 @@
 import React, { PropTypes } from 'react';
 import ReactDOM from 'react-dom';
+import cookie from 'react-cookie';
 import { Link } from 'react-router';
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
@@ -51,6 +52,9 @@ class Login extends React.Component {
       });
     } else {
       if (nextProps.authenticate.success) {
+        cookie.save('session', nextProps.authenticate.user.token, {
+          path: '/'
+        });
         this.context.router.push('/');
       }
     }
