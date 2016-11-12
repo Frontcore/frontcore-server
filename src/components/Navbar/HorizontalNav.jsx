@@ -23,16 +23,16 @@ class HorizontalMenu extends React.Component {
 
   render() {
     let _tools = (
-      <span><i className="fa fa-lg fa-cogs" aria-hidden="true"></i> Tools</span>
+      <span><i className="fa fa-lg fa-cogs" aria-hidden="true"></i> <span className="visible-xs-inline">Tools</span></span>
     );
     let _developers = (
-      <span><i className="fa fa-lg fa-connectdevelop" aria-hidden="true"></i> Developers</span>
+      <span><i className="fa fa-lg fa-connectdevelop" aria-hidden="true"></i> <span className="visible-xs-inline">Developers</span></span>
     );
     let _help = (
-      <span><i className="fa fa-lg fa-life-ring" aria-hidden="true"></i> Help</span>
+      <span><i className="fa fa-lg fa-life-ring" aria-hidden="true"></i> <span className="visible-xs-inline">Help</span></span>
     );
     let _user = (
-      <span><i className="fa fa-lg fa-user" aria-hidden="true"></i> Ashwin Hegde</span>
+      <span><i className="fa fa-lg fa-user" aria-hidden="true"></i> <span className="visible-xs-inline">Logged in as Ashwin Hegde</span></span>
     );
     return (
       <Navbar>
@@ -51,10 +51,10 @@ class HorizontalMenu extends React.Component {
             </NavDropdown>
           </Nav>
           <Nav pullRight>
-            <NavDropdown className="navbar-right" eventKey={6} title={_user}>
-              <MenuItem eventKey={6.1} href="#settings/profile">Visit Profile</MenuItem>
+            <NavDropdown className="navbar-right" eventKey={3} title={_user}>
+              <MenuItem eventKey={3.1} href="#settings/profile">Your Profile</MenuItem>
               <MenuItem divider />
-              <MenuItem eventKey={6.2} onClick={this.logout}>Logout</MenuItem>
+              <MenuItem eventKey={3.2} onClick={this.logout}>Logout</MenuItem>
             </NavDropdown>
             <NavDropdown className="navbar-right" eventKey={4} title={_developers}>
               <MenuItem eventKey={4.1} href="//github.com/Frontcore/frontcore" target="_blank">Github Home Page</MenuItem>
@@ -72,7 +72,7 @@ class HorizontalMenu extends React.Component {
               <MenuItem eventKey={5.2} href="//github.com/Frontcore/frontcore/wiki" target="_blank">Documentation</MenuItem>
               <MenuItem divider />
               <MenuItem eventKey={5.3} href="#feedback">Feedback</MenuItem>
-            </NavDropdown>            
+            </NavDropdown>
           </Nav>
         </Navbar.Collapse>
       </Navbar>
