@@ -1,6 +1,6 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
-import cookie from 'react-cookie';
+import Cookie from '../../utils/cookie';
 import { IndexLink, Link } from 'react-router';
 import { Navbar, Nav, NavItem, NavDropdown, MenuItem, FormGroup, FormControl, Button } from 'react-bootstrap';
 
@@ -12,12 +12,16 @@ class HorizontalMenu extends React.Component {
   constructor(props) {
     super(props);
 
+    this.cookie = new Cookie();
     this.logout = this.logout.bind(this);
   }
 
   logout(e) {
     e.preventDefault();
-    cookie.remove('session', { path: '/' });
+    let _options = {
+      path: '/'
+    };
+    this.cookie.delete('session', _options);
     this.context.router.push('/login');
   }
 

@@ -1,6 +1,5 @@
 import React, { PropTypes } from 'react';
 import ReactDOM from 'react-dom';
-import cookie from 'react-cookie';
 import { Link } from 'react-router';
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
@@ -10,6 +9,7 @@ import PanelBox from '../../components/PanelBox/PanelBox.jsx';
 import AlertBox from '../../components/AlertBox/AlertBox.jsx';
 import { Form, FormControl, FormGroup, ControlLabel, Button, Checkbox } from 'react-bootstrap';
 import Validate from '../../utils/validation';
+import Cookie from '../../utils/cookie';
 import './Login.less';
 
 class Login extends React.Component {
@@ -33,6 +33,7 @@ class Login extends React.Component {
     };
 
     this.check = new Validate();
+    this.cookie = new Cookie();
   }
 
   componentDidMount() {
@@ -52,9 +53,10 @@ class Login extends React.Component {
       });
     } else {
       if (nextProps.authenticate.success) {
-        cookie.save('session', nextProps.authenticate.user.token, {
+        let _options = {
           path: '/'
-        });
+        };
+        this.cookie.create('session', nextProps.authenticate.user.token, _options);
         this.context.router.push('/');
       }
     }
