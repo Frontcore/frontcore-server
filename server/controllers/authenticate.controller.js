@@ -34,7 +34,10 @@ exports.login = (req, res, next) => {
         let _userInfo = _.pick(req.user, 'username', 'firstName', 'lastName', 'email', 'welcomeTo', 'createdOn', 'updatedOn');
         let _token = _user.generateToken(_user.id);
 
-        _userInfo.token = 'JWT ' + _token; // Specific format to passport-jwt 'JWT Token_String'
+        /**
+         * Specific format to passport-jwt 'JWT Token_String'
+         */
+        _userInfo.token = 'JWT ' + _token;
 
         res.status(200).json({
           "success": true,
