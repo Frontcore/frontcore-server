@@ -22,7 +22,6 @@
     "lint:server": "eslint server"
   },
   "dependencies": {
-    "babel-relay-plugin": "^0.9.3",
     "bcrypt": "^0.8.7",
     "body-parser": "^1.15.0",
     "bootstrap": "^3.3.6",
@@ -36,11 +35,9 @@
     "eslint": "^2.6.0",
     "events": "^1.1.0",
     "express": "^4.13.4",
-    "express-graphql": "^0.5.4",
     "express-session": "^1.14.1",
     "font-awesome": "^4.6.3",
     "fuse.js": "^2.5.0",
-    "graphql": "^0.7.0",
     "helmet": "^2.1.2",
     "highcharts": "^4.2.5",
     "history": "^2.0.1",
@@ -63,7 +60,6 @@
     "react-dom": "^15.3.2",
     "react-dropzone": "^3.5.1",
     "react-redux": "^4.4.5",
-    "react-relay": "^0.9.3",
     "react-router": "^2.2.4",
     "react-tap-event-plugin": "^1.0.0",
     "react-treebeard": "^1.1.2",
