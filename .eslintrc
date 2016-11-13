@@ -21,6 +21,9 @@
     "jasmine": true,
     "jest": true
   },
+  "settings": {
+    "import/extensions": ["js", "jsx"]
+  },
   "rules": {
     "quotes": 0,
     "no-console": 0,
