@@ -1,6 +1,6 @@
 import Cookie from './cookie';
 
-expect default class Auth {
+export default class Auth {
   constructor() {
     this.cookie = new Cookie();
   }
@@ -30,5 +30,13 @@ expect default class Auth {
 
   logout() {
     this.cookie.delete('session', { path: '/' });
+  }
+
+  redirectToLogin(nextState, replace) {
+    console.log('R Login: ', nextState);
+  }
+
+  redirectToSetup(nextState, replace) {
+    console.log('R Setup: ', nextState);
   }
 };
