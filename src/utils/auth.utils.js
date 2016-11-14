@@ -21,22 +21,8 @@ export default class Auth {
     return true;
   }
 
-  isLoggedOut() {
-    if (!this.cookie.read('session')) {
-      return true;
-    }
-    return false;
-  }
-
   logout() {
     this.cookie.delete('session', { path: '/' });
-  }
-
-  redirectToLogin(nextState, replace) {
-    console.log('R Login: ', nextState);
-  }
-
-  redirectToSetup(nextState, replace) {
-    console.log('R Setup: ', nextState);
+    return true;
   }
 };
