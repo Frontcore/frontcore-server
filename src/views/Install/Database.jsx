@@ -1,7 +1,7 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 import AlertBox from '../../components/AlertBox/AlertBox.jsx';
-import Validate from '../../utils/validation';
+import Validate from '../../utils/validation.utils';
 import { Form, FormControl, FormGroup, ControlLabel, Button, Checkbox } from 'react-bootstrap';
 
 class Database extends React.Component {

@@ -8,8 +8,8 @@ import * as authenticateActions from '../../actions/authenticateActions';
 import PanelBox from '../../components/PanelBox/PanelBox.jsx';
 import AlertBox from '../../components/AlertBox/AlertBox.jsx';
 import { Form, FormControl, FormGroup, ControlLabel, Button, Checkbox } from 'react-bootstrap';
-import Validate from '../../utils/validation';
-import Cookie from '../../utils/cookie';
+import Validate from '../../utils/validation.utils';
+import Cookie from '../../utils/cookie.utils';
 import './Login.less';
 
 class Login extends React.Component {
