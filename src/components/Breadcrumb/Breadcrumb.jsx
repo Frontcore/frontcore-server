@@ -1,8 +1,7 @@
 import React from 'react';
 import { Link } from 'react-router';
 import './Breadcrumb.less';
-
-import EventEmitter from '../../utils/eventEmitter';
+import EventEmitter from '../../utils/eventEmitter.utils';
 
 export default class Breadcrumb extends React.Component {
   constructor(props) {

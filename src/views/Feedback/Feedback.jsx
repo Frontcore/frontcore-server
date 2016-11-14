@@ -1,8 +1,6 @@
-'use strict';
-
 import React from 'react';
 import ReactDOM from 'react-dom';
-import EventEmitter from '../../utils/eventEmitter';
+import EventEmitter from '../../utils/eventEmitter.utils';
 
 class Feeback extends React.Component {
   componentDidMount() {

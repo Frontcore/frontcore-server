@@ -1,5 +1,5 @@
 import React from 'react';
-import EventEmitter from '../../utils/eventEmitter';
+import EventEmitter from '../../utils/eventEmitter.utils';
 import { Link } from 'react-router';
 import SettingsSidebar from './SettingsSidebar.jsx';
 

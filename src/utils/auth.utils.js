@@ -1,4 +1,4 @@
-import Cookie from './cookie';
+import Cookie from './cookie.utils';
 
 export default class Auth {
   constructor() {

@@ -1,5 +1,5 @@
 import React, { PropTypes } from 'react';
-import EventEmitter from '../../utils/eventEmitter';
+import EventEmitter from '../../utils/eventEmitter.utils';
 import TotalIssues from '../../components/TotalIssues/TotalIssues.jsx';
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
