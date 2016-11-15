@@ -14,10 +14,6 @@ import './Login.less';
 
 class Login extends React.Component {
 
-  static contextTypes = {
-    router: React.PropTypes.object
-  }
-
   constructor(props) {
     super(props);
 
@@ -56,8 +52,9 @@ class Login extends React.Component {
         let _options = {
           path: '/'
         };
+
         this.cookie.create('session', nextProps.authenticate.user.token, _options);
-        this.context.router.push('/');
+        this.props.history.replace('/');
       }
     }
   }
