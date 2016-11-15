@@ -1,7 +1,7 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 import Auth from '../../utils/auth.utils';
-import Cookie from '../../utils/cookie';
+import Cookie from '../../utils/cookie.utils';
 import { IndexLink, Link } from 'react-router';
 import { Navbar, Nav, NavItem, NavDropdown, MenuItem, FormGroup, FormControl, Button } from 'react-bootstrap';
 

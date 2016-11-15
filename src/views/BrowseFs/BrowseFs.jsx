@@ -1,5 +1,5 @@
 import React from 'react';
-import EventEmitter from '../../utils/eventEmitter';
+import EventEmitter from '../../utils/eventEmitter.utils';
 import Browse from '../../components/Browse/Browse.jsx';
 import FileReader from '../../components/FileReader/FileReader.jsx';
 

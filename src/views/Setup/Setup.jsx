@@ -1,5 +1,5 @@
 import React from 'react';
-import EventEmitter from '../../utils/eventEmitter';
+import EventEmitter from '../../utils/eventEmitter.utils';
 import MyProjects from '../../components/MyProjects/MyProjects.jsx';
 import CreateProject from '../../components/CreateProject/CreateProject.jsx';
 import WelcomeModal from './Welcome.jsx';
