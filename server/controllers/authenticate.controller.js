@@ -59,7 +59,10 @@ exports.login = (req, res, next) => {
  * @param {Function} next - next() function
  */
 exports.logout = (req, res, next) => {
-  // todo - coming soon
+  res.header('Cache-Control', 'no-cache, private, no-store, must-revalidate, max-stale=0, post-check=0, pre-check=0');
+  res.status(200).json({
+    "success": true
+  });
 };
 
 /**

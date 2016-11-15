@@ -52,7 +52,6 @@ class Login extends React.Component {
         let _options = {
           path: '/'
         };
-
         this.cookie.create('session', nextProps.authenticate.user.token, _options);
         this.props.history.replace('/');
       }
@@ -107,7 +106,7 @@ class Login extends React.Component {
         /**
          * Hit action and verify provided credentials with server
          */
-        this.props.actions.isAuthenticate({
+        this.props.actions.login({
           "username": _username,
           "password": _password
         });

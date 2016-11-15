@@ -1,5 +1,8 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
+import { connect } from 'react-redux';
+import { bindActionCreators } from 'redux';
+import * as authenticateActions from '../../actions/authenticateActions';
 import Auth from '../../utils/auth.utils';
 import Cookie from '../../utils/cookie.utils';
 import { IndexLink, Link } from 'react-router';
@@ -21,6 +24,7 @@ class HorizontalMenu extends React.Component {
 
   logout(e) {
     e.preventDefault();
+    this.props.actions.logout();
     if (this.auth.logout()) {
       this.context.router.push('/login');
     }
@@ -105,4 +109,16 @@ class HorizontalMenu extends React.Component {
   }
 };
 
-export default HorizontalMenu;
+function mapStateToProps(state, ownProps) {
+  return {
+    authenticate: state.authenticate
+  };
+}
+
+function mapDispatchToProps(dispatch) {
+  return {
+    actions: bindActionCreators(authenticateActions, dispatch)
+  };
+}
+
+export default connect(mapStateToProps, mapDispatchToProps)(HorizontalMenu);

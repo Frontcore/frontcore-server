@@ -32,28 +32,19 @@ const store = storeConfig();
 let auth = new Auth();
 
 function shouldRedirectToLogin(nextState, replace) {
-  console.log('nextState: ', nextState);
-  console.log('auth.isLoggedIn(): ', auth.isLoggedIn());
-
   if (!auth.isLoggedIn()) {
-    console.log('LOG: Redirect to Login');
     replace({
       pathname: '/login',
       state: { nextPathname: nextState.location.pathname }
     })
-  } else {
-    console.log('LOG: Already Logged In, Re-direct to Home');
   }
 }
 
 function shouldRedirectToHome(nextState, replace) {
   if (auth.isLoggedIn()) {
-    console.log('LOG: Redirect to Home');
     replace({
       pathname: '/'
     })
-  } else {
-    console.log('LOG: Re--direct to Login');
   }
 }
 
