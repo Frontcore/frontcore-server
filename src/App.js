@@ -2,7 +2,6 @@ import React, { PropTypes } from 'react';
 
 import HorizontalNav from './components/Navbar/HorizontalNav.jsx';
 import AlertBox from './components/AlertBox/AlertBox.jsx';
-import Breadcrumb from './components/Breadcrumb/Breadcrumb.jsx';
 import Footer from './components/Footer/Footer.jsx';
 import Notification from './components/Notification/Notification.jsx';
 
@@ -19,11 +18,6 @@ class App extends React.Component {
 				<Notification />
         <HorizontalNav />
         <div className="container">
-          <AlertBox type="danger">
-            <h4>Oh snap! You got an error!</h4>
-            <p>Change this and that and try again. Duis mollis, est non commodo luctus</p>
-          </AlertBox>
-          <Breadcrumb/>
           <section className="sub-container">
             <div className="row">
               <div className="col-md-12">
