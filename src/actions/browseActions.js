@@ -1,7 +1,7 @@
 import * as types from '../constants/actionTypes';
 import fetch from 'isomorphic-fetch';
 
-function browsePostRes(browse, json) {
+function _browsePostRes(browse, json) {
   return {
     type: types.BROWSE_RES_POST,
     browse,
@@ -19,7 +19,7 @@ export function browseProjectDir(browse) {
       body: JSON.stringify(browse)
     }).then(res => {
       res.json().then((data) => {
-         dispatch(browsePostRes(browse, data));
+         dispatch(_browsePostRes(browse, data));
       });
     }).catch(error => {
       console.error(error);

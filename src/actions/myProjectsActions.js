@@ -17,7 +17,7 @@ export function loadMyProjects() {
   };
 }
 
-function createProjectPostRes(config, json) {
+function _createProjectPostRes(config, json) {
   return {
     type: types.CREATE_PROJECT,
     config,
@@ -35,7 +35,7 @@ export function createProject(config) {
       body: JSON.stringify(config)
     }).then(res => {
       res.json().then(() => {
-        dispatch(createProjectPostRes(config));
+        dispatch(_createProjectPostRes(config));
       });
     }).catch(error => {
       console.error(error);
