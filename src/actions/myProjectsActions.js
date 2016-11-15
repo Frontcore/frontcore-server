@@ -1,9 +1,11 @@
 import * as types from '../constants/actionTypes';
+import HTTPHeaders from '../utils/headers.utils';
+import service from '../utils/apiUrls.utils';
 import fetch from 'isomorphic-fetch';
 
 export function loadMyProjects() {
   return (dispatch) => {
-    fetch('/api/v1/projects/list')
+    fetch(service.api.v1 + service.path.projects.list)
       .then(res => {
         res.json().then((myProjects) => {
           dispatch({
@@ -27,11 +29,9 @@ function _createProjectPostRes(config, json) {
 
 export function createProject(config) {
   return (dispatch) => {
-    fetch('/api/v1/upload/config/file', {
+    fetch(service.api.v1 + service.path.project.create, {
       method: 'post',
-      header: {
-        'Content-Type': 'application/json;charset=UTF-8'
-      },
+      header: HTTPHeaders.ContentType,
       body: JSON.stringify(config)
     }).then(res => {
       res.json().then(() => {
