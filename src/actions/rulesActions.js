@@ -1,4 +1,5 @@
 import * as types from '../constants/actionTypes';
+import HTTPHeaders from '../utils/headers.utils';
 import fetch from 'isomorphic-fetch';
 
 export function loadRules() {

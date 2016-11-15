@@ -1,4 +1,5 @@
 import * as types from '../constants/actionTypes';
+import HTTPHeaders from '../utils/headers.utils';
 import fetch from 'isomorphic-fetch';
 
 function _projectInfoPostRes(project, json) {
@@ -13,10 +14,7 @@ export function getProjectInfo(project) {
   return (dispatch) => {
     fetch('/api/v1/project/info', {
       method: 'post',
-      headers: {
-        'Accept': 'application/json',
-        'Content-Type': 'application/json; charset=utf-8'
-      },
+      headers: HTTPHeaders.ContentType,
       body: JSON.stringify(project)
     }).then(res => {
         res.json().then((data) => {

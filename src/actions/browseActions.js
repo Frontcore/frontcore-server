@@ -1,4 +1,5 @@
 import * as types from '../constants/actionTypes';
+import HTTPHeaders from '../utils/headers.utils';
 import fetch from 'isomorphic-fetch';
 
 function _browsePostRes(browse, json) {
@@ -13,9 +14,7 @@ export function browseProjectDir(browse) {
   return (dispatch) => {
     fetch('/api/v1/browse/project/files', {
       method: 'post',
-      headers: {
-        'Content-Type': 'application/json;charset=UTF-8'
-      },
+      headers: HTTPHeaders.ContentType,
       body: JSON.stringify(browse)
     }).then(res => {
       res.json().then((data) => {

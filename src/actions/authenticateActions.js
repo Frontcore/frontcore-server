@@ -1,26 +1,31 @@
 import * as types from '../constants/actionTypes';
+import HTTPHeaders from '../utils/headers.utils';
+import service from '../utils/apiUrls.utils';
 import fetch from 'isomorphic-fetch';
 
-function _loginPostRes(credentials, json) {
+function _loginPostRes(_isAuthenticated) {
 	return {
     type: types.LOGIN,
-    credentials,
-    posts: json
+    isAuthenticated: _isAuthenticated
   };
 }
 
-export function login(credentials) {
+function _logoutPostRes(_isLoggedOut) {
+	return {
+		type: types.LOGOUT,
+		isLoggedOut: _isLoggedOut
+	};
+}
+
+export function login(_credentials) {
 	return (dispatch) => {
-    fetch('/api/v1/auth/login', {
+    fetch(service.api.v1 + service.path.auth.login, {
       method: 'post',
-      headers: {
-        'Accept': 'application/json',
-        'Content-Type': 'application/json; charset=utf-8'
-      },
-      body: JSON.stringify(credentials)
+      headers: HTTPHeaders.ContentType,
+      body: JSON.stringify(_credentials)
     }).then((res) => {
-        res.json().then((data) => {
-					dispatch(_loginPostRes(credentials, data));
+        res.json().then((_isAuthenticated) => {
+					dispatch(_loginPostRes(_isAuthenticated));
         });
       }).catch((error) => {
         console.error(error);
@@ -28,24 +33,14 @@ export function login(credentials) {
   };
 }
 
-function _logoutPostRes(json) {
-	return {
-		type: types.LOGOUT,
-		posts: json
-	};
-}
-
 export function logout() {
 	return (dispatch) => {
-		fetch('/api/v1/auth/logout', {
+		fetch(service.api.v1 + service.path.auth.logout, {
 			method: 'post',
-			headers: {
-				'Accept': 'application/json',
-        'Content-Type': 'application/json; charset=utf-8'
-			}
+			headers: HTTPHeaders.ContentType
 		}).then(res => {
-			res.json().then((data) => {
-				dispatch(_logoutPostRes(data));
+			res.json().then((_isLoggedOut) => {
+				dispatch(_logoutPostRes(_isLoggedOut));
 			});
 		}).catch((error) => {
 			console.error(error);

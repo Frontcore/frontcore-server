@@ -1,4 +1,5 @@
 import * as types from '../constants/actionTypes';
+import HTTPHeaders from '../utils/headers.utils';
 import fetch from 'isomorphic-fetch';
 
 export function loadMyProjects() {
@@ -29,9 +30,7 @@ export function createProject(config) {
   return (dispatch) => {
     fetch('/api/v1/upload/config/file', {
       method: 'post',
-      header: {
-        'Content-Type': 'application/json;charset=UTF-8'
-      },
+      header: HTTPHeaders.ContentType,
       body: JSON.stringify(config)
     }).then(res => {
       res.json().then(() => {
