@@ -1,5 +1,5 @@
 import React from 'react';
-
+import Auth from '../utils/auth.utils';
 import { Router, Route, IndexRoute, useRouterHistory, IndexRedirect } from 'react-router';
 import { createHashHistory } from 'history';
 
@@ -29,13 +29,41 @@ import storeConfig from '../store/storeConfig';
 import { Provider } from 'react-redux';
 const store = storeConfig();
 
+let auth = new Auth();
+
+function shouldRedirectToLogin(nextState, replace) {
+  console.log('nextState: ', nextState);
+  console.log('auth.isLoggedIn(): ', auth.isLoggedIn());
+
+  if (!auth.isLoggedIn()) {
+    console.log('LOG: Redirect to Login');
+    replace({
+      pathname: '/login',
+      state: { nextPathname: nextState.location.pathname }
+    })
+  } else {
+    console.log('LOG: Already Logged In, Re-direct to Home');
+  }
+}
+
+function shouldRedirectToHome(nextState, replace) {
+  if (auth.isLoggedIn()) {
+    console.log('LOG: Redirect to Home');
+    replace({
+      pathname: '/'
+    })
+  } else {
+    console.log('LOG: Re--direct to Login');
+  }
+}
+
 const Routes = (
   <Provider store={store}>
     <Router history={appHistory}>
       <Route path = "install" component = {Install} />
-      <Route path = "login" component = {Login} />
+      <Route path = "login" component = {Login} onEnter={shouldRedirectToHome}/>
       <Route path = "forgotpwd" component = {ForgotPassword} />
-      <Route path = "/" component = {App}>
+      <Route path = "/" component = {App} onEnter={shouldRedirectToLogin}>
         <IndexRoute component = {Setup} />
         <Route path = "setup" component = {Setup} />
         <Route path = "feedback" component = {Feedback} />

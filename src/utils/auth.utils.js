@@ -22,7 +22,9 @@ export default class Auth {
   }
 
   logout() {
-    this.cookie.delete('session', { path: '/' });
+    this.cookie.delete('session', {
+      path: '/'
+    });
     return true;
   }
 };
