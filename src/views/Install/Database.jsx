@@ -17,17 +17,8 @@ class Database extends React.Component {
 
     this.check = new Validate();
 
-    this.primaryFocus = this.primaryFocus.bind(this);
     this.validate = this.validate.bind(this);
     this.resetAlertState = this.resetAlertState.bind(this);
-  }
-
-  componentDidMount() {
-    this.primaryFocus();
-  }
-
-  primaryFocus() {
-    ReactDOM.findDOMNode(this).querySelector("[name=firstName]").focus();
   }
 
   validate() {
@@ -148,7 +139,7 @@ class Database extends React.Component {
               <Form>
                 <FormGroup>
                   <ControlLabel>First name</ControlLabel>
-                  <FormControl name="firstName" onBlur={this.resetAlertState} type="text" placeholder="E.g. Ashwin" />
+                  <FormControl name="firstName" autoFocus={true} onBlur={this.resetAlertState} type="text" placeholder="E.g. Ashwin" />
                 </FormGroup>
                 <FormGroup>
                   <ControlLabel>Last name</ControlLabel>
