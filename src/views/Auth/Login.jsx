@@ -3,7 +3,6 @@ import ReactDOM from 'react-dom';
 import { Link } from 'react-router';
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
-import _ from 'underscore';
 import * as authenticateActions from '../../actions/authenticateActions';
 import PanelBox from '../../components/PanelBox/PanelBox.jsx';
 import AlertBox from '../../components/AlertBox/AlertBox.jsx';
@@ -20,7 +19,6 @@ class Login extends React.Component {
     this.alertMsg = null;
 
     this.onLoginSubmit = this.onLoginSubmit.bind(this);
-    this.primaryFocus = this.primaryFocus.bind(this);
     this.resetAlertState = this.resetAlertState.bind(this);
 
     this.state = {
@@ -30,10 +28,6 @@ class Login extends React.Component {
 
     this.check = new Validate();
     this.cookie = new Cookie();
-  }
-
-  componentDidMount() {
-    this.primaryFocus();
   }
 
   componentWillReceiveProps(nextProps) {
@@ -48,18 +42,12 @@ class Login extends React.Component {
         shouldAlert: true
       });
     } else {
-      if (nextProps.authenticate.success) {
-        let _options = {
-          path: '/'
-        };
-        this.cookie.create('session', nextProps.authenticate.user.token, _options);
-        this.props.history.replace('/');
-      }
+      let _options = {
+        path: '/'
+      };
+      this.cookie.create('session', nextProps.authenticate.user.token, _options);
+      this.props.history.replace('/');
     }
-  }
-
-  primaryFocus() {
-    ReactDOM.findDOMNode(this.refs.username).focus();
   }
 
   onLoginSubmit(e) {
@@ -153,7 +141,7 @@ class Login extends React.Component {
               <Form>
                 <FormGroup>
                   <ControlLabel>Username</ControlLabel>
-                  <FormControl id="username" ref="username" onBlur={this.resetAlertState} type="text" placeholder="Enter your frontcore username" />
+                  <FormControl id="username" ref="username" autoFocus={true} onBlur={this.resetAlertState} type="text" placeholder="Enter your frontcore username" />
                 </FormGroup>
                 <FormGroup>
                   <ControlLabel>Password</ControlLabel>
