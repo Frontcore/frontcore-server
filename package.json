@@ -19,7 +19,8 @@
     "nspcheck": "nsp check",
     "lint:all": "eslint config src server",
     "lint:client": "eslint src",
-    "lint:server": "eslint server"
+    "lint:server": "eslint server",
+		"lint:fix:all": "eslint --fix config src server"
   },
   "dependencies": {
     "bcrypt": "^0.8.7",
