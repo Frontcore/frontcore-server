@@ -12,4 +12,4 @@ export default class Cookie {
 	read(name) {
 		return cookie.load(name);
 	}
-};
+}

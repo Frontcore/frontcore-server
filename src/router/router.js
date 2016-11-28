@@ -36,7 +36,7 @@ function shouldRedirectToLogin(nextState, replace) {
     replace({
       pathname: '/login',
       state: { nextPathname: nextState.location.pathname }
-    })
+    });
   }
 }
 
@@ -44,7 +44,7 @@ function shouldRedirectToHome(nextState, replace) {
   if (auth.isLoggedIn()) {
     replace({
       pathname: '/'
-    })
+    });
   }
 }
 

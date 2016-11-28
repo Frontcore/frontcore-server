@@ -11,7 +11,7 @@ export default class Auth {
     if (!_sessionCookie) {
       return false;
     }
-    return _sessionCookie;;
+    return _sessionCookie;
   }
 
   isLoggedIn() {
@@ -27,4 +27,4 @@ export default class Auth {
     });
     return true;
   }
-};
+}

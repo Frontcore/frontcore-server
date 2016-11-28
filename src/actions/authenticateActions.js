@@ -45,5 +45,5 @@ export function logout() {
 		}).catch((error) => {
 			console.error(error);
 		});
-	}
+	};
 }
