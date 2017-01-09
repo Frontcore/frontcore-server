@@ -15,9 +15,6 @@ module.exports = {
       "NODE_ENV": "production"
     }
   },
-  "client": {
-    "dist": "../dist"
-  },
   "api": {
     "defaults": {
       "version": "v1"

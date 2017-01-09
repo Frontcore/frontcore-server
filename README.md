@@ -1,5 +1,5 @@
-# frontcore
+# frontcore-server
 
 ```
-sudo npm install -g node-inspector webpack nsp jest-cli
+sudo yarn install
 ```
