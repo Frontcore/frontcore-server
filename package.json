@@ -17,6 +17,7 @@
     "bcrypt": "^0.8.7",
     "body-parser": "^1.15.0",
     "brace": "^0.8.0",
+    "bunyan": "^1.8.5",
     "compression": "^1.5.2",
     "debug": "~2.2.0",
     "elasticsearch": "^11.0.1",
@@ -29,7 +30,6 @@
     "jsonfile": "^2.3.1",
     "jsonwebtoken": "^7.1.9",
     "mongoose": "^4.5.10",
-    "morgan": "^1.7.0",
     "multer": "^1.2.0",
     "node-dir": "^0.1.11",
     "node-inspector": "^0.12.8",
@@ -40,8 +40,7 @@
     "socket.io": "^1.4.5",
     "superagent": "^1.8.3",
     "underscore": "^1.8.3",
-    "validate.js": "^0.10.0",
-    "winston": "^2.2.0"
+    "validate.js": "^0.10.0"
   },
   "devDependencies": {
     "babel-cli": "^6.18.0",

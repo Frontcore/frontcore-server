@@ -2,12 +2,11 @@ import path from 'path';
 import fs from 'fs';
 import express from 'express';
 import session from 'express-session';
-import morgan from 'morgan';
 import bodyParser from 'body-parser';
 import compression from 'compression';
-import winston from 'winston';
 import helmet from 'helmet';
 import passport from 'passport';
+import bunyan from 'bunyan';
 
 /**
  * Requires a constants utility functions;
@@ -15,6 +14,7 @@ import passport from 'passport';
 import STACK_CONFIG from '../config/stack.conf';
 import MONGO_CONFIG from '../config/mongo.conf';
 import { MongoDB } from './utils/mongodb.utils';
+import PRODUCT from '../package.json';
 
 /**
  * Create an instance of MongoDB class.
@@ -29,21 +29,21 @@ mongo = mongo.connect();
 /**
  * Create an express app;
  */
-let app = express();
+const app = express();
 
 /**
- * Create a write stream (in append mode)
+ * Create a logger
  */
-let accessLogStream = fs.createWriteStream(__dirname + '/' + STACK_CONFIG.logger.dirname + '/' + STACK_CONFIG.logger.filename, {
-    flags: 'a'
+const log = bunyan.createLogger({
+	name: PRODUCT.name,
+	streams: [{
+		level: 'info',
+		stream: process.stdout // log INFO and above to stdout
+	}, {
+		level: 'error',
+		path: path.join(__dirname, 'logs', 'error.log') // log ERROR and above to a file
+	}]
 });
-
-/**
- * Setup the logger
- */
-app.use(morgan('combined', {
-    stream: accessLogStream
-}));
 
 /**
  * For parsing application/json
@@ -104,7 +104,6 @@ switch (NODE_ENV.toLowerCase()) {
          */
         app.set('port', process.env.PORT || STACK_CONFIG.server.dev.port);
         app.set('uri', STACK_CONFIG.server.dev.ip);
-        app.use(express.static(path.join(__dirname, STACK_CONFIG.client.dist)));
         break;
 
     case STACK_CONFIG.server.prod.NODE_ENV.toLowerCase():
@@ -114,7 +113,6 @@ switch (NODE_ENV.toLowerCase()) {
          */
         app.set('port', process.env.PORT || STACK_CONFIG.server.prod.port);
         app.set('uri', STACK_CONFIG.server.prod.ip);
-        app.use(express.static(path.join(__dirname, STACK_CONFIG.client.dist)));
         break;
 }
 
