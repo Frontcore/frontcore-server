@@ -12,7 +12,9 @@
     "nspcheck": "nsp check",
     "lint": "eslint config src",
     "lint:fix": "eslint --fix config src",
-		"doc": "jsdoc -d docs src"
+    "doc": "jsdoc -d docs src",
+    "snyk-protect": "snyk protect",
+    "prepare": "npm run snyk-protect"
   },
   "dependencies": {
     "bcrypt": "^0.8.7",
@@ -30,7 +32,7 @@
     "helmet": "^2.1.2",
     "jsdoc": "^3.4.3",
     "jsonfile": "^2.3.1",
-    "jsonwebtoken": "^7.1.9",
+    "jsonwebtoken": "^8.0.0",
     "mongoose": "^4.5.10",
     "multer": "^1.2.0",
     "node-dir": "^0.1.11",
@@ -42,7 +44,8 @@
     "socket.io": "^1.4.5",
     "superagent": "^1.8.3",
     "underscore": "^1.8.3",
-    "validate.js": "^0.10.0"
+    "validate.js": "^0.10.0",
+    "snyk": "^1.83.0"
   },
   "devDependencies": {
     "babel-cli": "^6.18.0",
@@ -72,5 +75,6 @@
   "bugs": {
     "url": "https://github.com/Frontcore/frontcore-server/issues"
   },
-  "license": "MIT"
+  "license": "MIT",
+  "snyk": true
 }
