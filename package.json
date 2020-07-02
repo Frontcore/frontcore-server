@@ -15,7 +15,7 @@
 		"doc": "jsdoc -d docs src"
   },
   "dependencies": {
-    "bcrypt": "^0.8.7",
+    "bcrypt": "^5.0.0",
     "body-parser": "^1.15.0",
     "brace": "^0.8.0",
     "bunyan": "^1.8.5",
