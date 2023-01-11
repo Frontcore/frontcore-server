@@ -20,7 +20,7 @@
     "brace": "^0.8.0",
     "bunyan": "^1.8.5",
     "compression": "^1.5.2",
-    "debug": "~2.2.0",
+    "debug": "~2.6.9",
     "elasticsearch": "^11.0.1",
     "es6-promise": "^3.2.1",
     "eslint": "^2.6.0",
