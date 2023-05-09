@@ -1,0 +1,42 @@
+# Snyk (https://snyk.io) policy file, patches or ignores known vulnerabilities.
+version: v1.25.1
+ignore: {}
+# patches apply the minimum changes required to fix a vulnerability
+patch:
+  'npm:debug:20170905':
+    - eslint > debug:
+        patched: '2023-05-09T08:54:07.224Z'
+    - node-inspector > debug:
+        patched: '2023-05-09T08:54:07.224Z'
+    - node-inspector > express > debug:
+        patched: '2023-05-09T08:54:07.224Z'
+    - node-inspector > express > finalhandler > debug:
+        patched: '2023-05-09T08:54:07.224Z'
+    - node-inspector > express > send > debug:
+        patched: '2023-05-09T08:54:07.224Z'
+    - socket.io > socket.io-adapter > socket.io-parser > debug:
+        patched: '2023-05-09T08:54:07.224Z'
+    - node-inspector > express > serve-static > send > debug:
+        patched: '2023-05-09T08:54:07.224Z'
+    - node-inspector > v8-debug > node-pre-gyp > tar-pack > debug:
+        patched: '2023-05-09T08:54:07.224Z'
+    - node-inspector > v8-profiler > node-pre-gyp > tar-pack > debug:
+        patched: '2023-05-09T08:54:07.224Z'
+    - superagent > debug:
+        patched: '2023-05-09T08:54:07.224Z'
+    - nodemailer > needle > debug:
+        patched: '2023-05-09T08:54:07.224Z'
+    - node-inspector > biased-opener > browser-launcher2 > win-detect-browsers > debug:
+        patched: '2023-05-09T08:54:07.224Z'
+    - nodemailer > mailcomposer > buildmail > needle > debug:
+        patched: '2023-05-09T08:54:07.224Z'
+  'npm:extend:20180424':
+    - node-inspector > v8-debug > node-pre-gyp > request > extend:
+        patched: '2023-05-09T08:54:07.224Z'
+    - node-inspector > v8-profiler > node-pre-gyp > request > extend:
+        patched: '2023-05-09T08:54:07.224Z'
+  'npm:tunnel-agent:20170305':
+    - node-inspector > v8-debug > node-pre-gyp > request > tunnel-agent:
+        patched: '2023-05-09T08:54:07.224Z'
+    - node-inspector > v8-profiler > node-pre-gyp > request > tunnel-agent:
+        patched: '2023-05-09T08:54:07.224Z'
